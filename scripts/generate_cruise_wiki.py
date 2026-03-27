@@ -515,6 +515,37 @@ CONTENT RULES:
 - risks: 3-5 RCCL-specific risks
 - JSON only, absolutely no markdown, no explanation"""
 
+
+# ─────────────────────────────────────────────────────────────────────────────
+# NORMALISE — coerce list/dict fields Qwen may over-structure into plain strings
+# ─────────────────────────────────────────────────────────────────────────────
+def _str_val(v):
+    """Flatten a value that might be a dict, list, or scalar to a plain string."""
+    if isinstance(v, dict):
+        return str(next(iter(v.values()), ""))
+    if isinstance(v, list):
+        return ", ".join(_str_val(x) for x in v)
+    return str(v) if v is not None else ""
+
+def normalise_qwen(data):
+    """Ensure string-list fields are plain string lists, not lists of dicts."""
+    for field in ("risks", "kpis", "systems"):
+        raw = data.get(field, [])
+        if isinstance(raw, list):
+            data[field] = [_str_val(x) for x in raw if x]
+        elif isinstance(raw, str):
+            data[field] = [raw]
+    for field in ("description", "trigger", "outcome"):
+        val = data.get(field, "")
+        if isinstance(val, dict):
+            data[field] = _str_val(val)
+    for step in data.get("l4_steps", []):
+        for sf in ("name", "role", "system", "input", "output",
+                   "kpi", "pain_point", "decision_point", "exception", "step"):
+            if sf in step and isinstance(step[sf], (dict, list)):
+                step[sf] = _str_val(step[sf])
+    return data
+
 # ─────────────────────────────────────────────────────────────────────────────
 # CALL QWEN
 # ─────────────────────────────────────────────────────────────────────────────
@@ -538,6 +569,7 @@ def call_qwen(prompt, model="qwen2.5-coder:14b", max_retries=3):
             raw = re.sub(r'^```(?:json)?\s*', '', raw, flags=re.I)
             raw = re.sub(r'```\s*$', '', raw).strip()
             data = json.loads(raw)
+            normalise_qwen(data)  # flatten any dict/list fields Qwen over-structures
             if "l4_steps" in data and len(data["l4_steps"]) >= 6:
                 return data
             log("Response missing l4_steps or too short — retrying", "warn")
