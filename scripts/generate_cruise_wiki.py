@@ -756,22 +756,21 @@ def generate_png(pid, mmd_text):
 # ─────────────────────────────────────────────────────────────────────────────
 def stag(system):
     s = system.lower()
-    if "spms" in s or "oracle hospitality" in s: cls = "spms"
-    elif "oracle" in s:          cls = "oracle"
-    elif "royal app" in s:       cls = "royal-app"
-    elif "res" == s.strip() or "res system" in s: cls = "res-sys"
-    elif "micros" in s:          cls = "micros"
-    elif "seapass" in s:         cls = "seapass"
-    elif "sap ariba" in s:       cls = "ariba"
-    elif "sap" in s:             cls = "sap"
-    elif "workday" in s:         cls = "workday"
-    elif "salesforce" in s:      cls = "salesforce"
-    elif "starlink" in s:        cls = "starlink"
-    elif "obiee" in s or "bi" in s.split(): cls = "obiee"
-    elif "mermaid" in s:         cls = "custom"
-    elif "crown" in s or "anchor" in s: cls = "loyalty"
-    elif "club royale" in s:     cls = "club-royale"
-    else:                        cls = "custom"
+    if any(x in s for x in ("oracle", "spms", "micros", "obiee")):
+        cls = "sys-oracle"
+    elif "sap" in s:
+        cls = "sys-sap"
+    elif any(x in s for x in ("azure", "microsoft")):
+        cls = "sys-ms"
+    elif "workday" in s:
+        cls = "sys-workday"
+    elif "salesforce" in s:
+        cls = "sys-salesforce"
+    elif any(x in s for x in ("royal app", "seapass", "res ", "starlink",
+                               "crown", "cococay", "mface", "club royale", "bravo")):
+        cls = "sys-rccl"
+    else:
+        cls = "sys-other"
     return f'<span class="stag {cls}">{escape(system)}</span>'
 
 def flag(val):
@@ -1000,11 +999,11 @@ def generate_page_html(proc, data):
 </head>
 <body>
 <header class="topbar">
-  <a href="../../../" class="topbar-logo">Cruise <span>Process Wiki</span></a>
+  <a href="../../../" class="topbar-logo">🚢 Cruise <span>Process Wiki</span></a>
   <span class="topbar-badge">v1.0</span>
   <div class="topbar-right">
-    <div class="topbar-search-wrap">
-      <input type="text" id="searchBox" class="search-box" placeholder="Search processes… (/)" autocomplete="off">
+    <div class="topbar-search">
+      <input type="text" id="searchBox" placeholder="Search processes… (/)" autocomplete="off">
       <div class="search-results" id="searchResults"></div>
     </div>
     <a href="../../../">Home</a>
@@ -1053,7 +1052,7 @@ def generate_page_html(proc, data):
           <span>Diagram image not yet generated.</span>
         </div>
       </div>
-      <p class="mermaid-hint">Click diagram to open fullscreen &nbsp;|&nbsp; Scroll to zoom &nbsp;|&nbsp; Drag to pan</p>
+      <p class="diagram-hint">Click diagram to open fullscreen &nbsp;|&nbsp; Scroll to zoom &nbsp;|&nbsp; Drag to pan</p>
     </div>
   </div>
 
@@ -1282,31 +1281,51 @@ def update_home_page():
             domain_counts[d]["done"] += 1
 
     ICONS = {
-        "Guest Services & Embarkation": "⚓",
-        "Stateroom & Housekeeping": "🛏️",
-        "Food & Beverage Operations": "🍽️",
-        "Entertainment & Activities": "🎭",
-        "Shore Excursions & Destinations": "🌴",
-        "Marine & Technical Operations": "⚙️",
-        "Environmental & Sustainability": "🌊",
-        "Crew Management & HR": "👥",
-        "Revenue & Commercial": "💰",
-        "Finance & Procurement": "💼",
-        "Technology & Cybersecurity": "💻",
+        "Guest Services & Embarkation":    "🚢",
+        "Stateroom & Housekeeping":        "🛏️",
+        "Food & Beverage Operations":      "🍽️",
+        "Entertainment & Activities":      "🎭",
+        "Shore Excursions & Destinations": "⚓",
+        "Marine & Technical Operations":   "⚙️",
+        "Environmental & Sustainability":  "🌿",
+        "Crew Management & HR":            "👥",
+        "Revenue & Commercial":            "💰",
+        "Finance & Procurement":           "💼",
+        "Technology & Cybersecurity":      "💻",
+        "Health, Safety & Medical":        "🏥",
+    }
+    DESCS = {
+        "Guest Services & Embarkation":    "Check-in, debarkation, concierge, loyalty, IDEMIA MFACE",
+        "Stateroom & Housekeeping":        "Stateroom ops, laundry, public areas, turnaround",
+        "Food & Beverage Operations":      "MDR, specialty dining, buffet, provisioning, HACCP",
+        "Entertainment & Activities":      "Broadway shows, AquaTheater, FlowRider, Casino Royale",
+        "Shore Excursions & Destinations": "Excursions, tenders, CocoCay, Royal Beach Club",
+        "Marine & Technical Operations":   "Bridge, navigation, engineering, LNG, dry dock, ISM",
+        "Environmental & Sustainability":  "Waste, BWTS, CII compliance, EPA reporting, scrubbers",
+        "Crew Management & HR":            "Sign-on/off, STCW, Workday HCM, payroll, repatriation",
+        "Revenue & Commercial":            "SeaPass, MICROS POS, onboard revenue, Crown & Anchor",
+        "Finance & Procurement":           "SAP S/4HANA, Ariba, voyage accounting, port disbursements",
+        "Technology & Cybersecurity":      "Starlink, SPMS, Royal App, VDR, SeaPass, cyber ops",
+        "Health, Safety & Medical":        "Medical centre, MEDEVAC, norovirus, SOLAS, port health",
     }
 
     domain_cards = ""
     for l1_name, l1_code, l1_slug, groups in TAXONOMY:
-        cnt   = domain_counts.get(l1_name, {"total": 0, "done": 0})
-        icon  = ICONS.get(l1_name, "🚢")
-        grp_count = len(groups)
-        domain_cards += f"""    <div class="domain-card">
-      <div class="domain-card-hdr"><h3>{icon} {escape(l1_name)}</h3><p>Cruise · {grp_count} process group{"s" if grp_count != 1 else ""}</p></div>
-      <div class="domain-card-body">
-        <div class="domain-card-stat">{cnt["done"]} of {cnt["total"]} subprocesses complete</div>
-        <a class="domain-card-link" href="{l1_slug}/">Explore domain →</a>
-      </div>
-    </div>\n"""
+        cnt  = domain_counts.get(l1_name, {"total": 0, "done": 0})
+        icon = ICONS.get(l1_name, "🚢")
+        desc = DESCS.get(l1_name, "")
+        pct  = int(cnt["done"] / cnt["total"] * 100) if cnt["total"] else 0
+        domain_cards += f"""      <a href="{l1_slug}/" class="domain-card">
+        <div class="domain-card-header">
+          <span class="domain-icon">{icon}</span>
+          <span class="domain-code">{l1_code}</span>
+        </div>
+        <h3>{escape(l1_name)}</h3>
+        <p>{escape(desc)}</p>
+        <div class="progress-bar"><div class="progress-fill" style="width:{pct}%"></div></div>
+        <div class="progress-label">{cnt["done"]} / {cnt["total"]} complete</div>
+        <span class="explore-link">Explore domain &rarr;</span>
+      </a>\n"""
 
     sidebar_html = build_sidebar("", depth=0)
 
@@ -1322,38 +1341,49 @@ def update_home_page():
 </head>
 <body>
 <header class="topbar">
-  <a href="./" class="topbar-logo">Cruise <span>Process Wiki</span></a>
+  <a href="./" class="topbar-logo">🚢 Cruise <span>Process Wiki</span></a>
   <span class="topbar-badge">v1.0</span>
   <div class="topbar-right">
-    <div class="topbar-search-wrap">
-      <input type="text" id="searchBox" class="search-box" placeholder="Search processes… (/)" autocomplete="off">
+    <div class="topbar-search">
+      <input type="text" id="searchBox" placeholder="Search processes… (/)" autocomplete="off">
       <div class="search-results" id="searchResults"></div>
     </div>
-    <a href="./">Home</a>
     <a href="https://github.com/{GH_REPO}" class="gh-btn" target="_blank">⭐ GitHub</a>
   </div>
 </header>
 <nav class="sidebar" id="sidebar">
 {sidebar_html}
 </nav>
-<button id="sidebarToggle" title="Toggle sidebar">◀</button>
+<button id="sidebarToggle" title="Toggle sidebar">&#9664;</button>
 <main class="main">
-  <div class="hero">
-    <div>
-      <div class="hero-label">Process Catalog</div>
-      <h1 class="hero-title">Cruise Process Wiki</h1>
-      <p class="hero-desc">End-to-end L1 → L2 → L3 → L4 process documentation for cruise & integrated resort operations. Each subprocess includes BPMN process flow diagrams, L4 step tables, swim lane documentation, system landscape (Royal Caribbean International reference), KPIs, and cruise-specific risk analysis.</p>
-      <div class="hero-stats">
-        <span>✅ {total_done} subprocesses complete</span>
-        <span>📋 {total_procs} total processes</span>
-        <span>🚢 Ref: Royal Caribbean International</span>
-      </div>
+  <div class="breadcrumb"><span class="current">Process Catalog</span></div>
+
+  <div class="page-header">
+    <div class="page-header-left">
+      <h1>Cruise Process Wiki</h1>
+      <p>End-to-end L1 &rarr; L2 &rarr; L3 &rarr; L4 process documentation for cruise &amp; integrated resort operations.
+      Each subprocess includes BPMN process flow diagrams, L4 step tables, swim lane documentation,
+      system landscape (Royal Caribbean International reference), KPIs, and cruise-specific risk analysis.</p>
+    </div>
+    <div class="page-header-meta">
+      <span class="pid-badge">RCCL</span>
+      <span class="status-badge complete">&check; {total_done} subprocesses complete</span>
+      <span class="ref-line">🚢 {total_procs} total processes &nbsp;|&nbsp; 📋 Ref: Royal Caribbean International</span>
     </div>
   </div>
-  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#6b7280;margin-bottom:12px">L1 DOMAINS</div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num accent">{total_done}</div><div class="stat-label">Complete</div></div>
+    <div class="stat-card"><div class="stat-num">{total_procs}</div><div class="stat-label">Total Processes</div></div>
+    <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">L1 Domains</div></div>
+    <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">EA Diagrams</div></div>
+  </div>
+
+  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#6b7280;margin-bottom:12px">L1 Domains</div>
   <div class="domain-grid">
 {domain_cards}  </div>
 </main>
+<div id="bpmn-lightbox"></div>
 <script src="./assets/js/wiki.js"></script>
 </body>
 </html>"""
@@ -1391,13 +1421,17 @@ def push_all_index_pages():
                 dot   = "✅" if status == "Complete" else "⏳"
                 steps = len(p.get("l4_steps",[]))
                 step_txt = f"{steps} L4 steps" if steps else "pending"
-                cards += f"""    <div class="domain-card">
-      <div class="domain-card-hdr"><h3>{escape(p["l3_name"])}</h3><p>{pid_}</p></div>
-      <div class="domain-card-body">
-        <div class="domain-card-stat">{dot} {status} · {step_txt}</div>
-        <a class="domain-card-link" href="{pid_.lower()}/">View process →</a>
-      </div>
-    </div>\n"""
+                pct = 100 if status == "Complete" else 0
+                cards += f"""      <a href="{pid_.lower()}/" class="domain-card">
+        <div class="domain-card-header">
+          <span class="domain-code" style="font-size:10px">{pid_}</span>
+          <span class="status-badge {'complete' if status=='Complete' else 'queued'}" style="font-size:9px">{dot} {status}</span>
+        </div>
+        <h3 style="font-size:13px">{escape(p["l3_name"])}</h3>
+        <p>{step_txt}</p>
+        <div class="progress-bar"><div class="progress-fill" style="width:{pct}%"></div></div>
+        <span class="explore-link">View process &rarr;</span>
+      </a>\n"""
             l2_html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1409,7 +1443,7 @@ def push_all_index_pages():
 </head>
 <body>
 <header class="topbar">
-  <a href="../../" class="topbar-logo">Cruise <span>Process Wiki</span></a>
+  <a href="../../" class="topbar-logo">🚢 Cruise <span>Process Wiki</span></a>
   <span class="topbar-badge">v1.0</span>
   <div class="topbar-right">
     <a href="../../">Home</a>
@@ -1451,13 +1485,17 @@ def push_all_index_pages():
         for l2_name, l2_code, l2_slug, procs in groups_data:
             done  = sum(1 for p in procs if p.get("status") == "Complete")
             total = len(procs)
-            cards += f"""    <div class="domain-card">
-      <div class="domain-card-hdr"><h3>{escape(l2_name)}</h3><p>{total} processes</p></div>
-      <div class="domain-card-body">
-        <div class="domain-card-stat">{done} of {total} subprocesses complete</div>
-        <a class="domain-card-link" href="{l2_slug}/">Explore group →</a>
-      </div>
-    </div>\n"""
+            pct   = int(done / total * 100) if total else 0
+            cards += f"""      <a href="{l2_slug}/" class="domain-card">
+        <div class="domain-card-header">
+          <span class="domain-code">{l2_code}</span>
+        </div>
+        <h3>{escape(l2_name)}</h3>
+        <p>{total} processes</p>
+        <div class="progress-bar"><div class="progress-fill" style="width:{pct}%"></div></div>
+        <div class="progress-label">{done} of {total} subprocesses complete</div>
+        <span class="explore-link">Explore group &rarr;</span>
+      </a>\n"""
         l1_html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1469,7 +1507,7 @@ def push_all_index_pages():
 </head>
 <body>
 <header class="topbar">
-  <a href="../" class="topbar-logo">Cruise <span>Process Wiki</span></a>
+  <a href="../" class="topbar-logo">🚢 Cruise <span>Process Wiki</span></a>
   <span class="topbar-badge">v1.0</span>
   <div class="topbar-right">
     <a href="../">Home</a>
