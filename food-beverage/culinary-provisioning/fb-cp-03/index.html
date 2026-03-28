@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FB-CP-03 · Cold Chain &amp; HACCP Compliance at Sea · Cruise Process Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <a href="../../../" class="topbar-logo">🚢 Cruise <span>Process Wiki</span></a>
+  <span class="topbar-badge">v1.0</span>
+  <div class="topbar-right">
+    <div class="topbar-search">
+      <input type="text" id="searchBox" placeholder="Search processes… (/)" autocomplete="off">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <a href="../../../">Home</a>
+    <a href="../../../food-beverage/">Food &amp; Beverage Operations</a>
+    <a href="https://github.com/ghatk047/Cruise-Process-Wiki" class="gh-btn" target="_blank">⭐ GitHub</a>
+  </div>
+</header>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-domain" data-label="Guest Services &amp; Embarkation"><span class="domain-label">Guest Services &amp; Embarkation</span><span class="chevron">▶</span></div>
+    <div class="sidebar-l2">
+      <a class="sidebar-l2-link" href="../../../guest-services/embarkation-checkin/">Embarkation &amp; Check-In</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../guest-services/embarkation-checkin/gs-em-01/"><span class="status-dot status-done"></span><span class="pid">GS-EM-01</span>Pre-Cruise Documentation &amp; eDocs Processing</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/embarkation-checkin/gs-em-02/"><span class="status-dot status-done"></span><span class="pid">GS-EM-02</span>Terminal Check-In &amp; SeaPass Card Issuance</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/embarkation-checkin/gs-em-03/"><span class="status-dot status-done"></span><span class="pid">GS-EM-03</span>Luggage Tagging &amp; Drop-Off Management</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/embarkation-checkin/gs-em-04/"><span class="status-dot status-done"></span><span class="pid">GS-EM-04</span>Muster 2.0 Safety Drill Completion &amp; Verification</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/embarkation-checkin/gs-em-05/"><span class="status-dot status-done"></span><span class="pid">GS-EM-05</span>Suite &amp; Loyalty Member Priority Boarding</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/embarkation-checkin/gs-em-06/"><span class="status-dot status-done"></span><span class="pid">GS-EM-06</span>Group Embarkation Coordination</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/embarkation-checkin/gs-em-07/"><span class="status-dot status-done"></span><span class="pid">GS-EM-07</span>Accessibility &amp; Special Needs Embarkation</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/embarkation-checkin/gs-em-08/"><span class="status-dot status-done"></span><span class="pid">GS-EM-08</span>Minors &amp; Unaccompanied Youth Check-In</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/embarkation-checkin/gs-em-09/"><span class="status-dot status-done"></span><span class="pid">GS-EM-09</span>Pre-Cruise Upsell &amp; Package Activation at Pier</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/embarkation-checkin/gs-em-10/"><span class="status-dot status-done"></span><span class="pid">GS-EM-10</span>Embarkation Day Capacity &amp; Flow Management</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../guest-services/debarkation/">Debarkation &amp; Port Operations</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../guest-services/debarkation/gs-db-01/"><span class="status-dot status-done"></span><span class="pid">GS-DB-01</span>Debarkation Planning &amp; Luggage Tag Distribution</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/debarkation/gs-db-02/"><span class="status-dot status-done"></span><span class="pid">GS-DB-02</span>Express Self-Assist Debarkation Management</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/debarkation/gs-db-03/"><span class="status-dot status-done"></span><span class="pid">GS-DB-03</span>Customs &amp; Border Protection (CBP) Coordination</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/debarkation/gs-db-04/"><span class="status-dot status-done"></span><span class="pid">GS-DB-04</span>Facial Recognition Debarkation (IDEMIA MFACE)</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/debarkation/gs-db-05/"><span class="status-dot status-done"></span><span class="pid">GS-DB-05</span>Onward Travel &amp; Transfer Coordination</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/debarkation/gs-db-06/"><span class="status-dot status-done"></span><span class="pid">GS-DB-06</span>Last-Minute Overboard Guest Management</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/debarkation/gs-db-07/"><span class="status-dot status-done"></span><span class="pid">GS-DB-07</span>Group Debarkation Coordination</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/debarkation/gs-db-08/"><span class="status-dot status-done"></span><span class="pid">GS-DB-08</span>Lost Luggage &amp; Left-Behind Property Handling</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/debarkation/gs-db-09/"><span class="status-dot status-done"></span><span class="pid">GS-DB-09</span>Port Agent Briefing &amp; Services Coordination</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/debarkation/gs-db-10/"><span class="status-dot status-done"></span><span class="pid">GS-DB-10</span>In-Transit Port Stop Guest Management</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../guest-services/guest-experience/">Guest Experience &amp; Concierge</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../guest-services/guest-experience/gs-cx-01/"><span class="status-dot status-done"></span><span class="pid">GS-CX-01</span>Guest Services Desk Operations</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/guest-experience/gs-cx-02/"><span class="status-dot status-done"></span><span class="pid">GS-CX-02</span>Royal App AI Chat &amp; Self-Service</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/guest-experience/gs-cx-03/"><span class="status-dot status-done"></span><span class="pid">GS-CX-03</span>Guest Complaint Resolution &amp; Service Recovery</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/guest-experience/gs-cx-04/"><span class="status-dot status-done"></span><span class="pid">GS-CX-04</span>Accessibility &amp; PRM Guest Support</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/guest-experience/gs-cx-05/"><span class="status-dot status-done"></span><span class="pid">GS-CX-05</span>Medical Centre Triage &amp; Guest Health Services</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/guest-experience/gs-cx-06/"><span class="status-dot status-done"></span><span class="pid">GS-CX-06</span>Onboard Account Query &amp; Billing Resolution</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/guest-experience/gs-cx-07/"><span class="status-dot status-done"></span><span class="pid">GS-CX-07</span>Lost &amp; Found Management</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/guest-experience/gs-cx-08/"><span class="status-dot status-done"></span><span class="pid">GS-CX-08</span>Crown &amp; Anchor Loyalty Recognition Onboard</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/guest-experience/gs-cx-09/"><span class="status-dot status-done"></span><span class="pid">GS-CX-09</span>VIP &amp; Suite Concierge Royal Genie Service</a>
+        <a class="sidebar-l3-link" href="../../../guest-services/guest-experience/gs-cx-10/"><span class="status-dot status-done"></span><span class="pid">GS-CX-10</span>Inter-Cruise Booking &amp; Next Voyage Sales</a>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-domain" data-label="Stateroom &amp; Housekeeping"><span class="domain-label">Stateroom &amp; Housekeeping</span><span class="chevron">▶</span></div>
+    <div class="sidebar-l2">
+      <a class="sidebar-l2-link" href="../../../housekeeping/stateroom-ops/">Stateroom Operations</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../housekeeping/stateroom-ops/hk-sr-01/"><span class="status-dot status-done"></span><span class="pid">HK-SR-01</span>Daily Stateroom Cleaning &amp; Turndown Service</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/stateroom-ops/hk-sr-02/"><span class="status-dot status-done"></span><span class="pid">HK-SR-02</span>Suite &amp; Royal Suite Class Premium Service</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/stateroom-ops/hk-sr-03/"><span class="status-dot status-done"></span><span class="pid">HK-SR-03</span>Stateroom Inspection &amp; Quality Scoring</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/stateroom-ops/hk-sr-04/"><span class="status-dot status-done"></span><span class="pid">HK-SR-04</span>Linen &amp; Towel Management &amp; Par Stock</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/stateroom-ops/hk-sr-05/"><span class="status-dot status-done"></span><span class="pid">HK-SR-05</span>Out-of-Service Cabin Tracking &amp; Maintenance Routing</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/stateroom-ops/hk-sr-06/"><span class="status-dot status-done"></span><span class="pid">HK-SR-06</span>VIP &amp; Special Occasion Amenity Placement</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/stateroom-ops/hk-sr-07/"><span class="status-dot status-done"></span><span class="pid">HK-SR-07</span>Stateroom Preventive Maintenance Coordination</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/stateroom-ops/hk-sr-08/"><span class="status-dot status-done"></span><span class="pid">HK-SR-08</span>Embarkation Day Deep Clean &amp; Turnaround</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../housekeeping/laundry-public/">Laundry &amp; Public Areas</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../housekeeping/laundry-public/hk-lp-01/"><span class="status-dot status-done"></span><span class="pid">HK-LP-01</span>Shipboard Laundry Operations &amp; Processing</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/laundry-public/hk-lp-02/"><span class="status-dot status-done"></span><span class="pid">HK-LP-02</span>Guest Laundry &amp; Pressing Service</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/laundry-public/hk-lp-03/"><span class="status-dot status-done"></span><span class="pid">HK-LP-03</span>Uniform Laundering &amp; Crew Issue Management</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/laundry-public/hk-lp-04/"><span class="status-dot status-done"></span><span class="pid">HK-LP-04</span>Public Area &amp; Corridor Cleaning Schedule</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/laundry-public/hk-lp-05/"><span class="status-dot status-done"></span><span class="pid">HK-LP-05</span>Pool Deck &amp; Lido Area Maintenance</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/laundry-public/hk-lp-06/"><span class="status-dot status-done"></span><span class="pid">HK-LP-06</span>Gym &amp; Fitness Area Cleaning &amp; Upkeep</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/laundry-public/hk-lp-07/"><span class="status-dot status-done"></span><span class="pid">HK-LP-07</span>Kids Club &amp; Youth Zone Cleaning</a>
+        <a class="sidebar-l3-link" href="../../../housekeeping/laundry-public/hk-lp-08/"><span class="status-dot status-done"></span><span class="pid">HK-LP-08</span>Deep Cleaning &amp; Periodic Sanitation Programme</a>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-domain open" data-label="Food &amp; Beverage Operations"><span class="domain-label">Food &amp; Beverage Operations</span><span class="chevron">▶</span></div>
+    <div class="sidebar-l2 open">
+      <a class="sidebar-l2-link" href="../../../food-beverage/restaurant-dining/">Restaurant &amp; Dining Management</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../food-beverage/restaurant-dining/fb-rd-01/"><span class="status-dot status-done"></span><span class="pid">FB-RD-01</span>Main Dining Room (MDR) Service Operations</a>
+        <a class="sidebar-l3-link" href="../../../food-beverage/restaurant-dining/fb-rd-02/"><span class="status-dot status-done"></span><span class="pid">FB-RD-02</span>Specialty Restaurant Operations &amp; Reservations</a>
+        <a class="sidebar-l3-link" href="../../../food-beverage/restaurant-dining/fb-rd-03/"><span class="status-dot status-done"></span><span class="pid">FB-RD-03</span>Windjammer Buffet Setup &amp; Operations</a>
+        <a class="sidebar-l3-link" href="../../../food-beverage/restaurant-dining/fb-rd-04/"><span class="status-dot status-done"></span><span class="pid">FB-RD-04</span>Room Service Delivery &amp; Order Management</a>
+        <a class="sidebar-l3-link" href="../../../food-beverage/restaurant-dining/fb-rd-05/"><span class="status-dot status-done"></span><span class="pid">FB-RD-05</span>Beverage Package Activation &amp; Bar Operations</a>
+        <a class="sidebar-l3-link" href="../../../food-beverage/restaurant-dining/fb-rd-06/"><span class="status-dot status-done"></span><span class="pid">FB-RD-06</span>Kosher &amp; Special Dietary Accommodation</a>
+        <a class="sidebar-l3-link" href="../../../food-beverage/restaurant-dining/fb-rd-07/"><span class="status-dot status-done"></span><span class="pid">FB-RD-07</span>Celebrity Chef &amp; Signature Restaurant Management</a>
+        <a class="sidebar-l3-link" href="../../../food-beverage/restaurant-dining/fb-rd-08/"><span class="status-dot status-done"></span><span class="pid">FB-RD-08</span>Restaurant Revenue &amp; Cover Count Reporting</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../food-beverage/culinary-provisioning/">Culinary &amp; Provisioning</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../food-beverage/culinary-provisioning/fb-cp-01/"><span class="status-dot status-done"></span><span class="pid">FB-CP-01</span>Menu Engineering &amp; Recipe Costing</a>
+        <a class="sidebar-l3-link" href="../../../food-beverage/culinary-provisioning/fb-cp-02/"><span class="status-dot status-done"></span><span class="pid">FB-CP-02</span>Food Provisioning Order &amp; Vendor Management</a>
+        <a class="sidebar-l3-link active" href="../../../food-beverage/culinary-provisioning/fb-cp-03/"><span class="status-dot status-done"></span><span class="pid">FB-CP-03</span>Cold Chain &amp; HACCP Compliance at Sea</a>
+        <a class="sidebar-l3-link" href="../../../food-beverage/culinary-provisioning/fb-cp-04/"><span class="status-dot status-queue"></span><span class="pid">FB-CP-04</span>Galley Production Planning &amp; Execution</a>
+        <a class="sidebar-l3-link" href="../../../food-beverage/culinary-provisioning/fb-cp-05/"><span class="status-dot status-queue"></span><span class="pid">FB-CP-05</span>Food Waste Monitoring &amp; Reduction (50% goal)</a>
+        <a class="sidebar-l3-link" href="../../../food-beverage/culinary-provisioning/fb-cp-06/"><span class="status-dot status-queue"></span><span class="pid">FB-CP-06</span>AI-Driven Inventory Optimisation (Symphony platform)</a>
+        <a class="sidebar-l3-link" href="../../../food-beverage/culinary-provisioning/fb-cp-07/"><span class="status-dot status-queue"></span><span class="pid">FB-CP-07</span>Allergen Management &amp; Dietary Labelling</a>
+        <a class="sidebar-l3-link" href="../../../food-beverage/culinary-provisioning/fb-cp-08/"><span class="status-dot status-queue"></span><span class="pid">FB-CP-08</span>Inspection &amp; Quality Audit of F&amp;B Operations</a>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-domain" data-label="Entertainment &amp; Activities"><span class="domain-label">Entertainment &amp; Activities</span><span class="chevron">▶</span></div>
+    <div class="sidebar-l2">
+      <a class="sidebar-l2-link" href="../../../entertainment/showroom-entertainment/">Showroom &amp; Live Entertainment</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../entertainment/showroom-entertainment/en-sh-01/"><span class="status-dot status-queue"></span><span class="pid">EN-SH-01</span>Production Show Scheduling &amp; Technical Setup</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/showroom-entertainment/en-sh-02/"><span class="status-dot status-queue"></span><span class="pid">EN-SH-02</span>Broadway &amp; Headliner Show Operations</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/showroom-entertainment/en-sh-03/"><span class="status-dot status-queue"></span><span class="pid">EN-SH-03</span>AquaTheater Show Production (Oasis Class)</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/showroom-entertainment/en-sh-04/"><span class="status-dot status-queue"></span><span class="pid">EN-SH-04</span>Ice Show Production &amp; Rink Management</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/showroom-entertainment/en-sh-05/"><span class="status-dot status-queue"></span><span class="pid">EN-SH-05</span>Comedy, Magic &amp; Variety Act Management</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/showroom-entertainment/en-sh-06/"><span class="status-dot status-queue"></span><span class="pid">EN-SH-06</span>Guest Entertainer Onboarding &amp; Contract Management</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/showroom-entertainment/en-sh-07/"><span class="status-dot status-queue"></span><span class="pid">EN-SH-07</span>Show Ticket Reservation &amp; Capacity Management</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/showroom-entertainment/en-sh-08/"><span class="status-dot status-queue"></span><span class="pid">EN-SH-08</span>Post-Show Changeover &amp; Technical Reset</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../entertainment/activities-adventure/">Activities &amp; Adventure</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../entertainment/activities-adventure/en-ac-01/"><span class="status-dot status-queue"></span><span class="pid">EN-AC-01</span>FlowRider Surf Simulator Operations</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/activities-adventure/en-ac-02/"><span class="status-dot status-queue"></span><span class="pid">EN-AC-02</span>Rock Climbing Wall &amp; Zip Line Management</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/activities-adventure/en-ac-03/"><span class="status-dot status-queue"></span><span class="pid">EN-AC-03</span>Sports Court &amp; Fitness Programme Scheduling</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/activities-adventure/en-ac-04/"><span class="status-dot status-queue"></span><span class="pid">EN-AC-04</span>Kids Club (Adventure Ocean) Daily Programme</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/activities-adventure/en-ac-05/"><span class="status-dot status-queue"></span><span class="pid">EN-AC-05</span>Teen Club &amp; Youth Activity Management</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/activities-adventure/en-ac-06/"><span class="status-dot status-queue"></span><span class="pid">EN-AC-06</span>Casino Royale Operations &amp; Club Royale Loyalty</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/activities-adventure/en-ac-07/"><span class="status-dot status-queue"></span><span class="pid">EN-AC-07</span>Bingo, Trivia &amp; Onboard Games Programme</a>
+        <a class="sidebar-l3-link" href="../../../entertainment/activities-adventure/en-ac-08/"><span class="status-dot status-queue"></span><span class="pid">EN-AC-08</span>Photography &amp; Media Sales Operations</a>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-domain" data-label="Shore Excursions &amp; Destinations"><span class="domain-label">Shore Excursions &amp; Destinations</span><span class="chevron">▶</span></div>
+    <div class="sidebar-l2">
+      <a class="sidebar-l2-link" href="../../../shore-excursions/excursion-operations/">Shore Excursion Operations</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../shore-excursions/excursion-operations/se-op-01/"><span class="status-dot status-queue"></span><span class="pid">SE-OP-01</span>Shore Excursion Catalogue Management &amp; Pricing</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/excursion-operations/se-op-02/"><span class="status-dot status-queue"></span><span class="pid">SE-OP-02</span>Royal App &amp; Web Pre-Booking Management</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/excursion-operations/se-op-03/"><span class="status-dot status-queue"></span><span class="pid">SE-OP-03</span>Onboard Shore Excursion Desk Operations</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/excursion-operations/se-op-04/"><span class="status-dot status-queue"></span><span class="pid">SE-OP-04</span>Local Tour Operator Vetting &amp; Contracting</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/excursion-operations/se-op-05/"><span class="status-dot status-queue"></span><span class="pid">SE-OP-05</span>Tour Bus &amp; Transportation Coordination</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/excursion-operations/se-op-06/"><span class="status-dot status-queue"></span><span class="pid">SE-OP-06</span>Tender Operations (Anchor-Port Management)</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/excursion-operations/se-op-07/"><span class="status-dot status-queue"></span><span class="pid">SE-OP-07</span>Shore Excursion Cancellation &amp; Refund Processing</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/excursion-operations/se-op-08/"><span class="status-dot status-queue"></span><span class="pid">SE-OP-08</span>Post-Excursion Guest Feedback &amp; Incident Reporting</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../shore-excursions/private-destinations/">Private Destinations &amp; CocoCay</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../shore-excursions/private-destinations/se-pd-01/"><span class="status-dot status-queue"></span><span class="pid">SE-PD-01</span>Perfect Day at CocoCay Daily Operations</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/private-destinations/se-pd-02/"><span class="status-dot status-queue"></span><span class="pid">SE-PD-02</span>Royal Beach Club Paradise Island Operations</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/private-destinations/se-pd-03/"><span class="status-dot status-queue"></span><span class="pid">SE-PD-03</span>Water Park &amp; Thrill Waterway Management</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/private-destinations/se-pd-04/"><span class="status-dot status-queue"></span><span class="pid">SE-PD-04</span>Private Island F&amp;B &amp; Retail Operations</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/private-destinations/se-pd-05/"><span class="status-dot status-queue"></span><span class="pid">SE-PD-05</span>Transportation from Ship to Island</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/private-destinations/se-pd-06/"><span class="status-dot status-queue"></span><span class="pid">SE-PD-06</span>Private Cabana &amp; Premium Experience Booking</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/private-destinations/se-pd-07/"><span class="status-dot status-queue"></span><span class="pid">SE-PD-07</span>Environmental Compliance at Private Destinations</a>
+        <a class="sidebar-l3-link" href="../../../shore-excursions/private-destinations/se-pd-08/"><span class="status-dot status-queue"></span><span class="pid">SE-PD-08</span>Security &amp; Guest Safety at Private Islands</a>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-domain" data-label="Marine &amp; Technical Operations"><span class="domain-label">Marine &amp; Technical Operations</span><span class="chevron">▶</span></div>
+    <div class="sidebar-l2">
+      <a class="sidebar-l2-link" href="../../../marine-technical/bridge-navigation/">Bridge &amp; Navigation</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../marine-technical/bridge-navigation/mt-bn-01/"><span class="status-dot status-queue"></span><span class="pid">MT-BN-01</span>Voyage Planning &amp; Route Optimisation</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/bridge-navigation/mt-bn-02/"><span class="status-dot status-queue"></span><span class="pid">MT-BN-02</span>Bridge Watch Keeping &amp; OOW Procedures</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/bridge-navigation/mt-bn-03/"><span class="status-dot status-queue"></span><span class="pid">MT-BN-03</span>Port Approach, Docking &amp; Undocking</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/bridge-navigation/mt-bn-04/"><span class="status-dot status-queue"></span><span class="pid">MT-BN-04</span>Pilotage Management &amp; Port Authority Compliance</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/bridge-navigation/mt-bn-05/"><span class="status-dot status-queue"></span><span class="pid">MT-BN-05</span>Weather Routing &amp; Storm Avoidance</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/bridge-navigation/mt-bn-06/"><span class="status-dot status-queue"></span><span class="pid">MT-BN-06</span>GMDSS &amp; Emergency Communications Management</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/bridge-navigation/mt-bn-07/"><span class="status-dot status-queue"></span><span class="pid">MT-BN-07</span>Electronic Chart Display (ECDIS) Operations</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/bridge-navigation/mt-bn-08/"><span class="status-dot status-queue"></span><span class="pid">MT-BN-08</span>Vessel Traffic Service (VTS) Communication</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/bridge-navigation/mt-bn-09/"><span class="status-dot status-queue"></span><span class="pid">MT-BN-09</span>Passage Plan Review &amp; Master&#x27;s Approval</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/bridge-navigation/mt-bn-10/"><span class="status-dot status-queue"></span><span class="pid">MT-BN-10</span>Night Order &amp; Standing Order Management</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../marine-technical/engineering-propulsion/">Engineering &amp; Propulsion</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../marine-technical/engineering-propulsion/mt-ep-01/"><span class="status-dot status-queue"></span><span class="pid">MT-EP-01</span>Main Engine &amp; Propulsion Plant Operations</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/engineering-propulsion/mt-ep-02/"><span class="status-dot status-queue"></span><span class="pid">MT-EP-02</span>LNG Fuel Management (Icon Class Ships)</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/engineering-propulsion/mt-ep-03/"><span class="status-dot status-queue"></span><span class="pid">MT-EP-03</span>Electrical Power Generation &amp; Distribution</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/engineering-propulsion/mt-ep-04/"><span class="status-dot status-queue"></span><span class="pid">MT-EP-04</span>Hotel Load &amp; HVAC Systems Management</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/engineering-propulsion/mt-ep-05/"><span class="status-dot status-queue"></span><span class="pid">MT-EP-05</span>Planned Maintenance System (PMS) Scheduling</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/engineering-propulsion/mt-ep-06/"><span class="status-dot status-queue"></span><span class="pid">MT-EP-06</span>Machinery Space Rounds &amp; Watch Management</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/engineering-propulsion/mt-ep-07/"><span class="status-dot status-queue"></span><span class="pid">MT-EP-07</span>Fuel Consumption Monitoring &amp; Efficiency Reporting</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/engineering-propulsion/mt-ep-08/"><span class="status-dot status-queue"></span><span class="pid">MT-EP-08</span>Emergency Diesel Generator Testing &amp; Readiness</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/engineering-propulsion/mt-ep-09/"><span class="status-dot status-queue"></span><span class="pid">MT-EP-09</span>Bilge &amp; Ballast System Management</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/engineering-propulsion/mt-ep-10/"><span class="status-dot status-queue"></span><span class="pid">MT-EP-10</span>Refrigeration &amp; Cold Store Plant Management</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../marine-technical/deck-safety/">Deck &amp; Safety Management</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../marine-technical/deck-safety/mt-ds-01/"><span class="status-dot status-queue"></span><span class="pid">MT-DS-01</span>Lifeboat &amp; Life-Saving Appliance (LSA) Inspection</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/deck-safety/mt-ds-02/"><span class="status-dot status-queue"></span><span class="pid">MT-DS-02</span>Fire Detection System Testing &amp; Maintenance</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/deck-safety/mt-ds-03/"><span class="status-dot status-queue"></span><span class="pid">MT-DS-03</span>ISPS Code Compliance &amp; Ship Security Plan</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/deck-safety/mt-ds-04/"><span class="status-dot status-queue"></span><span class="pid">MT-DS-04</span>Man Overboard (MOB) Drill &amp; Response</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/deck-safety/mt-ds-05/"><span class="status-dot status-queue"></span><span class="pid">MT-DS-05</span>Damage Control &amp; Flooding Emergency Response</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/deck-safety/mt-ds-06/"><span class="status-dot status-queue"></span><span class="pid">MT-DS-06</span>Anchor &amp; Mooring Operations Management</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/deck-safety/mt-ds-07/"><span class="status-dot status-queue"></span><span class="pid">MT-DS-07</span>Crane &amp; Deck Equipment Maintenance</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/deck-safety/mt-ds-08/"><span class="status-dot status-queue"></span><span class="pid">MT-DS-08</span>Port State Control (PSC) Inspection Preparation</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/deck-safety/mt-ds-09/"><span class="status-dot status-queue"></span><span class="pid">MT-DS-09</span>Enclosed Space Entry Permit Management</a>
+        <a class="sidebar-l3-link" href="../../../marine-technical/deck-safety/mt-ds-10/"><span class="status-dot status-queue"></span><span class="pid">MT-DS-10</span>Dry Dock Planning &amp; Shipyard Coordination</a>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-domain" data-label="Environmental &amp; Sustainability"><span class="domain-label">Environmental &amp; Sustainability</span><span class="chevron">▶</span></div>
+    <div class="sidebar-l2">
+      <a class="sidebar-l2-link" href="../../../environmental/environmental-compliance/">Environmental Compliance</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../environmental/environmental-compliance/es-ec-01/"><span class="status-dot status-queue"></span><span class="pid">ES-EC-01</span>MARPOL Annex I — Oily Water Separator Management</a>
+        <a class="sidebar-l3-link" href="../../../environmental/environmental-compliance/es-ec-02/"><span class="status-dot status-queue"></span><span class="pid">ES-EC-02</span>MARPOL Annex IV — Sewage Treatment Operations (AWTS)</a>
+        <a class="sidebar-l3-link" href="../../../environmental/environmental-compliance/es-ec-03/"><span class="status-dot status-queue"></span><span class="pid">ES-EC-03</span>MARPOL Annex V — Garbage Management Plan Execution</a>
+        <a class="sidebar-l3-link" href="../../../environmental/environmental-compliance/es-ec-04/"><span class="status-dot status-queue"></span><span class="pid">ES-EC-04</span>MARPOL Annex VI — Exhaust Gas Scrubber &amp; Emissions</a>
+        <a class="sidebar-l3-link" href="../../../environmental/environmental-compliance/es-ec-05/"><span class="status-dot status-queue"></span><span class="pid">ES-EC-05</span>Ballast Water Treatment System (BWTS) Operations</a>
+        <a class="sidebar-l3-link" href="../../../environmental/environmental-compliance/es-ec-06/"><span class="status-dot status-queue"></span><span class="pid">ES-EC-06</span>Air Quality Monitoring in ECAs (0.1% Sulphur Compliance)</a>
+        <a class="sidebar-l3-link" href="../../../environmental/environmental-compliance/es-ec-07/"><span class="status-dot status-queue"></span><span class="pid">ES-EC-07</span>Environmental Incident Reporting &amp; Spill Response</a>
+        <a class="sidebar-l3-link" href="../../../environmental/environmental-compliance/es-ec-08/"><span class="status-dot status-queue"></span><span class="pid">ES-EC-08</span>Annual Environmental Audit &amp; Regulatory Submission</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../environmental/sustainability-programme/">Sustainability Programme</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../environmental/sustainability-programme/es-sp-01/"><span class="status-dot status-queue"></span><span class="pid">ES-SP-01</span>Food Waste Reduction Programme (Target: -50% by 2025)</a>
+        <a class="sidebar-l3-link" href="../../../environmental/sustainability-programme/es-sp-02/"><span class="status-dot status-queue"></span><span class="pid">ES-SP-02</span>Single-Use Plastic Elimination Tracking</a>
+        <a class="sidebar-l3-link" href="../../../environmental/sustainability-programme/es-sp-03/"><span class="status-dot status-queue"></span><span class="pid">ES-SP-03</span>Shore Power Connection (Cold Ironing) Operations</a>
+        <a class="sidebar-l3-link" href="../../../environmental/sustainability-programme/es-sp-04/"><span class="status-dot status-queue"></span><span class="pid">ES-SP-04</span>Carbon Footprint Tracking &amp; IMO CII Reporting</a>
+        <a class="sidebar-l3-link" href="../../../environmental/sustainability-programme/es-sp-05/"><span class="status-dot status-queue"></span><span class="pid">ES-SP-05</span>Sustainable Procurement &amp; Supplier Assessment</a>
+        <a class="sidebar-l3-link" href="../../../environmental/sustainability-programme/es-sp-06/"><span class="status-dot status-queue"></span><span class="pid">ES-SP-06</span>Green Certification (EMAS, ISO 14001) Management</a>
+        <a class="sidebar-l3-link" href="../../../environmental/sustainability-programme/es-sp-07/"><span class="status-dot status-queue"></span><span class="pid">ES-SP-07</span>Crew Environmental Awareness Training</a>
+        <a class="sidebar-l3-link" href="../../../environmental/sustainability-programme/es-sp-08/"><span class="status-dot status-queue"></span><span class="pid">ES-SP-08</span>Destination Community &amp; Coral Reef Protection</a>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-domain" data-label="Crew Management &amp; HR"><span class="domain-label">Crew Management &amp; HR</span><span class="chevron">▶</span></div>
+    <div class="sidebar-l2">
+      <a class="sidebar-l2-link" href="../../../crew-management/crew-operations/">Crew Operations</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../crew-management/crew-operations/cm-co-01/"><span class="status-dot status-queue"></span><span class="pid">CM-CO-01</span>Crew Joining &amp; Sign-On Documentation</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/crew-operations/cm-co-02/"><span class="status-dot status-queue"></span><span class="pid">CM-CO-02</span>Crew Immigration &amp; Flag State Compliance</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/crew-operations/cm-co-03/"><span class="status-dot status-queue"></span><span class="pid">CM-CO-03</span>Crew Medical Examination &amp; Fitness-to-Work Clearance</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/crew-operations/cm-co-04/"><span class="status-dot status-queue"></span><span class="pid">CM-CO-04</span>Crew Watch Schedule &amp; Rotation Management</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/crew-operations/cm-co-05/"><span class="status-dot status-queue"></span><span class="pid">CM-CO-05</span>Crew Welfare, Recreation &amp; Internet Access</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/crew-operations/cm-co-06/"><span class="status-dot status-queue"></span><span class="pid">CM-CO-06</span>Payroll &amp; Allotment Processing (Flag State Rules)</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/crew-operations/cm-co-07/"><span class="status-dot status-queue"></span><span class="pid">CM-CO-07</span>Crew Disciplinary &amp; Grievance Management</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/crew-operations/cm-co-08/"><span class="status-dot status-queue"></span><span class="pid">CM-CO-08</span>Crew Sign-Off, Repatriation &amp; Travel Coordination</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../crew-management/training-certification/">Training &amp; Certification</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../crew-management/training-certification/cm-tc-01/"><span class="status-dot status-queue"></span><span class="pid">CM-TC-01</span>STCW Basic Safety Training Verification</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/training-certification/cm-tc-02/"><span class="status-dot status-queue"></span><span class="pid">CM-TC-02</span>Ship-Specific Familiarisation &amp; Safety Induction</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/training-certification/cm-tc-03/"><span class="status-dot status-queue"></span><span class="pid">CM-TC-03</span>Onboard Training Drill Programme (Fire, MOB, Flooding)</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/training-certification/cm-tc-04/"><span class="status-dot status-queue"></span><span class="pid">CM-TC-04</span>HELM (Hospitality) Training Delivery</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/training-certification/cm-tc-05/"><span class="status-dot status-queue"></span><span class="pid">CM-TC-05</span>Officer GMDSS Licence &amp; Certificate Renewal</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/training-certification/cm-tc-06/"><span class="status-dot status-queue"></span><span class="pid">CM-TC-06</span>Mandatory Medical First Aid Training</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/training-certification/cm-tc-07/"><span class="status-dot status-queue"></span><span class="pid">CM-TC-07</span>Environmental Officer Training</a>
+        <a class="sidebar-l3-link" href="../../../crew-management/training-certification/cm-tc-08/"><span class="status-dot status-queue"></span><span class="pid">CM-TC-08</span>Performance Appraisal &amp; Career Development Planning</a>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-domain" data-label="Revenue &amp; Commercial"><span class="domain-label">Revenue &amp; Commercial</span><span class="chevron">▶</span></div>
+    <div class="sidebar-l2">
+      <a class="sidebar-l2-link" href="../../../revenue-commercial/revenue-management/">Revenue Management</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/revenue-management/rc-rm-01/"><span class="status-dot status-queue"></span><span class="pid">RC-RM-01</span>Cruise Fare Pricing &amp; Demand Forecasting</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/revenue-management/rc-rm-02/"><span class="status-dot status-queue"></span><span class="pid">RC-RM-02</span>Dynamic Pricing &amp; Last-Minute Offer Management</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/revenue-management/rc-rm-03/"><span class="status-dot status-queue"></span><span class="pid">RC-RM-03</span>Royal Up (Upgrade Bidding) Programme Management</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/revenue-management/rc-rm-04/"><span class="status-dot status-queue"></span><span class="pid">RC-RM-04</span>Beverage Package &amp; Dining Package Yield Management</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/revenue-management/rc-rm-05/"><span class="status-dot status-queue"></span><span class="pid">RC-RM-05</span>Shore Excursion Revenue Optimisation</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/revenue-management/rc-rm-06/"><span class="status-dot status-queue"></span><span class="pid">RC-RM-06</span>Casino Revenue &amp; Hold Percentage Management</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/revenue-management/rc-rm-07/"><span class="status-dot status-queue"></span><span class="pid">RC-RM-07</span>Onboard Revenue Forecasting &amp; Flash Reporting</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/revenue-management/rc-rm-08/"><span class="status-dot status-queue"></span><span class="pid">RC-RM-08</span>Revenue Performance Review vs Budget (Oracle OBIEE)</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../revenue-commercial/sales-reservations/">Sales, Reservations &amp; Trade</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/sales-reservations/rc-sr-01/"><span class="status-dot status-queue"></span><span class="pid">RC-SR-01</span>Direct Booking via Royalcaribbean.com &amp; App (RES system)</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/sales-reservations/rc-sr-02/"><span class="status-dot status-queue"></span><span class="pid">RC-SR-02</span>Travel Agent GDS Booking &amp; Commission Management</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/sales-reservations/rc-sr-03/"><span class="status-dot status-queue"></span><span class="pid">RC-SR-03</span>Group Booking &amp; Charter Management</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/sales-reservations/rc-sr-04/"><span class="status-dot status-queue"></span><span class="pid">RC-SR-04</span>CruiseTour &amp; Land Package Booking</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/sales-reservations/rc-sr-05/"><span class="status-dot status-queue"></span><span class="pid">RC-SR-05</span>Reservation Modification, Cancel &amp; Refund Processing</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/sales-reservations/rc-sr-06/"><span class="status-dot status-queue"></span><span class="pid">RC-SR-06</span>Pre-Cruise Upsell Campaign Management</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/sales-reservations/rc-sr-07/"><span class="status-dot status-queue"></span><span class="pid">RC-SR-07</span>Corporate &amp; Incentive Travel Programme Sales</a>
+        <a class="sidebar-l3-link" href="../../../revenue-commercial/sales-reservations/rc-sr-08/"><span class="status-dot status-queue"></span><span class="pid">RC-SR-08</span>Trade Partner Portal &amp; Marketing Co-Op Management</a>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-domain" data-label="Finance &amp; Procurement"><span class="domain-label">Finance &amp; Procurement</span><span class="chevron">▶</span></div>
+    <div class="sidebar-l2">
+      <a class="sidebar-l2-link" href="../../../finance-procurement/onboard-finance/">Onboard Finance &amp; Accounting</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../finance-procurement/onboard-finance/fn-of-01/"><span class="status-dot status-queue"></span><span class="pid">FN-OF-01</span>SeaPass Onboard Account Management &amp; Billing</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/onboard-finance/fn-of-02/"><span class="status-dot status-queue"></span><span class="pid">FN-OF-02</span>Daily Folio Audit &amp; Revenue Reconciliation</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/onboard-finance/fn-of-03/"><span class="status-dot status-queue"></span><span class="pid">FN-OF-03</span>Casino Cage Operations &amp; Count Room Procedures</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/onboard-finance/fn-of-04/"><span class="status-dot status-queue"></span><span class="pid">FN-OF-04</span>Foreign Currency Exchange &amp; Cash Management</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/onboard-finance/fn-of-05/"><span class="status-dot status-queue"></span><span class="pid">FN-OF-05</span>End-of-Voyage Financial Close &amp; Revenue Reporting</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/onboard-finance/fn-of-06/"><span class="status-dot status-queue"></span><span class="pid">FN-OF-06</span>Accounts Receivable — Travel Agent Commission Settlement</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/onboard-finance/fn-of-07/"><span class="status-dot status-queue"></span><span class="pid">FN-OF-07</span>Tax Compliance — Port-by-Port Sales Tax Management</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/onboard-finance/fn-of-08/"><span class="status-dot status-queue"></span><span class="pid">FN-OF-08</span>Passenger Compensation &amp; Goodwill Credit Issuance</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../finance-procurement/procurement-supply/">Procurement &amp; Supply Chain</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../finance-procurement/procurement-supply/fn-ps-01/"><span class="status-dot status-queue"></span><span class="pid">FN-PS-01</span>Ship Provisioning Order &amp; Consolidated Purchasing</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/procurement-supply/fn-ps-02/"><span class="status-dot status-queue"></span><span class="pid">FN-PS-02</span>Vendor Qualification &amp; Preferred Supplier Management</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/procurement-supply/fn-ps-03/"><span class="status-dot status-queue"></span><span class="pid">FN-PS-03</span>Port Agent Selection &amp; Services Contracting</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/procurement-supply/fn-ps-04/"><span class="status-dot status-queue"></span><span class="pid">FN-PS-04</span>Fuel Bunkering Operations &amp; Price Hedging</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/procurement-supply/fn-ps-05/"><span class="status-dot status-queue"></span><span class="pid">FN-PS-05</span>Spare Parts &amp; Technical Stores Management</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/procurement-supply/fn-ps-06/"><span class="status-dot status-queue"></span><span class="pid">FN-PS-06</span>Customs &amp; Duty-Free Goods Management</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/procurement-supply/fn-ps-07/"><span class="status-dot status-queue"></span><span class="pid">FN-PS-07</span>SAP Ariba Purchase Order Workflow</a>
+        <a class="sidebar-l3-link" href="../../../finance-procurement/procurement-supply/fn-ps-08/"><span class="status-dot status-queue"></span><span class="pid">FN-PS-08</span>Supplier Performance Review &amp; Savings Reporting</a>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-domain" data-label="Technology &amp; Cybersecurity"><span class="domain-label">Technology &amp; Cybersecurity</span><span class="chevron">▶</span></div>
+    <div class="sidebar-l2">
+      <a class="sidebar-l2-link" href="../../../technology/shipboard-it/">Shipboard IT &amp; Connectivity</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../technology/shipboard-it/it-sc-01/"><span class="status-dot status-queue"></span><span class="pid">IT-SC-01</span>Starlink Satellite Connectivity Management (98% Fleet)</a>
+        <a class="sidebar-l3-link" href="../../../technology/shipboard-it/it-sc-02/"><span class="status-dot status-queue"></span><span class="pid">IT-SC-02</span>Shipboard Network &amp; Wi-Fi Hotspot Operations</a>
+        <a class="sidebar-l3-link" href="../../../technology/shipboard-it/it-sc-03/"><span class="status-dot status-queue"></span><span class="pid">IT-SC-03</span>Oracle Hospitality Cruise SPMS Administration</a>
+        <a class="sidebar-l3-link" href="../../../technology/shipboard-it/it-sc-04/"><span class="status-dot status-queue"></span><span class="pid">IT-SC-04</span>Point-of-Sale (POS) System Management (Micros)</a>
+        <a class="sidebar-l3-link" href="../../../technology/shipboard-it/it-sc-05/"><span class="status-dot status-queue"></span><span class="pid">IT-SC-05</span>Royal App Backend Services &amp; API Management</a>
+        <a class="sidebar-l3-link" href="../../../technology/shipboard-it/it-sc-06/"><span class="status-dot status-queue"></span><span class="pid">IT-SC-06</span>Onboard CCTV &amp; Computer Vision (Microsoft Partnership)</a>
+        <a class="sidebar-l3-link" href="../../../technology/shipboard-it/it-sc-07/"><span class="status-dot status-queue"></span><span class="pid">IT-SC-07</span>IT Service Desk — Crew &amp; Guest Support</a>
+        <a class="sidebar-l3-link" href="../../../technology/shipboard-it/it-sc-08/"><span class="status-dot status-queue"></span><span class="pid">IT-SC-08</span>Voyage Data Recorder (VDR) Maintenance</a>
+        <a class="sidebar-l3-link" href="../../../technology/shipboard-it/it-sc-09/"><span class="status-dot status-queue"></span><span class="pid">IT-SC-09</span>Digital Signage &amp; Wayfinding System Management</a>
+        <a class="sidebar-l3-link" href="../../../technology/shipboard-it/it-sc-10/"><span class="status-dot status-queue"></span><span class="pid">IT-SC-10</span>Cashless Payment &amp; SeaPass Terminal Management</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../technology/cybersecurity-data/">Cybersecurity &amp; Data</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../technology/cybersecurity-data/it-cd-01/"><span class="status-dot status-queue"></span><span class="pid">IT-CD-01</span>OT/IT Network Segmentation &amp; Security</a>
+        <a class="sidebar-l3-link" href="../../../technology/cybersecurity-data/it-cd-02/"><span class="status-dot status-queue"></span><span class="pid">IT-CD-02</span>Shipboard Cyber Incident Response</a>
+        <a class="sidebar-l3-link" href="../../../technology/cybersecurity-data/it-cd-03/"><span class="status-dot status-queue"></span><span class="pid">IT-CD-03</span>PCI DSS Compliance for Onboard Payments</a>
+        <a class="sidebar-l3-link" href="../../../technology/cybersecurity-data/it-cd-04/"><span class="status-dot status-queue"></span><span class="pid">IT-CD-04</span>Guest Data Privacy (GDPR/CCPA) Management</a>
+        <a class="sidebar-l3-link" href="../../../technology/cybersecurity-data/it-cd-05/"><span class="status-dot status-queue"></span><span class="pid">IT-CD-05</span>Satellite Data Link Security &amp; Encryption</a>
+        <a class="sidebar-l3-link" href="../../../technology/cybersecurity-data/it-cd-06/"><span class="status-dot status-queue"></span><span class="pid">IT-CD-06</span>Vulnerability Assessment &amp; Penetration Testing</a>
+        <a class="sidebar-l3-link" href="../../../technology/cybersecurity-data/it-cd-07/"><span class="status-dot status-queue"></span><span class="pid">IT-CD-07</span>Oracle OBIEE / BI Analytics Platform Management</a>
+        <a class="sidebar-l3-link" href="../../../technology/cybersecurity-data/it-cd-08/"><span class="status-dot status-queue"></span><span class="pid">IT-CD-08</span>Data Transfer Shore-Ship Synchronisation</a>
+        <a class="sidebar-l3-link" href="../../../technology/cybersecurity-data/it-cd-09/"><span class="status-dot status-queue"></span><span class="pid">IT-CD-09</span>IT Disaster Recovery &amp; Business Continuity</a>
+        <a class="sidebar-l3-link" href="../../../technology/cybersecurity-data/it-cd-10/"><span class="status-dot status-queue"></span><span class="pid">IT-CD-10</span>Access Control &amp; Identity Management (Crew/Guest)</a>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-domain" data-label="Health, Safety &amp; Medical"><span class="domain-label">Health, Safety &amp; Medical</span><span class="chevron">▶</span></div>
+    <div class="sidebar-l2">
+      <a class="sidebar-l2-link" href="../../../health-safety/medical-operations/">Onboard Medical Operations</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../health-safety/medical-operations/hs-md-01/"><span class="status-dot status-queue"></span><span class="pid">HS-MD-01</span>Medical Centre Daily Operations &amp; Triage</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/medical-operations/hs-md-02/"><span class="status-dot status-queue"></span><span class="pid">HS-MD-02</span>Emergency Medical Response &amp; Resuscitation</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/medical-operations/hs-md-03/"><span class="status-dot status-queue"></span><span class="pid">HS-MD-03</span>Guest Medical Evacuation (MEDEVAC) Coordination</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/medical-operations/hs-md-04/"><span class="status-dot status-queue"></span><span class="pid">HS-MD-04</span>Infectious Disease Outbreak Management (Norovirus Protocol)</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/medical-operations/hs-md-05/"><span class="status-dot status-queue"></span><span class="pid">HS-MD-05</span>Crew Medical Fitness &amp; Routine Health Surveillance</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/medical-operations/hs-md-06/"><span class="status-dot status-queue"></span><span class="pid">HS-MD-06</span>Pharmacy Management &amp; Controlled Drug Records</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/medical-operations/hs-md-07/"><span class="status-dot status-queue"></span><span class="pid">HS-MD-07</span>Medical Billing &amp; Travel Insurance Claim Processing</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/medical-operations/hs-md-08/"><span class="status-dot status-queue"></span><span class="pid">HS-MD-08</span>Medical Equipment Maintenance &amp; Calibration</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/medical-operations/hs-md-09/"><span class="status-dot status-queue"></span><span class="pid">HS-MD-09</span>Port Health Authority Reporting &amp; Clearance</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/medical-operations/hs-md-10/"><span class="status-dot status-queue"></span><span class="pid">HS-MD-10</span>Mental Health &amp; Wellbeing Support (Crew &amp; Guest)</a>
+      </div>
+      <a class="sidebar-l2-link" href="../../../health-safety/safety-emergency/">Safety &amp; Emergency Management</a>
+      <div class="sidebar-l3">
+        <a class="sidebar-l3-link" href="../../../health-safety/safety-emergency/hs-se-01/"><span class="status-dot status-queue"></span><span class="pid">HS-SE-01</span>Safety Management System (SMS) Documentation &amp; Audit</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/safety-emergency/hs-se-02/"><span class="status-dot status-queue"></span><span class="pid">HS-SE-02</span>Fire Safety Drill Planning &amp; Execution</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/safety-emergency/hs-se-03/"><span class="status-dot status-queue"></span><span class="pid">HS-SE-03</span>Muster Station Accountability &amp; Assembly Management</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/safety-emergency/hs-se-04/"><span class="status-dot status-queue"></span><span class="pid">HS-SE-04</span>Abandon Ship &amp; Lifeboat Launch Procedures</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/safety-emergency/hs-se-05/"><span class="status-dot status-queue"></span><span class="pid">HS-SE-05</span>Search &amp; Rescue (SAR) Coordination with Coast Guard</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/safety-emergency/hs-se-06/"><span class="status-dot status-queue"></span><span class="pid">HS-SE-06</span>Occupational Health &amp; Safety Incident Reporting</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/safety-emergency/hs-se-07/"><span class="status-dot status-queue"></span><span class="pid">HS-SE-07</span>Crowd Management &amp; Emergency Evacuation</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/safety-emergency/hs-se-08/"><span class="status-dot status-queue"></span><span class="pid">HS-SE-08</span>Serious Casualty Investigation &amp; Root Cause Analysis</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/safety-emergency/hs-se-09/"><span class="status-dot status-queue"></span><span class="pid">HS-SE-09</span>Chemical &amp; Hazardous Material Safety Management</a>
+        <a class="sidebar-l3-link" href="../../../health-safety/safety-emergency/hs-se-10/"><span class="status-dot status-queue"></span><span class="pid">HS-SE-10</span>Food Safety &amp; Outbreak Investigation Management</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<button id="sidebarToggle" title="Toggle sidebar">◀</button>
+
+<main class="main">
+  <div class="breadcrumb">
+    <a href="../../../">Home</a><span class="sep">›</span>
+    <a href="../../../food-beverage/">Food &amp; Beverage Operations</a><span class="sep">›</span>
+    <a href="../../../food-beverage/culinary-provisioning/">Culinary &amp; Provisioning</a><span class="sep">›</span>
+    <span class="current">FB-CP-03 · Cold Chain &amp; HACCP Compliance at Sea</span>
+  </div>
+
+  <div class="page-header">
+    <div class="page-header-left">
+      <h1>Cold Chain &amp; HACCP Compliance at Sea</h1>
+      <p>Culinary &amp; Provisioning &nbsp;·&nbsp; 9 L4 steps &nbsp;·&nbsp; 3 phases &nbsp;·&nbsp; 4 decision gates &nbsp;·&nbsp; Updated 2026-03-27 23:18</p>
+    </div>
+    <div class="page-header-meta">
+      <span class="pid-badge">FB-CP-03</span>
+      <span class="status-badge complete">✅ COMPLETE</span>
+      <span style="font-size:9px;color:rgba(255,255,255,.5);margin-top:4px">Ref: Royal Caribbean International</span>
+    </div>
+  </div>
+
+  <!-- DIAGRAM -->
+  <div class="card" id="diagram">
+    <div class="card-header"><span class="icon">📊</span><h2>Process Flow Diagram (BPMN)</h2></div>
+    <div class="card-body">
+      <div class="diagram-wrap" id="diag-fb-cp-03">
+        <img src="../../../assets/img/fb-cp-03.png"
+             alt="FB-CP-03 BPMN diagram"
+             style="max-width:100%;border-radius:6px;box-shadow:0 2px 12px rgba(0,0,0,.08);cursor:zoom-in"
+             onload="this.style.display='block';var ph=document.getElementById('diag-ph-fb-cp-03');if(ph)ph.style.display='none';"
+             onerror="this.style.display='none';var ph=document.getElementById('diag-ph-fb-cp-03');if(ph)ph.style.display='flex';">
+        <div id="diag-ph-fb-cp-03" class="diagram-placeholder" style="display:none">
+          <span class="ico">🗂</span>
+          <span>Diagram image not yet generated.</span>
+        </div>
+      </div>
+      <p class="diagram-hint">Click diagram to open fullscreen &nbsp;|&nbsp; Scroll to zoom &nbsp;|&nbsp; Drag to pan</p>
+    </div>
+  </div>
+
+  
+<div class="card" id="swimlanes">
+  <div class="card-header"><span class="icon">🏊</span><h2>Swim Lane — Roles &amp; Responsibilities</h2></div>
+  <div class="card-body" style="padding:0">
+    <div class="swimlane-table">
+      <div class="swimlane-header-row">
+        <div class="swimlane-role-cell" style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#6b7280">Role / Actor</div>
+        <div class="swimlane-steps-cell" style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#6b7280">Process Steps Owned</div>
+      </div>
+      
+        <div class="swimlane-row">
+          <div class="swimlane-role-cell">
+            <div class="swimlane-dot" style="background:#3b82f6"></div>
+            <span class="swimlane-role-name">F&amp;B Manager</span>
+          </div>
+          <div class="swimlane-steps-cell"><span class="swim-step-badge">1.1: Initial Cold Chain Inventory Check</span> <span class="swim-step-badge">1.2: Preparation and Storage Area Review</span> <span class="swim-step-badge">3.1: Final Cold Chain Inventory Check</span> <span class="swim-step-badge">3.2: Pre-Cruise Planning Meeting</span></div>
+        </div>
+        <div class="swimlane-row">
+          <div class="swimlane-role-cell">
+            <div class="swimlane-dot" style="background:#60a5fa"></div>
+            <span class="swimlane-role-name">Executive Chef</span>
+          </div>
+          <div class="swimlane-steps-cell"><span class="swim-step-badge">2.2: Food Safety Training for Staff</span> <span class="swim-step-badge">2.4: Incident Reporting and Root Cause Analysis</span> <span class="swim-step-badge">3.3: Cruise Debriefing and Continuous Improvement</span></div>
+        </div>
+        <div class="swimlane-row">
+          <div class="swimlane-role-cell">
+            <div class="swimlane-dot" style="background:#8b5cf6"></div>
+            <span class="swimlane-role-name">Stateroom Attendant</span>
+          </div>
+          <div class="swimlane-steps-cell"><span class="swim-step-badge">2.1: Daily Cold Chain Temperature Monitoring</span></div>
+        </div>
+    </div>
+  </div>
+</div>
+
+  <!-- L4 TABLE -->
+  <div class="card" id="l4steps">
+    <div class="card-header"><span class="icon">📋</span><h2>L4 Process Steps</h2></div>
+    <div class="card-body" style="padding:0">
+      <div class="table-wrap"><table>
+<thead><tr>
+  <th>Step</th><th>Step Name</th><th>Role</th><th>System</th>
+  <th>Input</th><th>Output</th><th>KPI</th><th>Dec?</th><th>Exc?</th><th>Pain Point</th>
+</tr></thead>
+<tbody><tr class="phase-break">
+  <td class="td-step"><div style="font-size:9px;font-weight:700;color:#0369a1;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px">Phase 1</div>1.1</td>
+  <td class="td-name">Initial Cold Chain Inventory Check</td>
+  <td class="td-role">F&amp;B Manager</td>
+  <td><span class="stag sys-oracle">Oracle Hospitality Cruise SPMS</span></td>
+  <td style="font-size:10px;color:#6b7280">Cold chain inventory list</td>
+  <td style="font-size:10px">Inventory check report</td>
+  <td style="font-family:var(--mono);font-size:9px;color:#374151">98% of cold chain items in proper condition at embarkation</td>
+  <td style="text-align:center"><span class="flag flag-n">N</span></td>
+  <td style="text-align:center"><span class="flag flag-y">Y</span></td>
+  <td style='font-size:9px;color:#dc2626;font-style:italic'>Inaccurate temperature monitoring</td>
+</tr><tr>
+  <td class="td-step">1.2</td>
+  <td class="td-name">Preparation and Storage Area Review</td>
+  <td class="td-role">Executive Chef</td>
+  <td><span class="stag sys-oracle">Oracle Hospitality Cruise SPMS</span></td>
+  <td style="font-size:10px;color:#6b7280">HACCP plan</td>
+  <td style="font-size:10px">Compliance checklist</td>
+  <td style="font-family:var(--mono);font-size:9px;color:#374151">100% adherence to HACCP procedures</td>
+  <td style="text-align:center"><span class="flag flag-n">N</span></td>
+  <td style="text-align:center"><span class="flag flag-y">Y</span></td>
+  <td style='font-size:9px;color:#dc2626;font-style:italic'>Non-compliant food storage practices</td>
+</tr><tr class="phase-break">
+  <td class="td-step"><div style="font-size:9px;font-weight:700;color:#0369a1;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px">Phase 2</div>2.1</td>
+  <td class="td-name">Daily Cold Chain Temperature Monitoring</td>
+  <td class="td-role">Stateroom Attendant</td>
+  <td><span class="stag sys-other">Royal Caribbean App</span></td>
+  <td style="font-size:10px;color:#6b7280">Temperature monitoring device readings</td>
+  <td style="font-size:10px">Daily temperature log</td>
+  <td style="font-family:var(--mono);font-size:9px;color:#374151">&lt; 8 min per reading process time</td>
+  <td style="text-align:center"><span class="flag flag-y">Y</span></td>
+  <td style="text-align:center"><span class="flag flag-n">N</span></td>
+  <td style='font-size:9px;color:#dc2626;font-style:italic'>Device malfunction</td>
+</tr><tr>
+  <td class="td-step">2.2</td>
+  <td class="td-name">Food Safety Training for Staff</td>
+  <td class="td-role">Guest Services Officer</td>
+  <td><span class="stag sys-rccl">Royal App</span></td>
+  <td style="font-size:10px;color:#6b7280">Training module</td>
+  <td style="font-size:10px">Staff attendance and completion status</td>
+  <td style="font-family:var(--mono);font-size:9px;color:#374151">95% staff training completion rate</td>
+  <td style="text-align:center"><span class="flag flag-n">N</span></td>
+  <td style="text-align:center"><span class="flag flag-y">Y</span></td>
+  <td style='font-size:9px;color:#dc2626;font-style:italic'>Low engagement</td>
+</tr><tr>
+  <td class="td-step">2.3</td>
+  <td class="td-name">Weekly HACCP Compliance Audit</td>
+  <td class="td-role">F&amp;B Manager</td>
+  <td><span class="stag sys-oracle">Oracle Hospitality Cruise SPMS</span></td>
+  <td style="font-size:10px;color:#6b7280">HACCP checklist</td>
+  <td style="font-size:10px">Audit report</td>
+  <td style="font-family:var(--mono);font-size:9px;color:#374151">0 non-compliance findings</td>
+  <td style="text-align:center"><span class="flag flag-y">Y</span></td>
+  <td style="text-align:center"><span class="flag flag-n">N</span></td>
+  <td style='font-size:9px;color:#dc2626;font-style:italic'>Complex audit process</td>
+</tr><tr>
+  <td class="td-step">2.4</td>
+  <td class="td-name">Incident Reporting and Root Cause Analysis</td>
+  <td class="td-role">Executive Chef</td>
+  <td><span class="stag sys-oracle">Oracle Hospitality Cruise SPMS</span></td>
+  <td style="font-size:10px;color:#6b7280">Incident report</td>
+  <td style="font-size:10px">Root cause analysis document</td>
+  <td style="font-family:var(--mono);font-size:9px;color:#374151">&lt; 1 hour incident resolution time</td>
+  <td style="text-align:center"><span class="flag flag-y">Y</span></td>
+  <td style="text-align:center"><span class="flag flag-n">N</span></td>
+  <td style='font-size:9px;color:#dc2626;font-style:italic'>Slow response to incidents</td>
+</tr><tr class="phase-break">
+  <td class="td-step"><div style="font-size:9px;font-weight:700;color:#0369a1;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px">Phase 3</div>3.1</td>
+  <td class="td-name">Final Cold Chain Inventory Check</td>
+  <td class="td-role">F&amp;B Manager</td>
+  <td><span class="stag sys-oracle">Oracle Hospitality Cruise SPMS</span></td>
+  <td style="font-size:10px;color:#6b7280">Cold chain inventory list</td>
+  <td style="font-size:10px">Inventory check report</td>
+  <td style="font-family:var(--mono);font-size:9px;color:#374151">98% of cold chain items in proper condition at disembarkation</td>
+  <td style="text-align:center"><span class="flag flag-n">N</span></td>
+  <td style="text-align:center"><span class="flag flag-y">Y</span></td>
+  <td style='font-size:9px;color:#dc2626;font-style:italic'>Inaccurate temperature monitoring</td>
+</tr><tr>
+  <td class="td-step">3.2</td>
+  <td class="td-name">Pre-Cruise Planning Meeting</td>
+  <td class="td-role">F&amp;B Manager</td>
+  <td><span class="stag sys-oracle">Oracle Hospitality Cruise SPMS</span></td>
+  <td style="font-size:10px;color:#6b7280">Cruise itinerary</td>
+  <td style="font-size:10px">Cold chain and HACCP plan</td>
+  <td style="font-family:var(--mono);font-size:9px;color:#374151">&lt; 4 hours meeting duration</td>
+  <td style="text-align:center"><span class="flag flag-n">N</span></td>
+  <td style="text-align:center"><span class="flag flag-y">Y</span></td>
+  <td style='font-size:9px;color:#dc2626;font-style:italic'>Insufficient planning time</td>
+</tr><tr>
+  <td class="td-step">3.3</td>
+  <td class="td-name">Cruise Debriefing and Continuous Improvement</td>
+  <td class="td-role">Executive Chef</td>
+  <td><span class="stag sys-oracle">Oracle Hospitality Cruise SPMS</span></td>
+  <td style="font-size:10px;color:#6b7280">Debriefing session notes</td>
+  <td style="font-size:10px">Continuous improvement plan</td>
+  <td style="font-family:var(--mono);font-size:9px;color:#374151">&lt; 2 hours debriefing duration</td>
+  <td style="text-align:center"><span class="flag flag-y">Y</span></td>
+  <td style="text-align:center"><span class="flag flag-n">N</span></td>
+  <td style='font-size:9px;color:#dc2626;font-style:italic'>Lack of feedback incorporation</td>
+</tr></tbody></table></div>
+    </div>
+  </div>
+
+  <div class="card" id="meta">
+  <div class="card-header"><span class="icon">📋</span><h2>Process Attributes</h2></div>
+  <div class="card-body"><div class="meta-grid">
+    <div>
+      <div class="meta-section"><h3>Identification</h3>
+        <div class="krow"><span class="kname">Process ID</span><span class="kval">FB-CP-03</span></div>
+        <div class="krow"><span class="kname">L1 Domain</span><span class="kval">Food &amp; Beverage Operations</span></div>
+        <div class="krow"><span class="kname">L2 Process Group</span><span class="kval">Culinary &amp; Provisioning</span></div>
+        <div class="krow"><span class="kname">L3 Process Name</span><span class="kval">Cold Chain &amp; HACCP Compliance at Sea</span></div>
+        <div class="krow"><span class="kname">L4 Steps</span><span class="kval">9 across 3 phases</span></div>
+        <div class="krow"><span class="kname">Decision Gates</span><span class="kval">4</span></div>
+        <div class="krow"><span class="kname">Trigger</span><span class="kval" style="text-align:left;font-family:var(--font);font-size:10px">Cruise embarkation</span></div>
+        <div class="krow"><span class="kname">Primary Input</span><span class="kval">Cold chain inventory list</span></div>
+        <div class="krow"><span class="kname">Primary Output</span><span class="kval">Continuous improvement plan</span></div>
+      </div>
+      <div class="meta-section"><h3>Swim Lanes (Roles)</h3><div class="swim"><div class="dot" style="background:#3b82f6"></div>F&amp;B Manager</div><div class="swim"><div class="dot" style="background:#8b5cf6"></div>Executive Chef</div><div class="swim"><div class="dot" style="background:#ec4899"></div>Stateroom Attendant</div><div class="swim"><div class="dot" style="background:#f59e0b"></div>Guest Services Officer</div></div>
+      <div class="meta-section"><h3>Systems &amp; Tools</h3><span class="stag sys-oracle">Oracle Hospitality Cruise SPMS</span><span class="stag sys-other">Royal Caribbean App</span><span class="stag sys-rccl">Royal App</span></div>
+    </div>
+    <div>
+      <div class="meta-section"><h3>Key Performance Indicators</h3><div class="krow"><span class="kname">•</span><span class="kval" style="text-align:left;font-family:var(--font)">98% of cold chain items in proper condition at embarkation</span></div><div class="krow"><span class="kname">•</span><span class="kval" style="text-align:left;font-family:var(--font)">&lt; 8 min per reading process time</span></div><div class="krow"><span class="kname">•</span><span class="kval" style="text-align:left;font-family:var(--font)">95% staff training completion rate</span></div><div class="krow"><span class="kname">•</span><span class="kval" style="text-align:left;font-family:var(--font)">0 non-compliance findings</span></div><div class="krow"><span class="kname">•</span><span class="kval" style="text-align:left;font-family:var(--font)">&lt; 1 hour incident resolution time</span></div><div class="krow"><span class="kname">•</span><span class="kval" style="text-align:left;font-family:var(--font)">98% of cold chain items in proper condition at disembarkation</span></div></div>
+      <div class="meta-section"><h3>RCCL-Specific Risks &amp; Pain Points</h3><div class="risk-card"><strong>Risk:</strong> Starlink connectivity loss during peak</div><div class="risk-card"><strong>Risk:</strong> Non-compliant food storage practices</div><div class="risk-card"><strong>Risk:</strong> Device malfunction</div><div class="risk-card"><strong>Risk:</strong> Low engagement</div><div class="risk-card"><strong>Risk:</strong> Insufficient planning time</div></div>
+      <div class="meta-section"><h3>Process Description</h3>
+        <p style="font-size:12px;color:#374151;line-height:1.7">FB-CP-03 ensures compliance with cold chain and HACCP standards for culinary operations on Royal Caribbean&#x27;s Icon of the Seas.</p>
+        <p style="font-size:11px;color:#6b7280;margin-top:8px"><strong>Outcome:</strong> Successful completion guarantees food safety and quality throughout the voyage.</p>
+      </div>
+    </div>
+  </div></div></div>
+  <div class="pn-nav"><a class="pn-btn" href="../fb-cp-02/"><span class="arrow">←</span><span><span class="sub">Previous</span>FB-CP-02 · Food Provisioning Order &amp; Vendor Management</span></a><a class="pn-btn" href="../fb-cp-04/"><span><span class="sub">Next</span>FB-CP-04 · Galley Production Planning &amp; Execution</span><span class="arrow">→</span></a></div>
+</main>
+
+<script src="../../../assets/js/wiki.js"></script>
+</body>
+</html>
