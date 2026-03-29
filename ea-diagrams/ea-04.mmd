@@ -1,0 +1,95 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'12px','fontFamily':'Inter, Arial, sans-serif'}}}%%
+flowchart LR
+
+  subgraph GUESTWALLET["💳 Guest Payment Layer"]
+    direction TB
+    SEAPASS4["SeaPass RFID Card\nLinked to credit card · onboard account"]
+    ROYALAPP4["Royal App\nMobile payments · pre-bookings"]
+    CASH["Cash / Pre-paid\nFX exchange · credit deposit"]
+    NEXTCRUISE4["Next Cruise Deposits\nFuture booking credits"]
+  end
+
+  subgraph REVCENTRES["🏪 Revenue Centres (40+ on Icon class)"]
+    direction TB
+    FB4["Food & Beverage\nMDR · Specialty · Buffet · Room Service · Bars"]
+    RETAIL4["Retail\nDuty Free · Logo Shop · Jewellery · Art"]
+    SPA4["Spa & Wellness\nVitality Spa · Salon · Fitness"]
+    CASINO4["Casino Royale\nSlots (IGT) · Tables · Bravo Poker"]
+    ENTERTAINMENT4["Entertainment\nShow upgrades · Experiences · FlowRider"]
+    EXCURSION4["Shore Excursions\nCocoCay · Port operators · Private"]
+    PHOTO4["Photo & Media\nOnboard photography · Video packages"]
+    WIFI["WiFi Packages\nVoom internet · Starlink-backed"]
+  end
+
+  subgraph MICROS4["🟠 Oracle MICROS Simphony POS Layer"]
+    direction TB
+    TERMINAL["POS Terminal\nFOH order capture · SeaPass tap"]
+    KITCHEN["Kitchen Display System\nOrder routing · prep timing"]
+    INVENTORY["F&B Inventory\nRecipe costing · waste tracking"]
+    VOIDAUTH["Void & Comp Auth\nManager approval · discount rules"]
+  end
+
+  subgraph SPMSFOLIO["🔵 Oracle SPMS Folio Engine"]
+    direction TB
+    GUESTFOLIO["Guest Folio\nReal-time balance · charge history"]
+    GROUPFOLIO["Group & Package Folios\nInclusions · upgrades · overages"]
+    SHIPFOLIO["Ship Revenue Ledger\nDaily revenue by centre"]
+    SETTLEMENT4["Settlement Processing\nCard auth · disputes · refunds"]
+  end
+
+  subgraph ANALYTICS4["📊 Analytics & Reporting"]
+    direction TB
+    OBIEE4["Oracle OBIEE\nLive revenue dashboards"]
+    REVMGMT["Revenue Management\nYield · spend-per-guest KPIs"]
+    FORECAST["Voyage Forecast\nActual vs budget · variance"]
+    LOYALTY4["Club Royale Tracking\nGaming spend · tier qualification"]
+  end
+
+  subgraph FINANCE4["💼 Finance & Close"]
+    direction TB
+    SAP4["SAP S/4HANA\nVoyage revenue journals"]
+    SAPAR4["SAP AR\nGuest billing · FX conversion"]
+    TAXCOMP["Tax & Compliance\nVAT · casino regulations"]
+    CONSOL["Fleet Consolidation\nMulti-ship revenue roll-up"]
+  end
+
+  SEAPASS4    -->|"RFID tap"| TERMINAL
+  ROYALAPP4   -->|"pre-orders"| TERMINAL
+  CASH        -->|"deposit"| GUESTFOLIO
+  NEXTCRUISE4 -->|"credits"| GUESTFOLIO
+
+  FB4         -->|"F&B orders"| TERMINAL
+  RETAIL4     -->|"retail sales"| TERMINAL
+  SPA4        -->|"spa charges"| TERMINAL
+  CASINO4     -->|"gaming markers"| TERMINAL
+  ENTERTAINMENT4 -->|"activity charges"| TERMINAL
+  EXCURSION4  -->|"tour charges"| TERMINAL
+  PHOTO4      -->|"photo purchases"| TERMINAL
+  WIFI        -->|"package activations"| TERMINAL
+
+  TERMINAL -->|"order to kitchen"| KITCHEN
+  TERMINAL -->|"item depletion"| INVENTORY
+  TERMINAL -->|"charge post"| GUESTFOLIO
+  VOIDAUTH -->|"approved comp"| GUESTFOLIO
+
+  GUESTFOLIO  -->|"daily summary"| SHIPFOLIO
+  GROUPFOLIO  -->|"group charges"| SHIPFOLIO
+  SHIPFOLIO   -->|"revenue feed"| OBIEE4
+  SETTLEMENT4 -->|"payment result"| GUESTFOLIO
+
+  OBIEE4   -->|"KPI data"| REVMGMT
+  OBIEE4   -->|"actuals"| FORECAST
+  OBIEE4   -->|"gaming data"| LOYALTY4
+  REVMGMT  -->|"pricing signals"| EXCURSION4
+
+  SHIPFOLIO -->|"end-of-voyage journal"| SAP4
+  SAP4      -->|"AR entries"| SAPAR4
+  SAP4      -->|"tax postings"| TAXCOMP
+  SAP4      -->|"fleet roll-up"| CONSOL
+
+  style GUESTWALLET  fill:#e0f7fa,stroke:#06b6d4
+  style REVCENTRES   fill:#fff3e0,stroke:#f59e0b
+  style MICROS4      fill:#fff8e1,stroke:#f59e0b,stroke-width:2px
+  style SPMSFOLIO    fill:#e3f2fd,stroke:#1d4ed8,stroke-width:2px
+  style ANALYTICS4   fill:#f3e8ff,stroke:#8b5cf6
+  style FINANCE4     fill:#e8f5e9,stroke:#10b981
