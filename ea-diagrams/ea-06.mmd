@@ -1,0 +1,108 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'12px','fontFamily':'Inter, Arial, sans-serif'}}}%%
+flowchart LR
+
+  subgraph RECRUIT["📋 Recruitment & Contracting"]
+    direction TB
+    CREWAGENT["Manning Agencies\n100+ nationalities · 50+ agencies"]
+    APPLICANT["Applicant Tracking\nWorkday Recruiting"]
+    CONTRACT["Contract Generation\nWorkday · ITF CBA terms"]
+    MEDCERT["Pre-Employment Medical\nDES · PEME certification"]
+    VISADOC["Visa & Documentation\nSeaman's book · flag endorsements"]
+  end
+
+  subgraph WORKDAY6["🟡 Workday HCM — Crew Master"]
+    direction TB
+    CREWPROFILE["Crew Profile\nPersonal · contract · rank · ship"]
+    STCW6["STCW Certification\nMandatory certs · expiry tracking"]
+    PAYROLLWDY["Payroll Data\nBase · overtime · allotments"]
+    PERFORMANCE["Performance Management\nAppraisals · promotion · discipline"]
+    TALENT["Talent & Succession\nHigh potential · pipeline"]
+  end
+
+  subgraph SIGNONOFF["🚢 Sign-On / Sign-Off"]
+    direction TB
+    PORTAUTH6["Port Authority\nCrewman landing card · immigration"]
+    BIOMETRIC6["Biometric Verification\nIDEMIA · fingerprint · photo"]
+    SPMS6["SPMS Crew Module\nShipboard crew manifest · cabin assign"]
+    MEDICAL6["Ship's Medical Centre\nHealth declaration · fitness check"]
+    SAFETY6["Safety Induction\nMuster station · emergency duties"]
+  end
+
+  subgraph SHIPBOARD6["⚓ Shipboard Operations"]
+    direction TB
+    ROSTER["Crew Roster System\nWatch keeping · rest hours · STCW"]
+    SCHEDULE6["Scheduling Engine\nDuty rosters · department coverage"]
+    ACCESS6["Ship Access Control\nDoor system · restricted areas"]
+    TRAINING6["Onboard Training\nDrills · competency records"]
+    DISCIPLINE["Incident & Discipline\nLog · hearing · record"]
+  end
+
+  subgraph PAYROLL6["💰 Payroll & Benefits"]
+    direction TB
+    TIMEKEEP["Time & Attendance\nHours worked · overtime trigger"]
+    PAYSLIP["Payroll Processing\nMonthly · multi-currency · allotments"]
+    ALLOTMENT["Home Allotments\nBank transfers · 50+ countries"]
+    REPATRIATION["Repatriation\nFlight booking · end-of-contract"]
+    BANKLINK["Bank Integration\nSWIFT · local bank transfers"]
+  end
+
+  subgraph COMPLIANCE6["📋 Regulatory Compliance"]
+    direction TB
+    MLC["MLC 2006\nMaritime Labour Convention"]
+    ITF["ITF / CBA Compliance\nWage scales · rest hours · repatriation"]
+    FLAGSTATE6["Flag State (Bahamas)\nCrewlist submission · casualty report"]
+    PSC["Port State Control\nInspection records · deficiencies"]
+  end
+
+  subgraph SHORE6["🏢 Shore Integration"]
+    direction TB
+    SAP6["SAP S/4HANA\nCrew cost accounting"]
+    SAPARIBA["SAP Ariba\nManning agency POs"]
+    FLEETHR["Fleet HR Team\nMiami · crew welfare · IR"]
+  end
+
+  CREWAGENT  -->|"candidate profiles"| APPLICANT
+  APPLICANT  -->|"offer accepted"| CONTRACT
+  CONTRACT   -->|"crew record"| CREWPROFILE
+  MEDCERT    -->|"medical cert"| CREWPROFILE
+  VISADOC    -->|"travel docs"| CREWPROFILE
+
+  CREWPROFILE -->|"cert register"| STCW6
+  CREWPROFILE -->|"payroll setup"| PAYROLLWDY
+  STCW6       -->|"cert expiry alert"| SCHEDULE6
+  PERFORMANCE -->|"promotion trigger"| CREWPROFILE
+  TALENT      -->|"succession plan"| FLEETHR
+
+  CREWPROFILE -->|"sign-on data"| PORTAUTH6
+  BIOMETRIC6  -->|"verified identity"| SPMS6
+  SPMS6       -->|"cabin assignment"| ROSTER
+  MEDICAL6    -->|"fit-for-duty"| SPMS6
+  SAFETY6     -->|"induction complete"| SPMS6
+
+  ROSTER    -->|"hours data"| TIMEKEEP
+  SCHEDULE6 -->|"duty assignments"| ROSTER
+  ACCESS6   -->|"access events"| SPMS6
+  TRAINING6 -->|"cert updates"| STCW6
+  DISCIPLINE -->|"record"| PERFORMANCE
+
+  TIMEKEEP   -->|"approved hours"| PAYSLIP
+  PAYSLIP    -->|"net pay"| ALLOTMENT
+  ALLOTMENT  -->|"transfer instructions"| BANKLINK
+  REPATRIATION -->|"flight costs"| SAP6
+  PAYSLIP    -->|"payroll journal"| SAP6
+
+  MLC        -->|"compliance check"| ROSTER
+  ITF        -->|"wage audit"| PAYSLIP
+  FLAGSTATE6 -->|"crewlist"| SPMS6
+  PSC        -->|"deficiencies"| TRAINING6
+
+  SAP6    -->|"cost per ship"| FLEETHR
+  SAPARIBA -->|"agency invoices"| SAP6
+
+  style RECRUIT    fill:#e8f4fd,stroke:#3b82f6
+  style WORKDAY6   fill:#fff8e1,stroke:#f59e0b,stroke-width:2px
+  style SIGNONOFF  fill:#e0f7fa,stroke:#06b6d4
+  style SHIPBOARD6 fill:#f3e8ff,stroke:#8b5cf6
+  style PAYROLL6   fill:#e8f5e9,stroke:#10b981
+  style COMPLIANCE6 fill:#fce4ec,stroke:#ef4444
+  style SHORE6     fill:#e3f2fd,stroke:#1d4ed8
