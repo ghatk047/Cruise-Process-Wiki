@@ -211,7 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── 10. BPMN LIGHTBOX WITH ZOOM + PAN ── */
   function buildLightbox() {
-    if (document.getElementById('bpmn-lightbox')) return document.getElementById('bpmn-lightbox');
+    const existing = document.getElementById('bpmn-lightbox');
+    if (existing && document.getElementById('lb-toolbar')) return existing;
     const ov = document.createElement('div');
     ov.id = 'bpmn-lightbox';
     ov.innerHTML = `
@@ -226,7 +227,13 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <div id="lb-canvas"><img id="lb-img" src="" alt="BPMN diagram" draggable="false"></div>
       <div id="lb-hint">Drag to pan &nbsp;|&nbsp; Scroll to zoom &nbsp;|&nbsp; Esc to close</div>`;
-    document.body.appendChild(ov);
+    const placeholder = document.getElementById('bpmn-lightbox');
+    if (placeholder) {
+      placeholder.id = 'bpmn-lightbox-old'; // rename so ov.id='bpmn-lightbox' is unique
+      placeholder.parentNode.replaceChild(ov, placeholder);
+    } else {
+      document.body.appendChild(ov);
+    }
 
     const canvas = document.getElementById('lb-canvas');
     const img    = document.getElementById('lb-img');
