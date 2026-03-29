@@ -1,0 +1,122 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'12px','fontFamily':'Inter, Arial, sans-serif'}}}%%
+flowchart TB
+
+  subgraph EXT["🌐 External Channels & Partners"]
+    direction LR
+    GDS["GDS / OTAs\nSabre · Amadeus · Expedia"]
+    TRAVELAGENT["Travel Agents\nCruising Power Portal"]
+    PORT["Port Authorities\nCBP · Coast Guard · IMO"]
+    WEATHER["Weather & Nav\nMetOcean · NAVTEX · GPS"]
+    SHIPYARD["Shipyard Partners\nGrand Bahama · Fincantieri"]
+  end
+
+  subgraph BOOKING["🎫 Booking & Reservation"]
+    direction LR
+    RES["RES System\nCore Reservation (9M+ RPG lines)\nBooking · Pricing · Inventory"]
+    ROYALWEB["Royal Caribbean Web\n& Mobile App (Guest Booking)"]
+    CRM["Salesforce CRM\nGuest Profiles · Campaign Mgmt"]
+    LOYALTY["Crown & Anchor\nLoyalty Platform (6 tiers)"]
+  end
+
+  subgraph SHIPBOARD["🚢 Shipboard Operations Hub"]
+    direction LR
+    SPMS["Oracle Hospitality Cruise SPMS\nPMS · Folio · Cabin Mgmt · Manifest"]
+    MICROS["Oracle MICROS Simphony\nF&B POS · Retail · Spa · Casino POS"]
+    ROYALAPP["Royal Caribbean App\nNLP AI Chatbot · Bookings · Maps"]
+    SEAPASS["SeaPass Cashless System\nOnboard Account · RFID Card"]
+    MFACE["IDEMIA MFACE\n3D Facial Recognition · Debarkation"]
+  end
+
+  subgraph MARINE["⚙️ Marine & Technical"]
+    direction LR
+    NAVSYS["Integrated Navigation\nECDIS · AIS · GMDSS · Radar"]
+    PMS["Planned Maintenance System\nEngine · Hull · Equipment"]
+    ENVIRO["Environmental Systems\nBWTS · AWTS · Scrubbers · OWS"]
+    VDR["Voyage Data Recorder\nSOLAS Mandatory · Incident Archive"]
+    LNG["LNG Fuel Management\nIcon Class Dual-Fuel"]
+  end
+
+  subgraph REVENUE["💰 Onboard Revenue"]
+    direction LR
+    CASINO["Club Royale Casino\nIGT Slots · Bravo Poker · Loyalty"]
+    SPA["Vitality Spa\nBooking · POS · Therapist Schedule"]
+    PHOTO["Photo & Media\nOnboard Photography Sales"]
+    EXCURSION["Shore Excursions Platform\nCocoCay · Partner Operators"]
+  end
+
+  subgraph CONNECTIVITY["📡 Connectivity & Digital"]
+    direction LR
+    STARLINK["Starlink Satellite\n98% Fleet · sub-100ms latency"]
+    AZURE["Microsoft Azure AI\nCrowd Density · Queue Mgmt"]
+    MICROSERV["Mesosphere/D2iQ\nShip-Shore Microservices"]
+    OBIEE["Oracle OBIEE\nCruise Ship Analytics · BI"]
+  end
+
+  subgraph CREW["👥 Crew & HR"]
+    direction LR
+    WORKDAY["Workday HCM\nCrew Contracts · Payroll · STCW"]
+    SCHEDULE["Crew Scheduling\nRoster · Watch Keeping · Hours"]
+    TRAINING["STCW Training Portal\nCertification Tracking"]
+  end
+
+  subgraph ENTERPRISE["💼 Enterprise Back-Office"]
+    direction LR
+    SAP["SAP S/4HANA\nFinance · Controlling · GL · AR/AP"]
+    ARIBA["SAP Ariba\nProcurement · Supplier Portal"]
+    PORTDISB["Port Disbursement\nAgent Invoicing · Port Fees"]
+  end
+
+  GDS         -->|"bookings · availability"| RES
+  TRAVELAGENT -->|"bookings via API"| RES
+  ROYALWEB    -->|"direct bookings"| RES
+  RES         -->|"reservation data"| SPMS
+  RES         -->|"guest profiles"| CRM
+  RES         -->|"loyalty points"| LOYALTY
+  CRM         -->|"marketing data"| RES
+
+  PORT        -->|"clearance · manifests"| SPMS
+  WEATHER     -->|"routing data"| NAVSYS
+
+  SPMS  -->|"folio charges"| MICROS
+  SPMS  -->|"guest account"| SEAPASS
+  SPMS  -->|"manifest"| MFACE
+  SPMS  -->|"ops data nightly"| OBIEE
+  SPMS  -->|"voyage journal"| SAP
+
+  MICROS  -->|"revenue postings"| SPMS
+  SEAPASS -->|"spend data"| MICROS
+  ROYALAPP -->|"bookings · requests"| SPMS
+  ROYALAPP -->|"chat logs"| AZURE
+
+  CASINO   -->|"revenue"| MICROS
+  SPA      -->|"revenue"| MICROS
+  PHOTO    -->|"revenue"| MICROS
+  EXCURSION -->|"revenue"| MICROS
+
+  NAVSYS  -->|"position data"| VDR
+  NAVSYS  -->|"engine telemetry"| PMS
+  PMS     -->|"maintenance costs"| SAP
+  ENVIRO  -->|"compliance logs"| SAP
+  LNG     -->|"fuel costs"| SAP
+
+  STARLINK -->|"ship-shore sync"| MICROSERV
+  MICROSERV -->|"data replication"| SPMS
+  MICROSERV -->|"data replication"| SAP
+  AZURE    -->|"operational insights"| OBIEE
+
+  WORKDAY  -->|"crew costs"| SAP
+  SCHEDULE -->|"hours data"| WORKDAY
+  TRAINING -->|"cert status"| WORKDAY
+
+  SAP   -->|"payments"| ARIBA
+  ARIBA -->|"purchase orders"| PORTDISB
+  OBIEE -->|"revenue reports"| SAP
+
+  style EXT         fill:#f0f4ff,stroke:#6366f1
+  style BOOKING     fill:#fff3e0,stroke:#f59e0b
+  style SHIPBOARD   fill:#e0f7fa,stroke:#06b6d4
+  style MARINE      fill:#f3e8ff,stroke:#8b5cf6
+  style REVENUE     fill:#fce4ec,stroke:#ec4899
+  style CONNECTIVITY fill:#e8f5e9,stroke:#10b981
+  style CREW        fill:#fff8e1,stroke:#f59e0b
+  style ENTERPRISE  fill:#e3f2fd,stroke:#3b82f6
