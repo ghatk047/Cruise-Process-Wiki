@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EA-04 · Onboard Revenue Architecture · Cruise Process Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <a href="../../" class="topbar-logo">🚢 Cruise <span>Process Wiki</span></a>
+  <span class="topbar-badge">v1.0</span>
+  <div class="topbar-right">
+    <div class="topbar-search">
+      <input type="text" id="searchBox" placeholder="Search processes… (/)" autocomplete="off">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <a href="../../">Home</a>
+    <a href="../../ea-diagrams/">EA Diagrams</a>
+    <a href="https://github.com/ghatk047/Cruise-Process-Wiki" class="gh-btn" target="_blank">⭐ GitHub</a>
+  </div>
+</header>
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-domain open" data-label="EA Diagrams">
+      <span class="sidebar-domain-label">🗺️ EA Diagrams</span><span class="chevron">▶</span>
+    </div>
+    <div class="sidebar-l2 open">
+      <a class="sidebar-l3-link" href="../../ea-diagrams/">All EA Diagrams</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-01/"><span class="pid">EA-01</span>Cruise Integrated System Landscape</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-02/"><span class="pid">EA-02</span>Guest Journey Data Flow</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-03/"><span class="pid">EA-03</span>Shipboard Operations Architecture</a>
+        <a class="sidebar-l3-link active" href="../../ea-diagrams/ea-04/"><span class="pid">EA-04</span>Onboard Revenue Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-05/"><span class="pid">EA-05</span>Marine &amp; Environmental Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-06/"><span class="pid">EA-06</span>Crew Management &amp; HR Integration</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-07/"><span class="pid">EA-07</span>Connectivity &amp; Digital Infrastructure</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-08/"><span class="pid">EA-08</span>Finance &amp; Procurement Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-09/"><span class="pid">EA-09</span>Safety, Security &amp; Medical Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-10/"><span class="pid">EA-10</span>Loyalty &amp; CRM Architecture</a>
+    </div>
+  </div>
+</nav>
+<button id="sidebarToggle" title="Toggle sidebar">&#9664;</button>
+
+<main class="main">
+  <div class="breadcrumb">
+    <a href="../../">Home</a><span class="sep">›</span>
+    <a href="../../ea-diagrams/">EA Diagrams</a><span class="sep">›</span>
+    <span class="current">EA-04 · Onboard Revenue Architecture</span>
+  </div>
+
+  <div class="page-header">
+    <div class="page-header-left">
+      <h1>Onboard Revenue Architecture</h1>
+      <p>SeaPass → MICROS POS → SPMS folio → OBIEE analytics → SAP finance · Updated 2026-03-28 22:00</p>
+    </div>
+    <div class="page-header-meta">
+      <span class="pid-badge">EA-04</span>
+      <span class="status-badge complete">✅ Published</span>
+      <span class="ref-line">Ref: Royal Caribbean International</span>
+    </div>
+  </div>
+
+  <div class="card" id="diagram">
+    <div class="card-header"><span class="icon">🗺️</span><h2>Enterprise Architecture Diagram</h2></div>
+    <div class="card-body">
+      <div class="diagram-wrap" id="diag-ea-04">
+        <img src="../../assets/img/ea-04.png"
+             alt="EA-04 — Onboard Revenue Architecture"
+             style="max-width:100%;border-radius:6px;box-shadow:0 2px 12px rgba(0,0,0,.08);cursor:zoom-in"
+             onerror="this.style.opacity='.3'">
+      </div>
+      <p class="diagram-hint">Click diagram to open fullscreen &nbsp;|&nbsp; Scroll to zoom &nbsp;|&nbsp; Drag to pan</p>
+    </div>
+  </div>
+
+  <div class="card" id="description">
+    <div class="card-header"><span class="icon">📋</span><h2>Architecture Notes</h2></div>
+    <div class="card-body">
+      <p style="font-size:13px;color:#374151;line-height:1.8;max-width:860px;margin-bottom:20px">Every dollar of onboard revenue flows through a precise chain: a guest taps their SeaPass RFID card at a POS terminal, Oracle MICROS Simphony authorises the charge in under 2 seconds, posts it to the Oracle SPMS guest folio, which feeds the Oracle OBIEE analytics engine for real-time revenue dashboards, and ultimately posts to SAP S/4HANA at voyage-end. This diagram shows the full revenue chain from 40+ revenue centres on Icon of the Seas through to shore-side financial close.</p>
+      <ul style='padding-left:20px;margin-top:0'><li style="margin-bottom:6px;font-size:12px;color:#374151">Icon of the Seas has 40+ dining venues, 20+ bars, multiple retail shops, spa, casino, entertainment — all on MICROS</li><li style="margin-bottom:6px;font-size:12px;color:#374151">SeaPass RFID tap-to-pay authorisation is under 2 seconds at any MICROS terminal</li><li style="margin-bottom:6px;font-size:12px;color:#374151">Club Royale casino loyalty tiers: Choice, Prime, Signature, Masters — each with different revenue share</li><li style="margin-bottom:6px;font-size:12px;color:#374151">OBIEE dashboards refresh every 15 minutes during voyage via Starlink sync</li><li style="margin-bottom:6px;font-size:12px;color:#374151">Voyage-end revenue journal to SAP includes FX conversion for multi-currency voyages</li></ul>
+    </div>
+  </div>
+
+  <div class="pn-nav" style="display:flex;justify-content:space-between;margin-top:8px">
+    <a class="pn-btn" href="../../ea-diagrams/ea-03/"><span class="arrow">←</span><span>EA-03 · Shipboard Operations Architecture</span></a>
+    <a class="pn-btn next" href="../../ea-diagrams/ea-05/"><span>EA-05 · Marine &amp; Environmental Architecture</span><span class="arrow">→</span></a>
+  </div>
+</main>
+<div id="bpmn-lightbox"></div>
+<script src="../../assets/js/wiki.js"></script>
+</body>
+</html>
