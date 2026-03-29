@@ -1304,22 +1304,101 @@ def gh_push(path, content, message):
 # SIDEBAR HTML (EA section only — used on all EA pages)
 # ─────────────────────────────────────────────────────────────────────────────
 def build_ea_sidebar(active_id, depth=2):
+    """Build full sidebar with all 12 process domains + EA section.
+    Mirrors build_sidebar() in the main wiki generator so all pages look identical.
+    depth=2 → ea-diagrams/ea-XX/ pages (../../)
+    depth=1 → ea-diagrams/ index page (../)
+    """
     prefix = "../" * depth
-    links = "\n".join(
-        f'        <a class="sidebar-l3-link{" active" if ea["id"] == active_id else ""}" '
+
+    # All 12 L1 domains with their L2 groups
+    DOMAINS = [
+        ("Guest Services & Embarkation",    "GS", "guest-services", [
+            ("Embarkation & Check-In",       "GS-EM", "embarkation-checkin"),
+            ("Debarkation & Port Ops",       "GS-DB", "debarkation"),
+            ("Guest Experience",             "GS-CX", "guest-experience"),
+        ]),
+        ("Stateroom & Housekeeping",        "HK", "housekeeping", [
+            ("Stateroom Operations",         "HK-SR", "stateroom-ops"),
+            ("Laundry & Public Areas",       "HK-LP", "laundry-public"),
+        ]),
+        ("Food & Beverage Operations",      "FB", "food-beverage", [
+            ("Restaurant & Dining",          "FB-RD", "restaurant-dining"),
+            ("Culinary & Provisioning",      "FB-CP", "culinary-provisioning"),
+        ]),
+        ("Entertainment & Activities",      "EN", "entertainment", [
+            ("Showroom & Live",              "EN-SH", "showroom-entertainment"),
+            ("Activities & Adventure",       "EN-AC", "activities-adventure"),
+        ]),
+        ("Shore Excursions & Destinations", "SE", "shore-excursions", [
+            ("Excursion Operations",         "SE-OP", "excursion-operations"),
+            ("Private Destinations",         "SE-PD", "private-destinations"),
+        ]),
+        ("Marine & Technical Operations",   "MT", "marine-technical", [
+            ("Bridge & Navigation",          "MT-BN", "bridge-navigation"),
+            ("Engineering",                  "MT-EP", "engineering-propulsion"),
+            ("Dry Dock",                     "MT-DS", "dry-dock-maintenance"),
+        ]),
+        ("Environmental & Sustainability",  "ES", "environmental", [
+            ("Waste Management",             "ES-WM", "waste-management"),
+            ("Env. Compliance",              "ES-EC", "environmental-compliance"),
+        ]),
+        ("Crew Management & HR",            "CM", "crew-management", [
+            ("Crew Operations",              "CM-CO", "crew-operations"),
+            ("Training & Dev",               "CM-TD", "training-development"),
+        ]),
+        ("Revenue & Commercial",            "RC", "revenue-commercial", [
+            ("Onboard Revenue",              "RC-OR", "onboard-revenue"),
+            ("Loyalty & CRM",               "RC-LC", "loyalty-crm"),
+        ]),
+        ("Finance & Procurement",           "FN", "finance-procurement", [
+            ("Financial Ops",               "FN-FO", "financial-operations"),
+            ("Procurement",                 "FN-PS", "procurement-supply"),
+        ]),
+        ("Technology & Cybersecurity",      "IT", "technology-it", [
+            ("Ship Connectivity",            "IT-SC", "ship-connectivity"),
+            ("Cybersecurity",               "IT-CY", "cybersecurity"),
+        ]),
+        ("Health, Safety & Medical",        "HS", "health-safety", [
+            ("Medical Operations",          "HS-MD", "medical-operations"),
+            ("Safety & Emergency",          "HS-SE", "safety-emergency"),
+        ]),
+    ]
+
+    lines = []
+    for l1_name, l1_code, l1_slug, groups in DOMAINS:
+        lines.append(f'  <div class="sidebar-section">')
+        lines.append(f'    <div class="sidebar-domain" data-label="{escape(l1_name)}">')
+        lines.append(f'      <span class="sidebar-domain-label">{escape(l1_name)}</span><span class="chevron">▶</span>')
+        lines.append(f'    </div>')
+        lines.append(f'    <div class="sidebar-l2">')
+        for l2_name, l2_code, l2_slug in groups:
+            lines.append(
+                f'      <a class="sidebar-l3-link" href="{prefix}{l1_slug}/{l2_slug}/">'
+                f'<span class="pid">{l2_code}</span>{escape(l2_name)}</a>'
+            )
+        lines.append(f'    </div>')
+        lines.append(f'  </div>')
+
+    # EA diagrams section — always open, active item highlighted
+    ea_links = "\n".join(
+        f'      <a class="sidebar-l3-link{" active" if ea["id"] == active_id else ""}" '
         f'href="{prefix}ea-diagrams/{ea["id"].lower()}/">'
         f'<span class="pid">{ea["id"]}</span>{escape(ea["title"])}</a>'
         for ea in EA_DIAGRAMS
     )
-    return f"""  <div class="sidebar-section">
-    <div class="sidebar-domain open" data-label="EA Diagrams">
-      <span class="sidebar-domain-label">🗺️ EA Diagrams</span><span class="chevron">▶</span>
-    </div>
-    <div class="sidebar-l2 open">
-      <a class="sidebar-l3-link" href="{prefix}ea-diagrams/">All EA Diagrams</a>
-{links}
-    </div>
-  </div>"""
+    lines.append(f'  <div style="height:1px;background:#dde1e8;margin:8px 14px"></div>')
+    lines.append(f'  <div class="sidebar-section">')
+    lines.append(f'    <div class="sidebar-domain open" data-label="EA Diagrams">')
+    lines.append(f'      <span class="sidebar-domain-label">🗺️ EA Diagrams</span><span class="chevron">▶</span>')
+    lines.append(f'    </div>')
+    lines.append(f'    <div class="sidebar-l2 open">')
+    lines.append(f'      <a class="sidebar-l3-link" href="{prefix}ea-diagrams/">All EA Diagrams</a>')
+    lines.append(ea_links)
+    lines.append(f'    </div>')
+    lines.append(f'  </div>')
+
+    return "\n".join(lines)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
