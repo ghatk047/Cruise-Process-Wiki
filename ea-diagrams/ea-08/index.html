@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EA-08 · Finance &amp; Procurement Architecture · Cruise Process Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <a href="../../" class="topbar-logo">🚢 Cruise <span>Process Wiki</span></a>
+  <span class="topbar-badge">v1.0</span>
+  <div class="topbar-right">
+    <div class="topbar-search">
+      <input type="text" id="searchBox" placeholder="Search processes… (/)" autocomplete="off">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <a href="../../">Home</a>
+    <a href="../../ea-diagrams/">EA Diagrams</a>
+    <a href="https://github.com/ghatk047/Cruise-Process-Wiki" class="gh-btn" target="_blank">⭐ GitHub</a>
+  </div>
+</header>
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-domain open" data-label="EA Diagrams">
+      <span class="sidebar-domain-label">🗺️ EA Diagrams</span><span class="chevron">▶</span>
+    </div>
+    <div class="sidebar-l2 open">
+      <a class="sidebar-l3-link" href="../../ea-diagrams/">All EA Diagrams</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-01/"><span class="pid">EA-01</span>Cruise Integrated System Landscape</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-02/"><span class="pid">EA-02</span>Guest Journey Data Flow</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-03/"><span class="pid">EA-03</span>Shipboard Operations Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-04/"><span class="pid">EA-04</span>Onboard Revenue Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-05/"><span class="pid">EA-05</span>Marine &amp; Environmental Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-06/"><span class="pid">EA-06</span>Crew Management &amp; HR Integration</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-07/"><span class="pid">EA-07</span>Connectivity &amp; Digital Infrastructure</a>
+        <a class="sidebar-l3-link active" href="../../ea-diagrams/ea-08/"><span class="pid">EA-08</span>Finance &amp; Procurement Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-09/"><span class="pid">EA-09</span>Safety, Security &amp; Medical Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-10/"><span class="pid">EA-10</span>Loyalty &amp; CRM Architecture</a>
+    </div>
+  </div>
+</nav>
+<button id="sidebarToggle" title="Toggle sidebar">&#9664;</button>
+
+<main class="main">
+  <div class="breadcrumb">
+    <a href="../../">Home</a><span class="sep">›</span>
+    <a href="../../ea-diagrams/">EA Diagrams</a><span class="sep">›</span>
+    <span class="current">EA-08 · Finance &amp; Procurement Architecture</span>
+  </div>
+
+  <div class="page-header">
+    <div class="page-header-left">
+      <h1>Finance &amp; Procurement Architecture</h1>
+      <p>SAP S/4HANA · SAP Ariba · voyage accounting · port disbursements · fleet consolidation · Updated 2026-03-28 22:00</p>
+    </div>
+    <div class="page-header-meta">
+      <span class="pid-badge">EA-08</span>
+      <span class="status-badge complete">✅ Published</span>
+      <span class="ref-line">Ref: Royal Caribbean International</span>
+    </div>
+  </div>
+
+  <div class="card" id="diagram">
+    <div class="card-header"><span class="icon">🗺️</span><h2>Enterprise Architecture Diagram</h2></div>
+    <div class="card-body">
+      <div class="diagram-wrap" id="diag-ea-08">
+        <img src="../../assets/img/ea-08.png"
+             alt="EA-08 — Finance &amp; Procurement Architecture"
+             style="max-width:100%;border-radius:6px;box-shadow:0 2px 12px rgba(0,0,0,.08);cursor:zoom-in"
+             onerror="this.style.opacity='.3'">
+      </div>
+      <p class="diagram-hint">Click diagram to open fullscreen &nbsp;|&nbsp; Scroll to zoom &nbsp;|&nbsp; Drag to pan</p>
+    </div>
+  </div>
+
+  <div class="card" id="description">
+    <div class="card-header"><span class="icon">📋</span><h2>Architecture Notes</h2></div>
+    <div class="card-body">
+      <p style="font-size:13px;color:#374151;line-height:1.8;max-width:860px;margin-bottom:20px">Royal Caribbean&#x27;s finance architecture centres on SAP S/4HANA for all enterprise accounting across 69 ships and 3 brands. Each voyage generates a distinct profit centre in SAP, with revenues flowing from Oracle SPMS and costs from Workday (crew), SAP Ariba (procurement), and port disbursement agents. The architecture supports multi-currency consolidation across 1,000+ port calls annually, regulatory compliance for a Bahamas-flagged, NYSE-listed company, and the Perfecta Programme financial targets of 20% CAGR Adjusted EPS through 2027.</p>
+      <ul style='padding-left:20px;margin-top:0'><li style="margin-bottom:6px;font-size:12px;color:#374151">Each voyage is a distinct profit centre in SAP — revenue and costs matched at voyage level</li><li style="margin-bottom:6px;font-size:12px;color:#374151">SAP Ariba manages 10,000+ suppliers globally — food, fuel, equipment, services</li><li style="margin-bottom:6px;font-size:12px;color:#374151">Port disbursement agents in 1,000+ ports submit invoices through Ariba supplier portal</li><li style="margin-bottom:6px;font-size:12px;color:#374151">FX exposure is significant — multi-currency voyages settle in USD but costs in 50+ currencies</li><li style="margin-bottom:6px;font-size:12px;color:#374151">Perfecta Programme (2025-2027) targets 20% CAGR Adjusted EPS — CFO dashboards built on SAP Analytics</li></ul>
+    </div>
+  </div>
+
+  <div class="pn-nav" style="display:flex;justify-content:space-between;margin-top:8px">
+    <a class="pn-btn" href="../../ea-diagrams/ea-07/"><span class="arrow">←</span><span>EA-07 · Connectivity &amp; Digital Infrastructure</span></a>
+    <a class="pn-btn next" href="../../ea-diagrams/ea-09/"><span>EA-09 · Safety, Security &amp; Medical Architecture</span><span class="arrow">→</span></a>
+  </div>
+</main>
+<div id="bpmn-lightbox"></div>
+<script src="../../assets/js/wiki.js"></script>
+</body>
+</html>
