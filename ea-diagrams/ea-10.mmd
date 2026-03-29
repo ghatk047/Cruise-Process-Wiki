@@ -1,0 +1,108 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'12px','fontFamily':'Inter, Arial, sans-serif'}}}%%
+flowchart LR
+
+  subgraph DATAFEEDS["📥 Guest Data Sources"]
+    direction TB
+    RES10["RES System\nBooking history · cabin category · spend"]
+    SPMS10["Oracle SPMS\nOnboard behaviour · folio summary"]
+    MICROS10["Oracle MICROS\nDetailed spend by venue · category"]
+    SURVEY["Post-Cruise Survey\nNPS · satisfaction · issues"]
+    SOCIALMEDIA["Social & Digital\nReviews · mentions · sentiment"]
+    NEXTCRUISE10["Next Cruise Onboard\nFuture deposit · interest"]
+  end
+
+  subgraph CROWNANCHOR["👑 Crown & Anchor Society"]
+    direction TB
+    CAPLATFORM["C&A Loyalty Platform\nPoints engine · tier rules · benefits"]
+    CATIERS["Tier Management\nGold · Platinum · Emerald · Diamond · Diamond+ · Pinnacle"]
+    CABENEFITS["Benefits Engine\nPriority boarding · OBC · discounts · events"]
+    CASTATMATCH["Status Match\nCelebrity ↔ Silversea ↔ C&A (June 2024)"]
+  end
+
+  subgraph CLUBROYALE["🎰 Club Royale Casino Loyalty"]
+    direction TB
+    CRTIERS["CR Tiers\nChoice · Prime · Signature · Masters"]
+    CRENGINE["Casino Points Engine\nSlots · tables · poker earn rates"]
+    CRBENEFITS["CR Benefits\nFree cruises · cash back · priority"]
+    HARDROCK["Hard Rock Unity\nBi-directional points transfer"]
+  end
+
+  subgraph CRM10["🟠 Salesforce CRM — Unified Guest Profile"]
+    direction TB
+    GUESTPROFILE["360° Guest Profile\nAll sailings · spend · preferences · feedback"]
+    SEGMENTATION["Segmentation Engine\nRFM · demographic · behavioural clusters"]
+    JOURNEY["Customer Journey\nPre · during · post cruise touchpoints"]
+    CASES["Service Cases\nComplaints · resolutions · follow-up"]
+    AGENTDESK["Agent Desktop\nCall centre · email · chat · social"]
+  end
+
+  subgraph ANALYTICS10["📊 Analytics & Intelligence"]
+    direction TB
+    AZUREML10["Azure ML\nChurn prediction · propensity models"]
+    OBIEE10["Oracle OBIEE\nLoyalty KPIs · revenue per member"]
+    LTVCALC["LTV Calculator\nLifetime value · upsell potential"]
+    NEXTBESTOFFER["Next Best Offer\nPersonalised cabin · itinerary · package"]
+  end
+
+  subgraph ACTIVATION["📣 Offer Activation Channels"]
+    direction TB
+    EMAIL["Email Marketing\nSalesforce Marketing Cloud"]
+    APP10["Royal App\nPush · in-app personalisation"]
+    CALLCENTRE["Call Centre\nCruising Power · direct sales"]
+    TRAVELAGENT10["Travel Agent Portal\nCruising Power · agent incentives"]
+    ONBOARD10["Onboard Next Cruise\nConsultant · deposit · OBC incentive"]
+  end
+
+  subgraph BOOKING10["🎫 Booking Conversion"]
+    direction TB
+    RES10B["RES Booking Engine\nPersonalised pricing · availability"]
+    REVENUE10["Revenue Management\nDynamic pricing · yield"]
+    ATTRIBUTION["Attribution Tracking\nWhich channel drove booking"]
+  end
+
+  RES10       -->|"sailing history"| GUESTPROFILE
+  SPMS10      -->|"onboard behaviour"| GUESTPROFILE
+  MICROS10    -->|"spend detail"| GUESTPROFILE
+  SURVEY      -->|"NPS & feedback"| GUESTPROFILE
+  SOCIALMEDIA -->|"sentiment data"| GUESTPROFILE
+  NEXTCRUISE10 -->|"deposit intent"| GUESTPROFILE
+
+  GUESTPROFILE -->|"sailing credits"| CAPLATFORM
+  CAPLATFORM   -->|"tier update"| CATIERS
+  CATIERS      -->|"benefit triggers"| CABENEFITS
+  CASTATMATCH  -->|"cross-brand tier"| CATIERS
+
+  MICROS10  -->|"casino earn"| CRENGINE
+  CRENGINE  -->|"tier qualification"| CRTIERS
+  CRTIERS   -->|"benefit activation"| CRBENEFITS
+  HARDROCK  -->|"points transfer"| CRENGINE
+
+  GUESTPROFILE -->|"unified data"| SEGMENTATION
+  SEGMENTATION -->|"segments"| AZUREML10
+  AZUREML10    -->|"propensity scores"| NEXTBESTOFFER
+  OBIEE10      -->|"member KPIs"| LTVCALC
+  LTVCALC      -->|"value scores"| NEXTBESTOFFER
+
+  NEXTBESTOFFER -->|"personalised offer"| EMAIL
+  NEXTBESTOFFER -->|"in-app offer"| APP10
+  NEXTBESTOFFER -->|"agent offer"| TRAVELAGENT10
+  NEXTBESTOFFER -->|"onboard offer"| ONBOARD10
+  CASES         -->|"service recovery offer"| EMAIL
+
+  EMAIL          -->|"click through"| RES10B
+  APP10          -->|"booking tap"| RES10B
+  CALLCENTRE     -->|"assisted booking"| RES10B
+  TRAVELAGENT10  -->|"GDS booking"| RES10B
+  ONBOARD10      -->|"deposit booking"| RES10B
+
+  RES10B     -->|"booking confirmed"| ATTRIBUTION
+  REVENUE10  -->|"price signal"| RES10B
+  ATTRIBUTION -->|"channel data"| CRM10
+
+  style DATAFEEDS    fill:#e8f4fd,stroke:#3b82f6
+  style CROWNANCHOR  fill:#fff8e1,stroke:#f59e0b,stroke-width:2px
+  style CLUBROYALE   fill:#fce4ec,stroke:#ef4444
+  style CRM10        fill:#fff3e0,stroke:#f59e0b,stroke-width:2px
+  style ANALYTICS10  fill:#f3e8ff,stroke:#8b5cf6
+  style ACTIVATION   fill:#e8f5e9,stroke:#10b981
+  style BOOKING10    fill:#e0f7fa,stroke:#06b6d4
