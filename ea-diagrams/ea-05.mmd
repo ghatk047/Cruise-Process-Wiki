@@ -1,0 +1,109 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'12px','fontFamily':'Inter, Arial, sans-serif'}}}%%
+flowchart TB
+
+  subgraph EXTERNAL5["🌐 External Navigation & Regulatory"]
+    direction LR
+    GMDSS["GMDSS\nGlobal Maritime Distress & Safety"]
+    AIS5["AIS Network\nAutomatic Identification System"]
+    NAVTEX["NAVTEX\nNavigational warnings · weather"]
+    PORTCTRL["Port Control\nVTS · Pilot boarding · Clearance"]
+    IMO["IMO / Flag State\nSOLAS · MARPOL · CII reporting"]
+  end
+
+  subgraph BRIDGE["🧭 Integrated Bridge System"]
+    direction LR
+    ECDIS["ECDIS\nElectronic Chart Display\n& Information System"]
+    RADAR["Radar Array\nARPA · S-band · X-band"]
+    CONNING["Conning Display\nSpeed · heading · rudder angle"]
+    AUTOPILOT["Autopilot\nAdaptive route following"]
+    VDR5["Voyage Data Recorder\nSOLAS mandatory · 12h rolling buffer"]
+  end
+
+  subgraph PROPULSION["⚙️ Propulsion & Power"]
+    direction LR
+    ENGINES["Wärtsilä Dual-Fuel Engines\n4× main engines · LNG/HFO"]
+    AZIPOD["ABB Azipod\n3× electric pod propulsors"]
+    LNGSTORE["LNG Fuel Storage\nCryogenic tanks · bunkering system"]
+    POWERGEN["Power Generation\nSwitchboard · distribution · UPS"]
+    THRUSTER["Bow Thrusters\nManoeuvring · DP assist"]
+  end
+
+  subgraph ENGINEROOM["🔧 Engine Room Management"]
+    direction LR
+    IMOS["Integrated Monitoring\n& Control (IAS)\nAlarm · automation · remote"]
+    PMS5["Planned Maintenance System\nClass surveys · component PPM"]
+    FUEL5["Fuel Management\nBunkering · consumption · transfer"]
+    LUBOIL["Lube Oil System\nMonitoring · sampling · analysis"]
+  end
+
+  subgraph ENVIRO5["🌿 Environmental Systems"]
+    direction LR
+    BWTS["Ballast Water\nTreatment System\nIMO BWM Convention"]
+    AWTS["Advanced Wastewater\nTreatment System\nMARPOL Annex IV+"]
+    SCRUBBERS["Exhaust Gas Scrubbers\nSOx reduction · open/closed loop"]
+    OWS["Oily Water Separator\n15ppm threshold · MARPOL Annex I"]
+    GARBAGE["Garbage Management\nMARPOL Annex V · log book"]
+    INCINERATOR["Marine Incinerator\nSolid waste · regulated materials"]
+  end
+
+  subgraph COMPLIANCE5["📋 Compliance & Reporting"]
+    direction LR
+    ELOG["Electronic Log Books\nEngine · Oil record · Garbage"]
+    CII["IMO CII Calculator\nAnnual carbon intensity rating"]
+    EPALOG["EPA Reporting\nUS port waste · discharge logs"]
+    CLASSINSP["Class Society\nLloyds · Bureau Veritas · surveys"]
+  end
+
+  subgraph SHORE5["🏢 Shore Reporting"]
+    direction LR
+    SAP5["SAP S/4HANA\nFuel costs · maintenance costs"]
+    FLEETOPS["Fleet Operations Center\nMiami HQ · 24/7 monitoring"]
+    ENVREPORT["Environmental Reporting\nRCCL sustainability dashboard"]
+  end
+
+  GMDSS   -->|"distress alerts"| BRIDGE
+  AIS5    -->|"traffic picture"| ECDIS
+  NAVTEX  -->|"warnings"| CONNING
+  PORTCTRL -->|"berthing orders"| BRIDGE
+
+  ECDIS    -->|"route data"| AUTOPILOT
+  AUTOPILOT -->|"helm commands"| AZIPOD
+  CONNING  -->|"speed order"| ENGINES
+  VDR5     -->|"voyage record"| ELOG
+
+  ENGINES  -->|"shaft power"| AZIPOD
+  LNGSTORE -->|"fuel supply"| ENGINES
+  POWERGEN -->|"electricity"| AZIPOD
+  THRUSTER -->|"assist"| AZIPOD
+
+  IMOS    -->|"engine alarms"| PMS5
+  IMOS    -->|"consumption data"| FUEL5
+  PMS5    -->|"maintenance schedule"| SAP5
+  FUEL5   -->|"fuel costs"| SAP5
+  LUBOIL  -->|"oil analysis"| PMS5
+
+  BWTS   -->|"treatment logs"| ELOG
+  AWTS   -->|"discharge logs"| ELOG
+  SCRUBBERS -->|"SOx data"| ELOG
+  OWS    -->|"oil record"| ELOG
+  GARBAGE -->|"waste log"| ELOG
+  INCINERATOR -->|"burn log"| ELOG
+
+  ELOG  -->|"log data"| CII
+  ELOG  -->|"discharge data"| EPALOG
+  CII   -->|"annual rating"| IMO
+  EPALOG -->|"US compliance"| ENVREPORT
+  CLASSINSP -->|"survey results"| PMS5
+
+  CII      -->|"fuel efficiency"| SAP5
+  EPALOG   -->|"compliance status"| FLEETOPS
+  ENVREPORT -->|"sustainability KPIs"| FLEETOPS
+  SAP5     -->|"cost reports"| FLEETOPS
+
+  style EXTERNAL5   fill:#f0f4ff,stroke:#6366f1
+  style BRIDGE      fill:#e0f7fa,stroke:#0891b2,stroke-width:2px
+  style PROPULSION  fill:#fce4ec,stroke:#ef4444
+  style ENGINEROOM  fill:#f3e8ff,stroke:#8b5cf6
+  style ENVIRO5     fill:#e8f5e9,stroke:#10b981,stroke-width:2px
+  style COMPLIANCE5 fill:#fff3e0,stroke:#f59e0b
+  style SHORE5      fill:#e3f2fd,stroke:#3b82f6
