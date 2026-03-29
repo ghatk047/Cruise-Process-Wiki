@@ -1,0 +1,110 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'12px','fontFamily':'Inter, Arial, sans-serif'}}}%%
+flowchart TB
+
+  subgraph SATNET["🛰️ Satellite Connectivity Layer"]
+    direction LR
+    STARLINK7["Starlink LEO\n98% fleet · sub-100ms · multi-beam"]
+    VSAT["Legacy VSAT\nBackup · remote ports"]
+    CELLULAR["4G/5G Shore\nIn-port cellular offload"]
+    LBAND["L-Band (Inmarsat)\nGMDSS · EPIRB · safety only"]
+  end
+
+  subgraph SHIPNET7["🌐 Ship Network Layer"]
+    direction LR
+    COREROUTER["Core Router/Firewall\nPalo Alto · Cisco · segmentation"]
+    GUESTVLAN["Guest WiFi VLAN\nVoom internet · bandwidth managed"]
+    CREWVLAN["Crew Welfare VLAN\nPersonal internet · social media"]
+    OPSVLAN["Operations VLAN\nSPMS · MICROS · Nav systems"]
+    IOTNET["IoT Sensor Network\nCabin sensors · environmental · energy"]
+  end
+
+  subgraph ROYALAPP7["📱 Royal Caribbean App Platform"]
+    direction LR
+    APPCLIENT["Mobile App\niOS · Android · 7,600 guest capacity"]
+    APICACHE["API Gateway\nAzure API Management · rate limiting"]
+    CHATBOT["NLP AI Chatbot\nAzure Cognitive Services · 35% adoption"]
+    PUSHNOTIF["Push Notifications\nPre-cruise · onboard · itinerary alerts"]
+    APPBOOKING["In-App Bookings\nDining · shows · excursions · spa"]
+  end
+
+  subgraph AZUREAI["☁️ Microsoft Azure AI Layer"]
+    direction LR
+    AZURECV["Azure Computer Vision\nCrowd density · people counting"]
+    AZURENLP["Azure Cognitive Services\nNLP · sentiment · chatbot"]
+    AZUREIOT["Azure IoT Hub\nShip sensor telemetry"]
+    AZUREML["Azure ML\nDemand forecasting · yield"]
+    AZUREDASH["Azure Dashboard\nOps analytics · alerts"]
+  end
+
+  subgraph MICROSERV7["⚙️ D2iQ Microservices Platform"]
+    direction LR
+    EVENTBUS["Event Bus\nKafka · ship-shore event stream"]
+    DATAREPLIC["Data Replication\nSPMS → shore · near-real-time"]
+    APIORCH["API Orchestration\nShip-side service mesh"]
+    CONFIGMGMT["Config Management\nFleet-wide software deployment"]
+  end
+
+  subgraph SHIPCORE7["🔵 Shipboard Core Systems"]
+    direction LR
+    SPMS7["Oracle SPMS\nShipboard hub"]
+    MICROS7["Oracle MICROS\nPOS network"]
+    NAVSYS7["Navigation Systems\nBridge · ECDIS · AIS"]
+    ENVIRO7["Environmental Sensors\nBWTS · scrubbers · OWS"]
+  end
+
+  subgraph SHORE7["🏢 Shore-Side Systems (Miami HQ)"]
+    direction LR
+    RES7["RES System\nBooking & inventory"]
+    SAP7["SAP S/4HANA\nFinance · HR costs"]
+    OBIEE7["Oracle OBIEE\nRevenue analytics"]
+    FLEETMGMT["Fleet Ops Centre\n24/7 monitoring"]
+    CYBERSOC["Cyber SOC\nThreat monitoring · SIEM"]
+  end
+
+  STARLINK7 -->|"primary bandwidth"| COREROUTER
+  VSAT      -->|"failover link"| COREROUTER
+  CELLULAR  -->|"in-port offload"| COREROUTER
+  LBAND     -->|"safety circuits"| NAVSYS7
+
+  COREROUTER -->|"guest traffic"| GUESTVLAN
+  COREROUTER -->|"crew traffic"| CREWVLAN
+  COREROUTER -->|"ops traffic"| OPSVLAN
+  COREROUTER -->|"sensor data"| IOTNET
+
+  GUESTVLAN -->|"app requests"| APICACHE
+  APPCLIENT -->|"API calls"| APICACHE
+  APICACHE  -->|"chatbot queries"| CHATBOT
+  CHATBOT   -->|"NLP processing"| AZURENLP
+  APPBOOKING -->|"booking events"| SPMS7
+  PUSHNOTIF -->|"app push"| APPCLIENT
+
+  IOTNET    -->|"telemetry"| AZUREIOT
+  OPSVLAN   -->|"video feeds"| AZURECV
+  AZURECV   -->|"crowd alerts"| AZUREDASH
+  AZUREIOT  -->|"sensor stream"| AZUREML
+  AZUREML   -->|"demand signals"| OBIEE7
+
+  OPSVLAN   -->|"ops data"| EVENTBUS
+  EVENTBUS  -->|"SPMS events"| DATAREPLIC
+  DATAREPLIC -->|"replicated data"| SHORE7
+  APIORCH   -->|"service calls"| SPMS7
+  CONFIGMGMT -->|"software updates"| SHIPCORE7
+
+  SPMS7   -->|"ops events"| EVENTBUS
+  MICROS7 -->|"revenue events"| EVENTBUS
+  NAVSYS7 -->|"position events"| EVENTBUS
+  ENVIRO7 -->|"compliance events"| EVENTBUS
+
+  DATAREPLIC -->|"booking sync"| RES7
+  DATAREPLIC -->|"financial data"| SAP7
+  DATAREPLIC -->|"analytics data"| OBIEE7
+  DATAREPLIC -->|"ops stream"| FLEETMGMT
+  COREROUTER -->|"security events"| CYBERSOC
+
+  style SATNET      fill:#e0f7fa,stroke:#06b6d4,stroke-width:2px
+  style SHIPNET7    fill:#f3e8ff,stroke:#8b5cf6
+  style ROYALAPP7   fill:#fff3e0,stroke:#f59e0b
+  style AZUREAI     fill:#e8f4fd,stroke:#3b82f6
+  style MICROSERV7  fill:#fce4ec,stroke:#ef4444
+  style SHIPCORE7   fill:#e3f2fd,stroke:#1d4ed8
+  style SHORE7      fill:#e8f5e9,stroke:#10b981
