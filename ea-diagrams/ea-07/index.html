@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EA-07 · Connectivity &amp; Digital Infrastructure · Cruise Process Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <a href="../../" class="topbar-logo">🚢 Cruise <span>Process Wiki</span></a>
+  <span class="topbar-badge">v1.0</span>
+  <div class="topbar-right">
+    <div class="topbar-search">
+      <input type="text" id="searchBox" placeholder="Search processes… (/)" autocomplete="off">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <a href="../../">Home</a>
+    <a href="../../ea-diagrams/">EA Diagrams</a>
+    <a href="https://github.com/ghatk047/Cruise-Process-Wiki" class="gh-btn" target="_blank">⭐ GitHub</a>
+  </div>
+</header>
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-domain open" data-label="EA Diagrams">
+      <span class="sidebar-domain-label">🗺️ EA Diagrams</span><span class="chevron">▶</span>
+    </div>
+    <div class="sidebar-l2 open">
+      <a class="sidebar-l3-link" href="../../ea-diagrams/">All EA Diagrams</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-01/"><span class="pid">EA-01</span>Cruise Integrated System Landscape</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-02/"><span class="pid">EA-02</span>Guest Journey Data Flow</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-03/"><span class="pid">EA-03</span>Shipboard Operations Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-04/"><span class="pid">EA-04</span>Onboard Revenue Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-05/"><span class="pid">EA-05</span>Marine &amp; Environmental Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-06/"><span class="pid">EA-06</span>Crew Management &amp; HR Integration</a>
+        <a class="sidebar-l3-link active" href="../../ea-diagrams/ea-07/"><span class="pid">EA-07</span>Connectivity &amp; Digital Infrastructure</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-08/"><span class="pid">EA-08</span>Finance &amp; Procurement Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-09/"><span class="pid">EA-09</span>Safety, Security &amp; Medical Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-10/"><span class="pid">EA-10</span>Loyalty &amp; CRM Architecture</a>
+    </div>
+  </div>
+</nav>
+<button id="sidebarToggle" title="Toggle sidebar">&#9664;</button>
+
+<main class="main">
+  <div class="breadcrumb">
+    <a href="../../">Home</a><span class="sep">›</span>
+    <a href="../../ea-diagrams/">EA Diagrams</a><span class="sep">›</span>
+    <span class="current">EA-07 · Connectivity &amp; Digital Infrastructure</span>
+  </div>
+
+  <div class="page-header">
+    <div class="page-header-left">
+      <h1>Connectivity &amp; Digital Infrastructure</h1>
+      <p>Starlink → ship network → Royal App → Azure AI → D2iQ microservices · Updated 2026-03-28 22:00</p>
+    </div>
+    <div class="page-header-meta">
+      <span class="pid-badge">EA-07</span>
+      <span class="status-badge complete">✅ Published</span>
+      <span class="ref-line">Ref: Royal Caribbean International</span>
+    </div>
+  </div>
+
+  <div class="card" id="diagram">
+    <div class="card-header"><span class="icon">🗺️</span><h2>Enterprise Architecture Diagram</h2></div>
+    <div class="card-body">
+      <div class="diagram-wrap" id="diag-ea-07">
+        <img src="../../assets/img/ea-07.png"
+             alt="EA-07 — Connectivity &amp; Digital Infrastructure"
+             style="max-width:100%;border-radius:6px;box-shadow:0 2px 12px rgba(0,0,0,.08);cursor:zoom-in"
+             onerror="this.style.opacity='.3'">
+      </div>
+      <p class="diagram-hint">Click diagram to open fullscreen &nbsp;|&nbsp; Scroll to zoom &nbsp;|&nbsp; Drag to pan</p>
+    </div>
+  </div>
+
+  <div class="card" id="description">
+    <div class="card-header"><span class="icon">📋</span><h2>Architecture Notes</h2></div>
+    <div class="card-body">
+      <p style="font-size:13px;color:#374151;line-height:1.8;max-width:860px;margin-bottom:20px">Royal Caribbean&#x27;s digital infrastructure is anchored by Starlink satellite providing sub-100ms latency to 98% of the fleet, enabling a cloud-native ship-shore architecture. The Royal Caribbean App serves as the primary guest interface, processing AI chatbot interactions via Azure Cognitive Services. Azure AI Vision monitors crowd density across 20+ zones on Icon-class ships. Mesosphere/D2iQ provides the microservices bus for ship-shore data replication, enabling real-time revenue visibility, crew management updates, and operational analytics from Miami headquarters.</p>
+      <ul style='padding-left:20px;margin-top:0'><li style="margin-bottom:6px;font-size:12px;color:#374151">Starlink replaced legacy VSAT on 98% of fleet by 2025 — latency dropped from 600ms to sub-100ms</li><li style="margin-bottom:6px;font-size:12px;color:#374151">Royal App achieved 35% year-on-year adoption increase — now primary service channel on new ships</li><li style="margin-bottom:6px;font-size:12px;color:#374151">Azure AI Vision monitors 20+ crowd density zones on Icon of the Seas — feeds flow optimisation</li><li style="margin-bottom:6px;font-size:12px;color:#374151">D2iQ (formerly Mesosphere) provides Kubernetes-based microservices for ship-shore event streaming</li><li style="margin-bottom:6px;font-size:12px;color:#374151">Ship WiFi runs on three segregated VLANs: guest internet, crew welfare, and operational systems</li></ul>
+    </div>
+  </div>
+
+  <div class="pn-nav" style="display:flex;justify-content:space-between;margin-top:8px">
+    <a class="pn-btn" href="../../ea-diagrams/ea-06/"><span class="arrow">←</span><span>EA-06 · Crew Management &amp; HR Integration</span></a>
+    <a class="pn-btn next" href="../../ea-diagrams/ea-08/"><span>EA-08 · Finance &amp; Procurement Architecture</span><span class="arrow">→</span></a>
+  </div>
+</main>
+<div id="bpmn-lightbox"></div>
+<script src="../../assets/js/wiki.js"></script>
+</body>
+</html>
