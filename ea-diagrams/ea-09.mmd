@@ -1,0 +1,103 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'12px','fontFamily':'Inter, Arial, sans-serif'}}}%%
+flowchart TB
+
+  subgraph EXTERNAL9["🌐 External Safety Authorities"]
+    direction LR
+    USCG["US Coast Guard\nMEDEVAC · port security · PSC"]
+    CDC["CDC Vessel Sanitation\nVSP inspection · score"]
+    PORTHLTH["Port Health Authority\nPre-arrival health declaration"]
+    MEDAIRE["MedAire / AXA Partners\n24/7 maritime telemedicine"]
+    INSURER["P&I Club Insurer\nLiability · medical cost cover"]
+  end
+
+  subgraph MUSTERSYS["🆘 Safety Management System"]
+    direction LR
+    MUSTER20["Muster 2.0 System\nRoyal App safety briefing\nPre-departure digital completion"]
+    SAFETYMGMT["ISM Safety Management\nSMS · drills · incident reporting"]
+    EMERGPLAN["Emergency Response Plans\nAbandon ship · fire · flooding · MOB"]
+    SAFETYDRILLS["Drill Management\nFire · lifeboat · medical · security"]
+    BRIDGEALERT["Bridge Alert System\nCritical alarm management"]
+  end
+
+  subgraph MEDICAL9["🏥 Medical Centre Operations"]
+    direction LR
+    TRIAGE["Medical Triage\nGuest & crew initial assessment"]
+    EMRMEDICAL["EMR System\nElectronic medical records · HIPAA"]
+    PHARMACY["Pharmacy Management\nDrug inventory · controlled substances"]
+    ISOLATION["Isolation Protocol\nNorovirus · COVID · outbreak rooms"]
+    LAB["Diagnostic Lab\nBlood · urine · rapid tests"]
+    MORGUE["Mortuary Procedures\nOnboard storage · port repatriation"]
+  end
+
+  subgraph MEDEVAC9["🚁 MEDEVAC & Emergency"]
+    direction LR
+    GMDSS9["GMDSS\nMayday · PAN PAN · urgent marine info"]
+    CAPTAIN9["Master & Bridge Team\nEmergency command"]
+    COASTGUARD["Coast Guard Coordination\nHelicopter · cutter · SAR"]
+    PORTDIVER["Port Diversion\nNearest port with medical facility"]
+    AIRAMBULANCE["Air Ambulance\nMedAire · international coordination"]
+  end
+
+  subgraph OUTBREAKQ["🦠 Outbreak & Public Health"]
+    direction LR
+    ENHANCE["Enhanced Cleaning Protocol\nNorovirus · quarantine areas"]
+    CASETRACK["Case Tracking\nSymptom log · contact tracing"]
+    CDCREPORT["CDC Reporting\nGI illness threshold 3%"]
+    PORTNOTIFY["Port Health Notification\nPre-arrival declaration"]
+    ISOLATION2["Guest Isolation\nCabin restriction · meal delivery"]
+  end
+
+  subgraph SECURITY9["🛡️ Ship Security"]
+    direction LR
+    ISPS["ISPS Code Compliance\nPort facility security plan"]
+    CCTV9["CCTV System\n2,000+ cameras on Icon class"]
+    ACCESSCTRL["Access Control\nCrew/guest area segregation"]
+    SEAMARSHAL["Dedicated Security Team\nArmed / unarmed · MSOG training"]
+    GANGWAY["Gangway Control\nAll persons logged in/out · ID scan"]
+  end
+
+  subgraph SPMSMED["🔵 SPMS & Systems Integration"]
+    direction LR
+    SPMS9["Oracle SPMS\nManifest · cabin · emergency list"]
+    MUSAPP["Royal App\nMuster 2.0 completion tracking"]
+    INCIDENTLOG["Incident Reporting\nSAFER database · near-miss"]
+    REGULATORY9["Regulatory Reporting\nSOLAS · IMO · flag state"]
+  end
+
+  MUSTER20  -->|"completion data"| MUSAPP
+  MUSAPP    -->|"muster status"| SPMS9
+  SAFETYMGMT -->|"drill records"| INCIDENTLOG
+  EMERGPLAN -->|"activation"| CAPTAIN9
+  BRIDGEALERT -->|"critical alarms"| CAPTAIN9
+
+  TRIAGE   -->|"case record"| EMRMEDICAL
+  EMRMEDICAL -->|"consultation"| MEDAIRE
+  PHARMACY -->|"medication log"| EMRMEDICAL
+  ISOLATION -->|"case count"| CASETRACK
+  LAB      -->|"test results"| EMRMEDICAL
+
+  CASETRACK -->|"GI cases"| CDCREPORT
+  CASETRACK -->|"outbreak trigger"| ENHANCE
+  ENHANCE   -->|"cabin restriction"| ISOLATION2
+  CDCREPORT -->|"inspection trigger"| CDC
+  PORTNOTIFY -->|"health declaration"| PORTHLTH
+
+  CAPTAIN9    -->|"MAYDAY"| GMDSS9
+  GMDSS9      -->|"distress signal"| COASTGUARD
+  COASTGUARD  -->|"response"| PORTDIVER
+  MEDAIRE     -->|"evac decision"| AIRAMBULANCE
+  PORTDIVER   -->|"hospital transfer"| INSURER
+
+  ISPS     -->|"access matrix"| ACCESSCTRL
+  CCTV9    -->|"footage"| SEAMARSHAL
+  GANGWAY  -->|"manifest update"| SPMS9
+  INCIDENTLOG -->|"reports"| REGULATORY9
+  REGULATORY9 -->|"compliance data"| USCG
+
+  style EXTERNAL9  fill:#f0f4ff,stroke:#6366f1
+  style MUSTERSYS  fill:#fff3e0,stroke:#f59e0b
+  style MEDICAL9   fill:#fce4ec,stroke:#ef4444,stroke-width:2px
+  style MEDEVAC9   fill:#f3e8ff,stroke:#8b5cf6
+  style OUTBREAKQ  fill:#fef3c7,stroke:#92400e
+  style SECURITY9  fill:#e8f4fd,stroke:#1d4ed8
+  style SPMSMED    fill:#e0f7fa,stroke:#06b6d4
