@@ -822,6 +822,17 @@ def build_sidebar(active_pid, depth=3):
             lines.append(f'      </div>')
         lines.append(f'    </div>')
         lines.append(f'  </div>')
+    # EA Diagrams section — always at bottom, always collapsed on process pages
+    lines.append(f'  <div style="height:1px;background:#dde1e8;margin:8px 14px"></div>')
+    lines.append(f'  <div class="sidebar-section">')
+    lines.append(f'    <div class="sidebar-domain" data-label="EA Diagrams"><span class="sidebar-domain-label">🗺️ EA Diagrams</span><span class="chevron">▶</span></div>')
+    lines.append(f'    <div class="sidebar-l2">')
+    lines.append(f'      <a class="sidebar-l3-link" href="{prefix}ea-diagrams/">All EA Diagrams</a>')
+    for n in range(1, 11):
+        eid = f"EA-{n:02d}"
+        lines.append(f'      <a class="sidebar-l3-link" href="{prefix}ea-diagrams/{eid.lower()}/"><span class="pid">{eid}</span></a>')
+    lines.append(f'    </div>')
+    lines.append(f'  </div>')
     return "\n".join(lines)
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1373,10 +1384,13 @@ def update_home_page():
   </div>
 
   <div class="stat-grid">
-    <div class="stat-card"><div class="stat-num accent">{total_done}</div><div class="stat-label">Complete</div></div>
+    <div class="stat-card"><div class="stat-num accent">{total_done}</div><div class="stat-label">Processes Complete</div></div>
     <div class="stat-card"><div class="stat-num">{total_procs}</div><div class="stat-label">Total Processes</div></div>
     <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">L1 Domains</div></div>
-    <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">EA Diagrams</div></div>
+    <a href="ea-diagrams/" class="stat-card" style="text-decoration:none;display:block;cursor:pointer">
+      <div class="stat-num" style="color:#8b5cf6">10</div>
+      <div class="stat-label">EA Diagrams →</div>
+    </a>
   </div>
 
   <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#6b7280;margin-bottom:12px">L1 Domains</div>
