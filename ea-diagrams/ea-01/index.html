@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EA-01 · Cruise Integrated System Landscape · Cruise Process Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <a href="../../" class="topbar-logo">🚢 Cruise <span>Process Wiki</span></a>
+  <span class="topbar-badge">v1.0</span>
+  <div class="topbar-right">
+    <div class="topbar-search">
+      <input type="text" id="searchBox" placeholder="Search processes… (/)" autocomplete="off">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <a href="../../">Home</a>
+    <a href="../../ea-diagrams/">EA Diagrams</a>
+    <a href="https://github.com/ghatk047/Cruise-Process-Wiki" class="gh-btn" target="_blank">⭐ GitHub</a>
+  </div>
+</header>
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-domain open" data-label="EA Diagrams">
+      <span class="sidebar-domain-label">🗺️ EA Diagrams</span><span class="chevron">▶</span>
+    </div>
+    <div class="sidebar-l2 open">
+      <a class="sidebar-l3-link" href="../../ea-diagrams/">All EA Diagrams</a>
+        <a class="sidebar-l3-link active" href="../../ea-diagrams/ea-01/"><span class="pid">EA-01</span>Cruise Integrated System Landscape</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-02/"><span class="pid">EA-02</span>Guest Journey Data Flow</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-03/"><span class="pid">EA-03</span>Shipboard Operations Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-04/"><span class="pid">EA-04</span>Onboard Revenue Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-05/"><span class="pid">EA-05</span>Marine &amp; Environmental Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-06/"><span class="pid">EA-06</span>Crew Management &amp; HR Integration</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-07/"><span class="pid">EA-07</span>Connectivity &amp; Digital Infrastructure</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-08/"><span class="pid">EA-08</span>Finance &amp; Procurement Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-09/"><span class="pid">EA-09</span>Safety, Security &amp; Medical Architecture</a>
+        <a class="sidebar-l3-link" href="../../ea-diagrams/ea-10/"><span class="pid">EA-10</span>Loyalty &amp; CRM Architecture</a>
+    </div>
+  </div>
+</nav>
+<button id="sidebarToggle" title="Toggle sidebar">&#9664;</button>
+
+<main class="main">
+  <div class="breadcrumb">
+    <a href="../../">Home</a><span class="sep">›</span>
+    <a href="../../ea-diagrams/">EA Diagrams</a><span class="sep">›</span>
+    <span class="current">EA-01 · Cruise Integrated System Landscape</span>
+  </div>
+
+  <div class="page-header">
+    <div class="page-header-left">
+      <h1>Cruise Integrated System Landscape</h1>
+      <p>Full application landscape across all 12 operational domains — Royal Caribbean International reference · Updated 2026-03-28 22:00</p>
+    </div>
+    <div class="page-header-meta">
+      <span class="pid-badge">EA-01</span>
+      <span class="status-badge complete">✅ Published</span>
+      <span class="ref-line">Ref: Royal Caribbean International</span>
+    </div>
+  </div>
+
+  <div class="card" id="diagram">
+    <div class="card-header"><span class="icon">🗺️</span><h2>Enterprise Architecture Diagram</h2></div>
+    <div class="card-body">
+      <div class="diagram-wrap" id="diag-ea-01">
+        <img src="../../assets/img/ea-01.png"
+             alt="EA-01 — Cruise Integrated System Landscape"
+             style="max-width:100%;border-radius:6px;box-shadow:0 2px 12px rgba(0,0,0,.08);cursor:zoom-in"
+             onerror="this.style.opacity='.3'">
+      </div>
+      <p class="diagram-hint">Click diagram to open fullscreen &nbsp;|&nbsp; Scroll to zoom &nbsp;|&nbsp; Drag to pan</p>
+    </div>
+  </div>
+
+  <div class="card" id="description">
+    <div class="card-header"><span class="icon">📋</span><h2>Architecture Notes</h2></div>
+    <div class="card-body">
+      <p style="font-size:13px;color:#374151;line-height:1.8;max-width:860px;margin-bottom:20px">The Royal Caribbean International system landscape maps every application to its operational domain. Oracle Hospitality Cruise SPMS sits at the shipboard hub, while the proprietary RES reservation system anchors shore-side booking. 14 major platforms span from external booking channels and port authorities through guest operations, onboard revenue, marine management, environmental compliance, and enterprise back-office — all interconnected via Starlink satellite linking ship and shore in near-real-time.</p>
+      <ul style='padding-left:20px;margin-top:0'><li style="margin-bottom:6px;font-size:12px;color:#374151">RES (proprietary, 9M+ lines RPG) is the core reservation system — all bookings flow through it</li><li style="margin-bottom:6px;font-size:12px;color:#374151">Oracle SPMS is the shipboard hub equivalent of an airport AODB — all ship operations reference it</li><li style="margin-bottom:6px;font-size:12px;color:#374151">Starlink connectivity (98% of fleet, sub-100ms latency) enables near-real-time ship-shore data sync</li><li style="margin-bottom:6px;font-size:12px;color:#374151">SAP S/4HANA handles all shore-side finance; voyage accounting journals post from SPMS nightly</li><li style="margin-bottom:6px;font-size:12px;color:#374151">IDEMIA MFACE facial recognition deployed at US homeports for sub-8-second debarkation</li></ul>
+    </div>
+  </div>
+
+  <div class="pn-nav" style="display:flex;justify-content:space-between;margin-top:8px">
+    <a class="pn-btn" href="../../ea-diagrams/"><span class="arrow">←</span><span>All EA Diagrams</span></a>
+    <a class="pn-btn next" href="../../ea-diagrams/ea-02/"><span>EA-02 · Guest Journey Data Flow</span><span class="arrow">→</span></a>
+  </div>
+</main>
+<div id="bpmn-lightbox"></div>
+<script src="../../assets/js/wiki.js"></script>
+</body>
+</html>
