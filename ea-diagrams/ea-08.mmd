@@ -1,0 +1,96 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'12px','fontFamily':'Inter, Arial, sans-serif'}}}%%
+flowchart LR
+
+  subgraph REVENUE8["💳 Revenue Sources"]
+    direction TB
+    SPMS8["Oracle SPMS\nVoyage revenue journals"]
+    NEXTCRUISE8["Next Cruise Deposits\nFuture booking income"]
+    LOYALTY8["Loyalty Revenue\nPartner commissions"]
+    INSURANCE8["Travel Protection\nAon / travel insurance"]
+  end
+
+  subgraph COSTS["💸 Cost Sources"]
+    direction TB
+    WORKDAY8["Workday HCM\nCrew payroll · benefits"]
+    ARIBA8["SAP Ariba\nAll procurement POs"]
+    PORTDISB8["Port Disbursements\n1,000+ port agents · fees"]
+    FUEL8["Fuel Procurement\nLNG · HFO · MGO bunkering"]
+    CHARTER["Charter & Lease\nPort terminal · private destination"]
+  end
+
+  subgraph SAPCORE["🔵 SAP S/4HANA Core"]
+    direction TB
+    GL["General Ledger\nMulti-entity · IFRS · US GAAP"]
+    AR["Accounts Receivable\nGuest billing · agent commissions"]
+    AP["Accounts Payable\nSupplier payments · port agents"]
+    CO["Controlling\nVoyage profit centres · cost centres"]
+    ASSETACCT["Asset Accounting\nShip depreciation · dry dock capitalisation"]
+    TAXGL["Tax Management\nVAT · GST · port taxes · casino levies"]
+  end
+
+  subgraph ARIBA["🟠 SAP Ariba Procurement"]
+    direction TB
+    SOURCING["Strategic Sourcing\nSupplier RFP · contracts"]
+    PO["Purchase Orders\nAutomatic PO from requisition"]
+    SUPPLIER["Supplier Portal\n10,000+ suppliers · self-service"]
+    INVOICE["Invoice Processing\nOCR · 3-way match · auto-approval"]
+    CATALOG["Procurement Catalogue\nPre-approved items · bundles"]
+  end
+
+  subgraph TREASURY["🏦 Treasury & FX"]
+    direction TB
+    CASHPOOL["Cash Pooling\nMulti-entity notional pool"]
+    FXHEDGE["FX Hedging\nForward contracts · fuel hedges"]
+    BANKING["Banking Integration\nSWIFT · multi-bank portal"]
+    INTERCO["Intercompany\nRCL brands · eliminations"]
+  end
+
+  subgraph REPORTING8["📊 Reporting & Analytics"]
+    direction TB
+    SAPANALYTICS["SAP Analytics Cloud\nCFO dashboards · Perfecta KPIs"]
+    VOYAGEREPORT["Voyage P&L\nPer-ship · per-voyage profitability"]
+    FLEETCONSOLN["Fleet Consolidation\n69-ship roll-up · brand segment"]
+    SEC["SEC Reporting\nNYSE 10-Q · 10-K · Reg-FD"]
+    AUDIT["Internal Audit\nSOX compliance · control testing"]
+  end
+
+  SPMS8      -->|"revenue journal"| GL
+  NEXTCRUISE8 -->|"deferred revenue"| GL
+  LOYALTY8   -->|"partner income"| AR
+  INSURANCE8 -->|"premium revenue"| AR
+
+  WORKDAY8  -->|"payroll journal"| GL
+  ARIBA8    -->|"AP invoices"| AP
+  PORTDISB8 -->|"disbursement claim"| AP
+  FUEL8     -->|"fuel invoices"| AP
+  CHARTER   -->|"lease payments"| AP
+
+  AR -->|"guest payments"| CASHPOOL
+  AP -->|"supplier payments"| BANKING
+  GL -->|"cost allocation"| CO
+  GL -->|"ship assets"| ASSETACCT
+  GL -->|"tax entries"| TAXGL
+  CO -->|"voyage P&L"| VOYAGEREPORT
+
+  SOURCING -->|"awarded contract"| PO
+  PO       -->|"goods receipt"| INVOICE
+  SUPPLIER -->|"supplier invoice"| INVOICE
+  INVOICE  -->|"matched invoice"| AP
+  CATALOG  -->|"approved spend"| PO
+
+  CASHPOOL -->|"funding"| FXHEDGE
+  FXHEDGE  -->|"hedge settlements"| GL
+  BANKING  -->|"bank statements"| GL
+  INTERCO  -->|"eliminations"| FLEETCONSOLN
+
+  VOYAGEREPORT -->|"voyage data"| SAPANALYTICS
+  FLEETCONSOLN -->|"consolidated P&L"| SAPANALYTICS
+  SAPANALYTICS -->|"Perfecta metrics"| SEC
+  SAPANALYTICS -->|"control data"| AUDIT
+
+  style REVENUE8   fill:#e8f5e9,stroke:#10b981
+  style COSTS      fill:#fce4ec,stroke:#ef4444
+  style SAPCORE    fill:#e3f2fd,stroke:#1d4ed8,stroke-width:2px
+  style ARIBA      fill:#fff8e1,stroke:#f59e0b,stroke-width:2px
+  style TREASURY   fill:#f3e8ff,stroke:#8b5cf6
+  style REPORTING8 fill:#e0f7fa,stroke:#06b6d4
