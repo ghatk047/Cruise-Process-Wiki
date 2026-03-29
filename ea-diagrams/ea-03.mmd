@@ -1,0 +1,104 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'12px','fontFamily':'Inter, Arial, sans-serif'}}}%%
+flowchart TB
+
+  subgraph GUESTFACING["👤 Guest-Facing Layer"]
+    direction LR
+    ROYALAPP3["Royal Caribbean App\nAI Chatbot · Self-Service · Maps"]
+    SEAPASS3["SeaPass RFID System\nCashless · Door Key · ID"]
+    KIOSK["Self-Service Kiosks\nAccount · Excursions · Dining"]
+    MFACE3["IDEMIA MFACE\nEmbarkation · Debarkation"]
+    FIDS3["Guest Info Displays\nSailing info · Daily programme"]
+  end
+
+  subgraph SPMSCORE["🔵 Oracle SPMS — Shipboard Hub"]
+    direction LR
+    CABIN["Cabin Management\nHousekeeping · Maintenance · Status"]
+    FOLIO3["Guest Folio Engine\nReal-time charges · Settlement"]
+    MANIFEST3["Manifest & Safety\nMuster · Emergency · CBP"]
+    RESOURCE["Resource Scheduling\nDining times · Show bookings"]
+    REPORTING["Shipboard Reporting\nRevenue · Ops · Compliance"]
+  end
+
+  subgraph POS["🍽️ Point-of-Sale Layer (Oracle MICROS)"]
+    direction LR
+    MDR["Main Dining Room\n& Specialty Restaurants"]
+    BARS["Bars & Lounges\n20+ venues on Icon class"]
+    RETAIL["Retail Shops\nDuty Free · Logo · Jewellery"]
+    SPA3["Vitality Spa\n& Fitness Centre"]
+    CASINO3["Casino Royale\nSlots · Tables · Poker"]
+  end
+
+  subgraph OPERATIONS["⚙️ Operations Layer"]
+    direction LR
+    HOUSEKEEPING["Housekeeping System\nCabin status · Linen · Scheduling"]
+    EXCURSIONS3["Shore Excursions\nBookings · Ticketing · Buses"]
+    ENTERTAINMENT["Entertainment System\nShow bookings · Capacity · Venues"]
+    KIDS["Adventure Ocean\nYouth programme · Check-in/out"]
+    PHOTO3["Photo Gallery\nCapture · Sales · Digital delivery"]
+  end
+
+  subgraph MARINE3["⚙️ Marine Layer"]
+    direction LR
+    NAVSYS3["Integrated Bridge\nECDIS · AIS · Radar · GMDSS"]
+    ENGINEPMS["Engine Room PMS\nPlanned Maintenance · Alarms"]
+    ENVIRO3["Environmental\nBWTS · Scrubbers · Waste logs"]
+    VDR3["Voyage Data Recorder\nBlack box · Incident archive"]
+  end
+
+  subgraph CONNECTIVITY3["📡 Connectivity Layer"]
+    direction LR
+    STARLINK3["Starlink Satellite\nsub-100ms · 98% fleet"]
+    AZURE3["Azure AI Vision\nCrowd density · People flow"]
+    MICROSERV3["D2iQ Microservices\nShip-Shore event bus"]
+    SHIPNET["Ship LAN/WiFi\nGuest · Crew · Operations VLANs"]
+  end
+
+  subgraph SHORELINK["🏢 Shore-Side Link"]
+    direction LR
+    RES3["RES System\nBooking records"]
+    SAP3["SAP S/4HANA\nVoyage accounting"]
+    OBIEE3["Oracle OBIEE\nRevenue analytics"]
+    WORKDAY3["Workday HCM\nCrew payroll"]
+  end
+
+  ROYALAPP3  -->|"service requests"| SPMSCORE
+  SEAPASS3   -->|"transactions"| FOLIO3
+  KIOSK      -->|"bookings · queries"| SPMSCORE
+  MFACE3     -->|"biometric clearance"| MANIFEST3
+  FIDS3      -->|"schedule data"| RESOURCE
+
+  MDR      -->|"F&B charges"| FOLIO3
+  BARS     -->|"beverage charges"| FOLIO3
+  RETAIL   -->|"retail charges"| FOLIO3
+  SPA3     -->|"spa charges"| FOLIO3
+  CASINO3  -->|"gaming charges"| FOLIO3
+
+  HOUSEKEEPING -->|"cabin status"| CABIN
+  EXCURSIONS3  -->|"excursion charges"| FOLIO3
+  ENTERTAINMENT -->|"show bookings"| RESOURCE
+  KIDS         -->|"youth check-in/out"| MANIFEST3
+  PHOTO3       -->|"photo charges"| FOLIO3
+
+  NAVSYS3    -->|"position · heading"| VDR3
+  ENGINEPMS  -->|"maintenance alerts"| REPORTING
+  ENVIRO3    -->|"compliance data"| REPORTING
+  VDR3       -->|"voyage log"| REPORTING
+
+  STARLINK3  -->|"bandwidth"| SHIPNET
+  SHIPNET    -->|"traffic"| MICROSERV3
+  AZURE3     -->|"crowd insights"| REPORTING
+  MICROSERV3 -->|"sync events"| SHORELINK
+
+  CABIN      -->|"housekeeping tasks"| HOUSEKEEPING
+  FOLIO3     -->|"nightly journal"| SAP3
+  MANIFEST3  -->|"manifest data"| RES3
+  REPORTING  -->|"revenue data"| OBIEE3
+  REPORTING  -->|"crew hours"| WORKDAY3
+
+  style GUESTFACING   fill:#e0f7fa,stroke:#06b6d4
+  style SPMSCORE      fill:#e3f2fd,stroke:#1d4ed8,stroke-width:3px
+  style POS           fill:#fff3e0,stroke:#f59e0b
+  style OPERATIONS    fill:#f3e8ff,stroke:#8b5cf6
+  style MARINE3       fill:#fce4ec,stroke:#ef4444
+  style CONNECTIVITY3 fill:#e8f5e9,stroke:#10b981
+  style SHORELINK     fill:#f8fafc,stroke:#6b7280
