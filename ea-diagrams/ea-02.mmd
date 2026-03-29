@@ -1,0 +1,96 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'12px','fontFamily':'Inter, Arial, sans-serif'}}}%%
+flowchart LR
+
+  subgraph PRECRUISE["📋 Pre-Cruise (T-90 to T-1 days)"]
+    direction TB
+    BOOKING["Guest Books\nRES System / Web / GDS"]
+    EDOCS["eDocs Processing\nRES generates boarding docs"]
+    APPDOWNLOAD["Royal App\nGuest downloads & links booking"]
+    CHECKINONLINE["Online Check-In\nPassport · Health · Photo upload"]
+    FACEENROLL["Face Template\nIDEMIA MFACE pre-enrollment"]
+  end
+
+  subgraph TERMINAL["🏢 Embarkation Terminal"]
+    direction TB
+    TERMCHECK["Terminal Check-In\nOracle SPMS validates documents"]
+    SEAPASSISSUE["SeaPass Card Issued\nRFID linked to SPMS folio account"]
+    FACEMATCH["IDEMIA MFACE\nFacial match → boarding clearance"]
+    MANIFEST["CBP Manifest\nSPMS submits to US Customs"]
+    LUGGAGE["Luggage Tagging\nBag tags printed · hold linked to cabin"]
+  end
+
+  subgraph ONBOARD["🚢 Onboard (Voyage Days 1–N)"]
+    direction TB
+    SPMS2["Oracle SPMS\nLive folio · cabin · manifest hub"]
+    MICROS2["Oracle MICROS POS\nEvery F&B · retail · casino charge"]
+    ROYALAPP2["Royal App\nAI chat · show bookings · excursions"]
+    EXCURSION2["Shore Excursions\nBookings linked to SeaPass folio"]
+    AZURE2["Azure AI\nCrowd flow · queue analytics"]
+    OBIEE2["Oracle OBIEE\nDaily revenue analytics"]
+  end
+
+  subgraph SETTLEMENT["💳 Voyage Settlement (Final Night)"]
+    direction TB
+    FOLIO["Final Folio Review\nSPMS auto-generates statement"]
+    PAYMENT["Payment Processing\nCredit card · SeaPass settlement"]
+    DISPUTE["Dispute Resolution\nGuest Services · SPMS adjustment"]
+    VOYJOURNAL["Voyage Journal\nSPMS posts to SAP S/4HANA"]
+  end
+
+  subgraph DEBARKATION["🏁 Debarkation"]
+    direction TB
+    LUGTAG["Luggage Tag Distribution\nSPMS assigns colour-coded zones"]
+    FACEDEPART["IDEMIA MFACE Debarkation\nFacial match · CBP clearance"]
+    CBPCLEAR["CBP Final Clearance\nManifest reconciliation"]
+    FEEDBACK["Post-Cruise Survey\nSalesforce · NPS scoring"]
+  end
+
+  subgraph POSTCRUISE["⭐ Post-Cruise & Loyalty"]
+    direction TB
+    LOYALTY2["Crown & Anchor Points\nCalculated from voyage spend"]
+    CRM2["Salesforce CRM\nVoyage record · next cruise propensity"]
+    NEXTCRUISE["Next Cruise Offer\nPersonalised via RES pricing engine"]
+    SAPAR["SAP AR\nFinal invoice · revenue recognition"]
+  end
+
+  BOOKING     -->|"reservation record"| EDOCS
+  EDOCS       -->|"doc completion"| APPDOWNLOAD
+  APPDOWNLOAD -->|"check-in data"| CHECKINONLINE
+  CHECKINONLINE -->|"photo + passport"| FACEENROLL
+  FACEENROLL  -->|"biometric template"| FACEMATCH
+
+  EDOCS       -->|"booking manifest"| TERMCHECK
+  TERMCHECK   -->|"guest validated"| SEAPASSISSUE
+  SEAPASSISSUE -->|"folio opened"| SPMS2
+  FACEMATCH   -->|"boarding clearance"| MANIFEST
+  LUGGAGE     -->|"bag tag data"| SPMS2
+
+  SPMS2   -->|"charge request"| MICROS2
+  MICROS2 -->|"all spend postings"| SPMS2
+  ROYALAPP2 -->|"booking requests"| SPMS2
+  ROYALAPP2 -->|"interaction data"| AZURE2
+  EXCURSION2 -->|"excursion charges"| MICROS2
+  SPMS2   -->|"daily revenue data"| OBIEE2
+
+  SPMS2   -->|"folio balance"| FOLIO
+  FOLIO   -->|"payment request"| PAYMENT
+  PAYMENT -->|"settled folio"| VOYJOURNAL
+  DISPUTE -->|"adjusted folio"| PAYMENT
+  VOYJOURNAL -->|"journal entries"| SAPAR
+
+  SPMS2   -->|"zone assignments"| LUGTAG
+  FACEDEPART -->|"depart confirmed"| CBPCLEAR
+  CBPCLEAR -->|"closed manifest"| FEEDBACK
+
+  FEEDBACK  -->|"NPS data"| CRM2
+  CRM2      -->|"voyage history"| LOYALTY2
+  LOYALTY2  -->|"updated tier"| NEXTCRUISE
+  NEXTCRUISE -->|"offer trigger"| BOOKING
+  SAPAR     -->|"revenue posted"| VOYJOURNAL
+
+  style PRECRUISE    fill:#e8f4fd,stroke:#3b82f6
+  style TERMINAL     fill:#fff3e0,stroke:#f59e0b
+  style ONBOARD      fill:#e0f7fa,stroke:#06b6d4
+  style SETTLEMENT   fill:#fce4ec,stroke:#ec4899
+  style DEBARKATION  fill:#f3e8ff,stroke:#8b5cf6
+  style POSTCRUISE   fill:#e8f5e9,stroke:#10b981
