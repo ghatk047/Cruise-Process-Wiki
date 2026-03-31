@@ -3,59 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Search · Casino Process Wiki</title>
+<title>Search · Cruise Process Wiki</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0f2235;--orange:#e87722;--bg:#f4f6f9;--white:#fff;--border:#e2e8f0;--text:#1a2a3a;--muted:#64748b;--badge-bg:#e8f4fd;--badge-color:#1d6fa4}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-.topbar{background:var(--navy);padding:0 24px;height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
-.topbar-logo{font-size:15px;font-weight:700;color:#fff;text-decoration:none;white-space:nowrap}
-.topbar-logo span{color:var(--orange)}
-.topbar-badge{background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px}
-.topbar-right{margin-left:auto;display:flex;align-items:center;gap:16px}
-.topbar-right a{color:rgba(255,255,255,.75);font-size:13px;text-decoration:none}
-.topbar-right a:hover{color:#fff}
-.search-hero{background:var(--navy);padding:40px 24px 36px}
-.search-hero-inner{max-width:780px;margin:0 auto}
-.hero-title{color:rgba(255,255,255,.55);font-size:13px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;margin-bottom:16px}
-.search-bar{display:flex;align-items:center;background:#fff;border-radius:10px;padding:0 16px;height:52px;gap:10px;box-shadow:0 4px 20px rgba(0,0,0,.25)}
-.search-bar .icon{color:#94a3b8;font-size:17px;flex-shrink:0}
-#searchInput{flex:1;border:none;outline:none;font-family:'Inter',sans-serif;font-size:16px;color:var(--text);background:transparent}
-#searchInput::placeholder{color:#94a3b8}
-#clearBtn{background:none;border:none;cursor:pointer;color:#94a3b8;font-size:18px;padding:2px 4px;display:none;line-height:1}
-#clearBtn:hover{color:var(--orange)}
-#searchBtn{background:var(--orange);color:#fff;border:none;border-radius:7px;padding:8px 18px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;flex-shrink:0}
-#searchBtn:hover{background:#d0661a}
-.search-hint{color:rgba(255,255,255,.35);font-size:12px;margin-top:10px;padding-left:2px}
-.results-area{max-width:780px;margin:0 auto;padding:28px 24px 60px}
-.results-meta{font-size:13px;color:var(--muted);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-.results-meta strong{color:var(--text)}
-.result-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:12px;text-decoration:none;display:block;transition:border-color .15s,box-shadow .15s,transform .1s}
-.result-card:hover{border-color:var(--orange);box-shadow:0 4px 16px rgba(232,119,34,.12);transform:translateY(-1px)}
-.result-breadcrumb{font-size:11px;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
-.crumb-sep{color:#cbd5e1}
-.result-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
-.result-id{background:var(--badge-bg);color:var(--badge-color);font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;padding:3px 7px;border-radius:5px;white-space:nowrap;flex-shrink:0;margin-top:1px}
-.result-title{font-size:16px;font-weight:600;color:var(--navy);line-height:1.3}
-.result-card:hover .result-title{color:var(--orange)}
-.result-steps{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:8px}
-.result-systems{display:flex;flex-wrap:wrap;gap:5px}
-.sys-tag{background:#f1f5f9;color:#475569;font-size:11px;padding:2px 8px;border-radius:20px;border:1px solid #e2e8f0}
-mark{background:#fff8f0;color:var(--orange);font-weight:600;border-radius:2px;padding:0 1px}
-.state-empty,.state-landing{text-align:center;padding:60px 20px;color:var(--muted)}
-.state-empty .emoji,.state-landing .emoji{font-size:48px;margin-bottom:16px}
-.state-empty h2,.state-landing h2{font-size:20px;color:var(--text);margin-bottom:8px}
-.state-empty p,.state-landing p{font-size:14px;line-height:1.6;max-width:440px;margin:0 auto}
-.suggested-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px}
-.chip{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:13px;color:var(--text);cursor:pointer;transition:border-color .15s,color .15s;text-decoration:none}
-.chip:hover{border-color:var(--orange);color:var(--orange)}
+:root{--navy:#0f2235;--orange:#e87722;--bg:#f4f6f9;--white:#fff;--border:#e2e8f0;--text:#1a2a3a;--muted:#64748b;--badge-bg:#e8f4fd;--badge-color:#1d6fa4;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.topbar{background:var(--navy);padding:0 24px;height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100;}
+.topbar-logo{font-size:15px;font-weight:700;color:#fff;text-decoration:none;white-space:nowrap;}
+.topbar-logo span{color:var(--orange);}
+.topbar-badge{background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.5px;}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:16px;}
+.topbar-right a{color:rgba(255,255,255,.75);font-size:13px;text-decoration:none;}
+.topbar-right a:hover{color:#fff;}
+.search-hero{background:var(--navy);padding:40px 24px 36px;}
+.search-hero-inner{max-width:780px;margin:0 auto;}
+.hero-title{color:rgba(255,255,255,.55);font-size:13px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;margin-bottom:16px;}
+.search-bar{display:flex;align-items:center;background:#fff;border-radius:10px;padding:0 16px;height:52px;gap:10px;box-shadow:0 4px 20px rgba(0,0,0,.25);}
+.search-bar .icon{color:#94a3b8;font-size:17px;flex-shrink:0;}
+#searchInput{flex:1;border:none;outline:none;font-family:"Inter",sans-serif;font-size:16px;color:var(--text);background:transparent;}
+#searchInput::placeholder{color:#94a3b8;}
+#clearBtn{background:none;border:none;cursor:pointer;color:#94a3b8;font-size:18px;padding:2px 4px;display:none;line-height:1;}
+#clearBtn:hover{color:var(--orange);}
+#searchBtn{background:var(--orange);color:#fff;border:none;border-radius:7px;padding:8px 18px;font-family:"Inter",sans-serif;font-size:14px;font-weight:600;cursor:pointer;flex-shrink:0;}
+#searchBtn:hover{background:#d0661a;}
+.search-hint{color:rgba(255,255,255,.35);font-size:12px;margin-top:10px;padding-left:2px;}
+.results-area{max-width:780px;margin:0 auto;padding:28px 24px 60px;}
+.results-meta{font-size:13px;color:var(--muted);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.results-meta strong{color:var(--text);}
+.result-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:12px;text-decoration:none;display:block;transition:border-color .15s,box-shadow .15s,transform .1s;}
+.result-card:hover{border-color:var(--orange);box-shadow:0 4px 16px rgba(232,119,34,.12);transform:translateY(-1px);}
+.result-breadcrumb{font-size:11px;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
+.crumb-sep{color:#cbd5e1;}
+.result-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;}
+.result-id{background:var(--badge-bg);color:var(--badge-color);font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;padding:3px 7px;border-radius:5px;white-space:nowrap;flex-shrink:0;margin-top:1px;}
+.result-title{font-size:16px;font-weight:600;color:var(--navy);line-height:1.3;}
+.result-card:hover .result-title{color:var(--orange);}
+.result-steps{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:8px;}
+.result-systems{display:flex;flex-wrap:wrap;gap:5px;}
+.sys-tag{background:#f1f5f9;color:#475569;font-size:11px;padding:2px 8px;border-radius:20px;border:1px solid #e2e8f0;}
+mark{background:#fff8f0;color:var(--orange);font-weight:600;border-radius:2px;padding:0 1px;}
+.state-empty{text-align:center;padding:60px 20px;color:var(--muted);}
+.state-empty .emoji{font-size:48px;margin-bottom:16px;}
+.state-empty h2{font-size:20px;color:var(--text);margin-bottom:8px;}
+.state-empty p{font-size:14px;line-height:1.6;}
+.state-landing{text-align:center;padding:60px 20px;color:var(--muted);}
+.state-landing .emoji{font-size:48px;margin-bottom:16px;}
+.state-landing h2{font-size:20px;color:var(--text);margin-bottom:8px;}
+.state-landing p{font-size:14px;line-height:1.6;max-width:440px;margin:0 auto;}
+.suggested-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px;}
+.chip{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:13px;color:var(--text);cursor:pointer;transition:border-color .15s,color .15s;text-decoration:none;}
+.chip:hover{border-color:var(--orange);color:var(--orange);}
+@media(max-width:600px){.search-hero{padding:24px 16px 20px;}.results-area{padding:20px 16px 40px;}.search-bar{height:46px;}#searchInput{font-size:14px;}}
 </style>
 </head>
 <body>
 <header class="topbar">
-  <a href="/Cruise-Process-Wiki/" class="topbar-logo">Cruise <span>Process Wiki</span></a>
+  <a href="/Cruise-Process-Wiki/" class="topbar-logo">🚢 <span>Cruise Process Wiki</span></a>
   <span class="topbar-badge">v1.0</span>
   <div class="topbar-right">
     <a href="/Cruise-Process-Wiki/">Home</a>
@@ -67,33 +72,36 @@ mark{background:#fff8f0;color:var(--orange);font-weight:600;border-radius:2px;pa
     <p class="hero-title">Process Search</p>
     <div class="search-bar">
       <span class="icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="Search processes, systems, steps…" autocomplete="off" autofocus>
+      <input type="text" id="searchInput" placeholder="Search processes, steps, IDs…" autocomplete="off" autofocus>
       <button id="clearBtn" title="Clear">✕</button>
       <button id="searchBtn">Search</button>
     </div>
-    <p class="search-hint">Search across 228 processes · Process IDs, names &amp; domains</p>
+    <p class="search-hint">Search across 228 processes · L3 names, L4 steps &amp; IDs</p>
   </div>
 </div>
 <div class="results-area" id="resultsArea"></div>
 <script>
-const BASE='/Cruise-Process-Wiki', INDEX_URL=BASE+'/search-index.json';
-let searchIndex=null, currentQuery='';
+const BASE='/Cruise-Process-Wiki';
+const INDEX_URL=BASE+'/search-index.json';
+let searchIndex=null,currentQuery='';
 async function loadIndex(){if(searchIndex)return searchIndex;const r=await fetch(INDEX_URL);searchIndex=await r.json();return searchIndex;}
-function getQ(){return new URLSearchParams(window.location.search).get('q')||'';}
+function getQ(name){return new URLSearchParams(window.location.search).get(name)||'';}
 function setQ(q){const u=new URL(window.location);q?u.searchParams.set('q',q):u.searchParams.delete('q');history.replaceState(null,'',u);}
-function score(e,tokens){let s=0;const kw=e.keywords;for(const t of tokens){if(e.id.toLowerCase()===t){s+=100;continue;}if(e.id.toLowerCase().includes(t))s+=50;if(e.title.toLowerCase().includes(t))s+=40;if(e.l2.toLowerCase().includes(t))s+=10;if(e.l1.toLowerCase().includes(t))s+=5;if(kw.includes(t))s+=3;}return s;}
+function score(e,tokens){let s=0;for(const t of tokens){if(e.id.toLowerCase()===t)s+=100;else if(e.id.toLowerCase().includes(t))s+=50;if(e.title.toLowerCase().includes(t))s+=40;if(e.l2.toLowerCase().includes(t))s+=10;if(e.l1.toLowerCase().includes(t))s+=5;if(e.keywords.includes(t))s+=3;}return s;}
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function escRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
 function hi(text,tokens){if(!tokens.length)return esc(text);let s=esc(text);tokens.forEach(t=>{s=s.replace(new RegExp('('+escRe(t)+')','gi'),'<mark>$1</mark>');});return s;}
-function runSearch(q){currentQuery=q;setQ(q);document.getElementById('searchInput').value=q;document.getElementById('clearBtn').style.display=q?'block':'none';const area=document.getElementById('resultsArea');if(!q.trim()){renderLanding(area);return;}loadIndex().then(idx=>{const tokens=q.trim().toLowerCase().split(/\s+/).filter(Boolean);const hits=idx.map(e=>({entry:e,score:score(e,tokens)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).map(x=>x.entry);renderResults(area,hits,tokens,q);}).catch(err=>{area.innerHTML=`<div class="state-empty"><div class="emoji">⚠️</div><h2>Index unavailable</h2><p>${err.message}</p></div>`;});}
-function renderLanding(area){const suggestions=['embarkation','shore excursions','stateroom','bridge navigation','medical operations','revenue management','culinary provisioning','safety emergency','engineering','sustainability','crew operations','guest experience'];area.innerHTML=`<div class="state-landing"><div class="emoji">🚢</div><h2>Search the Casino Process Wiki</h2><p>Find any of the 228 documented cruise processes by name, ID, or domain.</p><div class="suggested-chips">${suggestions.map(s=>`<a class="chip" href="?q=${encodeURIComponent(s)}">${s}</a>`).join('')}</div></div>`;area.querySelectorAll('.chip').forEach(c=>{c.addEventListener('click',e=>{e.preventDefault();runSearch(c.textContent.trim());});});}
-function renderResults(area,hits,tokens,q){if(!hits.length){area.innerHTML=`<div class="state-empty"><div class="emoji">🔍</div><h2>No results for "${esc(q)}"</h2><p>Try a different keyword, process ID (e.g. <strong>GS-EM-01</strong>), or domain name.</p></div>`;return;}const cards=hits.map(e=>`<a class="result-card" href="${e.url}"><div class="result-breadcrumb"><span>${hi(e.l1,tokens)}</span><span class="crumb-sep">›</span><span>${hi(e.l2,tokens)}</span></div><div class="result-header"><span class="result-id">${e.id}</span><span class="result-title">${hi(e.title,tokens)}</span></div>${e.steps_preview?`<div class="result-steps">${hi(e.steps_preview,tokens)}</div>`:''}</a>`).join('');area.innerHTML=`<div class="results-meta"><strong>${hits.length}</strong> result${hits.length!==1?'s':''} for "<strong>${esc(q)}</strong>"</div>${cards}`;}
-const input=document.getElementById('searchInput'),clearBtn=document.getElementById('clearBtn'),searchBtn=document.getElementById('searchBtn');
+function runSearch(q){currentQuery=q;setQ(q);document.getElementById('searchInput').value=q;document.getElementById('clearBtn').style.display=q?'block':'none';const area=document.getElementById('resultsArea');if(!q.trim()){renderLanding(area);return;}loadIndex().then(idx=>{const tokens=q.trim().toLowerCase().split(/\s+/).filter(Boolean);const hits=idx.map(e=>{return{entry:e,score:score(e,tokens)}}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).map(x=>x.entry);renderResults(area,hits,tokens,q);}).catch(err=>{area.innerHTML=`<div class="state-empty"><div class="emoji">⚠️</div><h2>Index unavailable</h2><p>${err.message}</p></div>`;});}
+function renderLanding(area){const suggs=["embarkation", "shore excursions", "stateroom", "bridge navigation", "medical operations", "revenue management", "culinary", "safety emergency", "debarkation"];area.innerHTML=`<div class="state-landing"><div class="emoji">🚢</div><h2>Search the Process Wiki</h2><p>Find any of the 228 documented processes by name, ID, step, or system.</p><div class="suggested-chips">${suggs.map(s=>`<a class="chip" href="?q=${encodeURIComponent(s)}">${s}</a>`).join('')}</div></div>`;area.querySelectorAll('.chip').forEach(c=>{c.addEventListener('click',e=>{e.preventDefault();runSearch(c.textContent.trim());});});}
+function renderResults(area,hits,tokens,q){if(!hits.length){area.innerHTML=`<div class="state-empty"><div class="emoji">🔍</div><h2>No results for "${esc(q)}"</h2><p>Try different keywords, a process ID, a system name, or a step name.</p></div>`;return;}const cards=hits.map(e=>{const sys=e.systems.slice(0,5).map(s=>`<span class="sys-tag">${hi(s,tokens)}</span>`).join('');const steps=e.steps_preview?`<div class="result-steps">${hi(e.steps_preview,tokens)}</div>`:'';return`<a class="result-card" href="${e.url}"><div class="result-breadcrumb"><span>${hi(e.l1,tokens)}</span><span class="crumb-sep">›</span><span>${hi(e.l2,tokens)}</span></div><div class="result-header"><span class="result-id">${e.id}</span><span class="result-title">${hi(e.title,tokens)}</span></div>${steps}${sys?`<div class="result-systems">${sys}</div>`:''}</a>`;}).join('');area.innerHTML=`<div class="results-meta"><strong>${hits.length}</strong> result${hits.length!==1?'s':''} for "<strong>${esc(q)}</strong>"</div>${cards}`;}
+const input=document.getElementById('searchInput');
+const clearBtn=document.getElementById('clearBtn');
+const searchBtn=document.getElementById('searchBtn');
 input.addEventListener('input',()=>{clearBtn.style.display=input.value?'block':'none';});
-input.addEventListener('keydown',e=>{if(e.key==='Enter')runSearch(input.value.trim());if(e.key==='Escape'){input.value='';clearBtn.style.display='none';runSearch('');}});
+input.addEventListener('keydown',e=>{if(e.key==='Enter')runSearch(input.value.trim());if(e.key==='Escape'){input.value='';clearBtn.style.display='none';runSearch('');}} );
 searchBtn.addEventListener('click',()=>runSearch(input.value.trim()));
 clearBtn.addEventListener('click',()=>{input.value='';clearBtn.style.display='none';runSearch('');input.focus();});
-const initQ=getQ();initQ?runSearch(initQ):renderLanding(document.getElementById('resultsArea'));
+const initQ=getQ('q');if(initQ)runSearch(initQ);else renderLanding(document.getElementById('resultsArea'));
 loadIndex();
 </script>
 </body>
