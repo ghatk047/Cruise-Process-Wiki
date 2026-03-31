@@ -1,0 +1,107 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'12px','fontFamily':'Inter, Arial, sans-serif'}}}%%
+flowchart TB
+
+  subgraph EXT["🌐 External Talent Channels"]
+    direction LR
+    LINKEDIN["LinkedIn Talent Hub\nJob postings · InMail"]
+    INDEED["Indeed / Glassdoor\nExternal postings"]
+    BGCHECK["Sterling / HireRight\nBackground checks"]
+    GLINT["Microsoft Glint\nEmployee engagement surveys"]
+    DOCUSIGN["DocuSign\nOffer letters · employment contracts"]
+  end
+
+  subgraph SF["🟡 SAP SuccessFactors HCM Suite (Core Platform)"]
+    direction LR
+    SFEC["Employee Central\nCore HR · Position Mgmt · Org Chart\nShore-side 30K+ employees"]
+    SFRC["Recruiting Management\nRequisitions · Candidates · Offers\n+ Opportunity Marketplace"]
+    SFOB["Onboarding 2.0\nPre-boarding · Tasks · Day-1 Checklist"]
+    SFPM["Performance & Goals\nGoal cascade · Mid-year · Year-end"]
+    SFCOMP["Compensation\nMerit · Bonus · LTI worksheets"]
+    SFLMS["Learning Management\nRCL University · Mandatory training"]
+    SFSUCC["Succession & Development\nCritical roles · 9-box · Successors"]
+    SFPA["People Analytics\nWorkforce reports · Predictive attrition"]
+  end
+
+  subgraph CREW["⚓ Crew Management System (Legacy + Specialist)"]
+    direction LR
+    CREWCORE["Crew Core System\nSea staff 70K+ · MLC compliance"]
+    STCW["STCW Certification\nLicence tracking · Expiry alerts"]
+    CREWPAY["Crew Payroll\nMulti-currency · Flag state rules\nAllotments · ITF CBA"]
+    CREWSCHED["Crew Scheduling\nRoster · Watch-keeping · Rotation"]
+  end
+
+  subgraph PAYROLL["💰 Payroll & Benefits (Shore-Side)"]
+    direction LR
+    WORKDAY["Workday HCM\nPayroll · Benefits · Time & Absence\nUS shore-side employees"]
+    ADP["ADP Global Payroll\nInternational shore offices\n(UK, Spain, Australia)"]
+    BENEFITS["Benefits Administration\nHealth · 401K · RSU vesting"]
+  end
+
+  subgraph ITSVC["🖥️ IT Service & Identity"]
+    direction LR
+    SERVICENOW["ServiceNow ITSM\nIT provisioning requests\nNew hire / leaver tickets"]
+    AAD["Azure Active Directory\nSSO · Identity · MFA"]
+    OKTA["Okta\nSF · Workday · App SSO"]
+  end
+
+  subgraph SAP["💼 SAP S/4HANA (Finance & Controlling)"]
+    direction LR
+    ORGMGMT["Org Management\nCost centres · WBS elements"]
+    PAYROLL_FI["Payroll Posting\nWage types → GL journals"]
+    HCBUDGET["HC Budget\nHeadcount plan vs actual"]
+    TRAVEL["SAP Concur\nT&E · Crew travel reimbursements"]
+  end
+
+  subgraph ANALYTICS["📊 Analytics & Reporting"]
+    direction LR
+    SAC["SAP Analytics Cloud\nPeople Analytics dashboards"]
+    SFPA2["SuccessFactors Report Stories\nHR operational reports"]
+    BOARD["Board HR Scorecard\nPerfecta Programme KPIs\nSEC proxy disclosures"]
+  end
+
+  LINKEDIN  -->|"candidate profiles"| SFRC
+  INDEED    -->|"applications"| SFRC
+  BGCHECK   -->|"check results"| SFRC
+  DOCUSIGN  -->|"signed offer"| SFOB
+  GLINT     -->|"engagement scores"| SFPA
+
+  SFRC -->|"hired candidate"| SFEC
+  SFRC -->|"onboarding trigger"| SFOB
+  SFOB -->|"IT ticket"| SERVICENOW
+  SFOB -->|"access request"| AAD
+  SFEC -->|"employee record"| SFPM
+  SFEC -->|"eligibility"| SFCOMP
+  SFEC -->|"training assignment"| SFLMS
+  SFPM -->|"performance rating"| SFCOMP
+  SFPM -->|"talent data"| SFSUCC
+  SFSUCC -->|"dev plans"| SFLMS
+  SFPA -->|"analytics data"| SAC
+
+  SFEC -->|"org structure"| ORGMGMT
+  SFEC -->|"new hire → payroll"| WORKDAY
+  SFCOMP -->|"merit changes"| WORKDAY
+  WORKDAY -->|"payroll journal"| PAYROLL_FI
+  WORKDAY -->|"actuals"| HCBUDGET
+  ADP -->|"international payroll journal"| PAYROLL_FI
+  BENEFITS -->|"benefit costs"| PAYROLL_FI
+
+  CREWCORE -->|"crew sign-on data"| SFEC
+  STCW -->|"cert data"| SFLMS
+  CREWPAY -->|"crew payroll costs"| PAYROLL_FI
+  CREWSCHED -->|"hours data"| CREWPAY
+
+  SERVICENOW -->|"provisioning status"| AAD
+  AAD -->|"SSO tokens"| OKTA
+  OKTA -->|"authenticated sessions"| SF
+  ORGMGMT -->|"cost centres"| HCBUDGET
+  HCBUDGET -->|"budget data"| SAC
+  SAC -->|"executive dashboards"| BOARD
+  SFPA2 -->|"HR reports"| SAC
+
+  style EXT     fill:#f0f4ff,stroke:#6366f1
+  style SF      fill:#fff8e1,stroke:#f59e0b,stroke-width:2px
+  style CREW    fill:#e0f7fa,stroke:#06b6d4
+  style PAYROLL fill:#e8f5e9,stroke:#10b981
+  style ITSVC   fill:#fce4ec,stroke:#ef4444
+  style SAP     fill:#e3f2fd,stroke:#1d4ed8
+  style ANALYTICS fill:#f3e8ff,stroke:#8b5cf6
