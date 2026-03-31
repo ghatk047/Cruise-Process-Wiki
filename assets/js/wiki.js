@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   /* ── 11. SEARCH ── */
-  var searchBox = document.getElementById('searchBox');
+  var searchBox = document.getElementById('searchBox') || document.querySelector('input.search-box');
   if (searchBox) {
     var resultsEl = document.getElementById('searchResults');
     if (!resultsEl) {
@@ -371,5 +371,69 @@ document.addEventListener('DOMContentLoaded', function() {
       else dot.title = 'Queued';
     }
   });
+
+  /* ── 13. INJECT EA SECTION into sidebars missing it (process pages pre-fix) ── */
+  (function() {
+    var sidebar = document.getElementById('sidebar');
+    if (!sidebar) return;
+    // Check if EA section already present
+    if (sidebar.innerHTML.indexOf('EA Diagrams') !== -1) return;
+
+    // Determine path prefix from current URL depth
+    var path = window.location.pathname;
+    // Count segments after the repo root
+    var parts = path.replace(/\/+$/, '').split('/').filter(Boolean);
+    // Remove repo name (Cruise-Process-Wiki)
+    var idx = parts.indexOf('Cruise-Process-Wiki');
+    var depth = idx >= 0 ? parts.length - idx - 1 : parts.length;
+    var prefix = '';
+    for (var i = 0; i < depth; i++) prefix += '../';
+
+    var eaTitles = [
+      'Cruise Integrated System Landscape',
+      'Guest Journey Data Flow',
+      'Shipboard Operations Architecture',
+      'Onboard Revenue Architecture',
+      'Marine & Environmental Architecture',
+      'Crew Management & HR Integration',
+      'Connectivity & Digital Infrastructure',
+      'Finance & Procurement Architecture',
+      'Safety, Security & Medical Architecture',
+      'Loyalty & CRM Architecture'
+    ];
+
+    var links = '<a class="sidebar-l3-link" href="' + prefix + 'ea-diagrams/">All EA Diagrams</a>';
+    for (var n = 1; n <= 10; n++) {
+      var eid = 'EA-' + (n < 10 ? '0' : '') + n;
+      links += '<a class="sidebar-l3-link" href="' + prefix + 'ea-diagrams/' + eid.toLowerCase() + '/">' +
+               '<span class="pid">' + eid + '</span>' + eaTitles[n-1] + '</a>';
+    }
+
+    var divider = document.createElement('div');
+    divider.style.cssText = 'height:1px;background:#dde1e8;margin:8px 14px';
+
+    var section = document.createElement('div');
+    section.className = 'sidebar-section';
+    section.innerHTML =
+      '<div class="sidebar-domain" data-label="EA Diagrams">' +
+        '<span class="sidebar-domain-label">🗺️ EA Diagrams</span>' +
+        '<span class="chevron">▶</span>' +
+      '</div>' +
+      '<div class="sidebar-l2">' + links + '</div>';
+
+    sidebar.appendChild(divider);
+    sidebar.appendChild(section);
+
+    // Wire accordion for new section
+    var newDomain = section.querySelector('.sidebar-domain');
+    if (newDomain) {
+      newDomain.addEventListener('click', function() {
+        newDomain.classList.toggle('open');
+        var l2 = newDomain.nextElementSibling;
+        if (l2) l2.classList.toggle('open');
+      });
+    }
+  })();
+
 
 });
