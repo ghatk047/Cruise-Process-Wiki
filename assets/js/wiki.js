@@ -306,48 +306,39 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── 11. SEARCH (topbar searchBox) ── */
   const searchBox = document.getElementById('searchBox');
   if (searchBox) {
-    let resultsEl = document.getElementById('searchResults');
-    if (!resultsEl) {
-      resultsEl = document.createElement('div');
-      resultsEl.id = 'searchResults';
-      resultsEl.className = 'search-results';
-      resultsEl.style.display = 'none';
       searchBox.closest('.topbar-search') ?
-        searchBox.closest('.topbar-search').appendChild(resultsEl) :
-        document.body.appendChild(resultsEl);
     }
 
     const links = [...document.querySelectorAll('.sidebar-l3-link')].map(a => ({
       text: a.textContent.replace(/\s+/g, ' ').trim(), href: a.href
     }));
 
-    searchBox.addEventListener('input', () => {
-      const q = searchBox.value.trim().toLowerCase();
-      if (!q) { resultsEl.style.display = 'none'; return; }
-      const hits = links.filter(l => l.text.toLowerCase().includes(q)).slice(0, 8);
-      if (!hits.length) { resultsEl.style.display = 'none'; return; }
-      resultsEl.innerHTML = hits.map(h => `<a class="sr-item" href="${h.href}">${h.text}</a>`).join('');
-      resultsEl.style.display = 'block';
-    });
-
-    document.addEventListener('click', e => {
-      if (!searchBox.contains(e.target) && !resultsEl.contains(e.target))
-        resultsEl.style.display = 'none';
+    
+  /* ── SEARCH — redirect to search.html on Enter ── */
+  const searchBox = document.getElementById('searchBox');
+  if (searchBox) {
+    function getSearchUrl(q) {
+      const logo = document.querySelector('a.topbar-logo, a[class*="logo"]');
+      const base = logo ? logo.getAttribute('href') : '/';
+      const root = base.endsWith('/') ? base : base + '/';
+      return root + 'search.html?q=' + encodeURIComponent(q.trim());
+    }
+    searchBox.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && searchBox.value.trim()) {
+        window.location.href = getSearchUrl(searchBox.value);
+      }
     });
     document.addEventListener('keydown', e => {
-      if (e.key === '/' && document.activeElement !== searchBox) { e.preventDefault(); searchBox.focus(); }
-      if (e.key === 'Escape') { searchBox.value = ''; resultsEl.style.display = 'none'; searchBox.blur(); }
+      if (e.key === '/' && document.activeElement !== searchBox) {
+        e.preventDefault(); searchBox.focus(); searchBox.select();
+      }
+      if (e.key === 'Escape' && document.activeElement === searchBox) {
+        searchBox.value = ''; searchBox.blur();
+      }
     });
   }
 
-  /* ── 12. STATUS DOTS ── */
-  document.querySelectorAll('.sidebar-l3-link').forEach(link => {
-    const dot = link.querySelector('.status-dot');
-    if (dot) {
-      if (dot.classList.contains('status-done'))  dot.title = 'Complete';
-      else if (dot.classList.contains('status-wip')) dot.title = 'In Progress';
-      else dot.title = 'Queued';
-    }
-  });
+
+});
 
 });
