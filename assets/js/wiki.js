@@ -1,37 +1,39 @@
-/* Cruise Process Wiki JS — Light theme, zoom+pan lightbox, rail sidebar, search */
+/* Cruise Process Wiki JS — v2 clean rewrite */
 
 const DOMAIN_ICONS = {
-  'guest':         '🚢', 'embarkation': '🚢', 'debarkation': '🚢', 'concierge': '🚢',
-  'stateroom':     '🛏️', 'housekeeping': '🛏️', 'laundry': '🧺',
-  'food':          '🍽️', 'beverage': '🍽️', 'dining': '🍽️', 'culinary': '👨‍🍳',
+  'guest': '🚢', 'embarkation': '🚢', 'debarkation': '🚢', 'concierge': '🚢',
+  'stateroom': '🛏️', 'housekeeping': '🛏️', 'laundry': '🧺',
+  'food': '🍽️', 'beverage': '🍽️', 'dining': '🍽️', 'culinary': '👨‍🍳',
   'entertainment': '🎭', 'activities': '🎠', 'showroom': '🎭',
-  'shore':         '⚓', 'excursion': '⚓', 'destination': '🏝️',
-  'marine':        '⚙️', 'technical': '⚙️', 'engineering': '⚙️', 'navigation': '🧭',
+  'shore': '⚓', 'excursion': '⚓', 'destination': '🏝️',
+  'marine': '⚙️', 'technical': '⚙️', 'engineering': '⚙️', 'navigation': '🧭',
   'environmental': '🌿', 'sustainability': '🌿', 'waste': '♻️',
-  'crew':          '👥', 'management': '👥', 'hr': '👥',
-  'revenue':       '💰', 'commercial': '💰', 'loyalty': '🏅',
-  'finance':       '💼', 'procurement': '📦',
-  'technology':    '💻', 'cybersecurity': '🔐', 'it': '💻',
-  'health':        '🏥', 'safety': '🛡️', 'medical': '⚕️',
+  'crew': '👥', 'management': '👥',
+  'revenue': '💰', 'commercial': '💰', 'loyalty': '🏅',
+  'finance': '💼', 'procurement': '📦',
+  'technology': '💻', 'cybersecurity': '🔐',
+  'health': '🏥', 'safety': '🛡️', 'medical': '⚕️',
+  'ea': '🗺️',
 };
 
 function getDomainIcon(name) {
-  const lower = (name || '').toLowerCase();
-  for (const [key, icon] of Object.entries(DOMAIN_ICONS)) {
-    if (lower.includes(key)) return icon;
+  var lower = (name || '').toLowerCase();
+  var keys = Object.keys(DOMAIN_ICONS);
+  for (var i = 0; i < keys.length; i++) {
+    if (lower.indexOf(keys[i]) !== -1) return DOMAIN_ICONS[keys[i]];
   }
   return '📋';
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
 
-  /* ── 1. INJECT ICONS into sidebar domain headers ── */
-  document.querySelectorAll('.sidebar-domain').forEach(el => {
-    const labelEl = el.querySelector('.sidebar-domain-label') || el;
-    const text = labelEl.textContent.trim();
+  /* ── 1. INJECT ICONS ── */
+  document.querySelectorAll('.sidebar-domain').forEach(function(el) {
+    var labelEl = el.querySelector('.sidebar-domain-label') || el;
+    var text = labelEl.textContent.trim();
     el.setAttribute('data-label', text);
     if (!el.querySelector('.domain-icon')) {
-      const ic = document.createElement('span');
+      var ic = document.createElement('span');
       ic.className = 'domain-icon';
       ic.textContent = getDomainIcon(text);
       el.insertBefore(ic, el.firstChild);
@@ -39,22 +41,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ── 2. SIDEBAR ELEMENTS ── */
-  const sidebar   = document.getElementById('sidebar');
-  const mainEl    = document.querySelector('.main');
-  const toggleBtn = document.getElementById('sidebarToggle');
-  const isMobile  = () => window.innerWidth <= 900;
-  const RAIL_W    = 52;
-  let currentW    = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-w')) || 260;
+  var sidebar   = document.getElementById('sidebar');
+  var mainEl    = document.querySelector('.main');
+  var toggleBtn = document.getElementById('sidebarToggle');
+  var RAIL_W    = 52;
+  var currentW  = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-w')) || 260;
 
-  /* Inject drag resizer */
-  let resizer = document.getElementById('sidebar-resizer');
+  function isMobile() { return window.innerWidth <= 900; }
+
+  /* Inject resizer */
+  var resizer = document.getElementById('sidebar-resizer');
   if (!resizer && sidebar) {
     resizer = document.createElement('div');
     resizer.id = 'sidebar-resizer';
     document.body.appendChild(resizer);
   }
+
   /* Inject overlay */
-  let overlay = document.getElementById('sidebar-overlay');
+  var overlay = document.getElementById('sidebar-overlay');
   if (!overlay) {
     overlay = document.createElement('div');
     overlay.id = 'sidebar-overlay';
@@ -68,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebar.classList.remove('mobile-open');
     if (toggleBtn) { toggleBtn.innerHTML = '&#9654;'; toggleBtn.title = 'Expand sidebar'; }
     if (resizer) resizer.style.left = RAIL_W + 'px';
-    localStorage.setItem('sidebarState', 'rail');
+    try { localStorage.setItem('sidebarState', 'rail'); } catch(e) {}
   }
 
   function setSidebarExpanded() {
@@ -82,41 +86,41 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleBtn.innerHTML = '&#9664;';
       toggleBtn.title = 'Collapse sidebar';
     }
-    localStorage.setItem('sidebarState', 'expanded');
+    try { localStorage.setItem('sidebarState', 'expanded'); } catch(e) {}
   }
 
   /* ── 4. SIDEBAR ACCORDION ── */
-  document.querySelectorAll('.sidebar-domain').forEach(el => {
-    el.addEventListener('click', () => {
+  document.querySelectorAll('.sidebar-domain').forEach(function(el) {
+    el.addEventListener('click', function() {
       if (sidebar && sidebar.classList.contains('rail')) {
         setSidebarExpanded();
-        setTimeout(() => {
+        setTimeout(function() {
           el.classList.add('open');
-          const l2 = el.nextElementSibling;
+          var l2 = el.nextElementSibling;
           if (l2) l2.classList.add('open');
         }, 230);
         return;
       }
       el.classList.toggle('open');
-      const l2 = el.nextElementSibling;
+      var l2 = el.nextElementSibling;
       if (l2) l2.classList.toggle('open');
     });
   });
 
   /* Auto-open active section */
-  const active = document.querySelector('.sidebar-l3-link.active');
+  var active = document.querySelector('.sidebar-l3-link.active');
   if (active) {
-    const l2 = active.closest('.sidebar-l2');
+    var l2 = active.closest('.sidebar-l2');
     if (l2) {
       l2.classList.add('open');
-      const d = l2.previousElementSibling;
+      var d = l2.previousElementSibling;
       if (d) d.classList.add('open');
     }
   }
 
   /* ── 5. TOGGLE BUTTON ── */
   if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => {
+    toggleBtn.addEventListener('click', function() {
       if (isMobile()) {
         if (sidebar.classList.contains('mobile-open')) {
           sidebar.classList.remove('mobile-open');
@@ -128,12 +132,16 @@ document.addEventListener('DOMContentLoaded', () => {
           toggleBtn.innerHTML = '&#9664;';
         }
       } else {
-        sidebar && sidebar.classList.contains('rail') ? setSidebarExpanded() : setSidebarRail();
+        if (sidebar && sidebar.classList.contains('rail')) {
+          setSidebarExpanded();
+        } else {
+          setSidebarRail();
+        }
       }
     });
   }
 
-  overlay.addEventListener('click', () => {
+  overlay.addEventListener('click', function() {
     sidebar.classList.remove('mobile-open');
     overlay.classList.remove('active');
     if (toggleBtn) toggleBtn.innerHTML = '&#9654;';
@@ -141,15 +149,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── 6. HOVER EXPAND FROM RAIL ── */
   if (sidebar) {
-    sidebar.addEventListener('mouseenter', () => {
+    sidebar.addEventListener('mouseenter', function() {
       if (!isMobile() && sidebar.classList.contains('rail')) setSidebarExpanded();
     });
   }
 
   /* ── 7. DRAG RESIZE ── */
   if (resizer) {
-    let dragging = false, startX, startW;
-    resizer.addEventListener('mousedown', e => {
+    var dragging = false, startX, startW;
+    resizer.addEventListener('mousedown', function(e) {
       if (isMobile()) return;
       dragging = true; startX = e.clientX; startW = sidebar ? sidebar.offsetWidth : currentW;
       resizer.classList.add('dragging');
@@ -157,9 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.userSelect = 'none';
       e.preventDefault();
     });
-    document.addEventListener('mousemove', e => {
+    document.addEventListener('mousemove', function(e) {
       if (!dragging || !sidebar) return;
-      const newW = Math.max(180, Math.min(480, startW + e.clientX - startX));
+      var newW = Math.max(180, Math.min(480, startW + e.clientX - startX));
       if (newW < 120) { setSidebarRail(); dragging = false; return; }
       currentW = newW;
       sidebar.style.width = newW + 'px';
@@ -169,32 +177,34 @@ document.addEventListener('DOMContentLoaded', () => {
       document.documentElement.style.setProperty('--sidebar-w', newW + 'px');
       sidebar.classList.remove('rail');
     });
-    document.addEventListener('mouseup', () => {
+    document.addEventListener('mouseup', function() {
       if (!dragging) return;
       dragging = false;
       resizer.classList.remove('dragging');
       document.body.style.cursor = '';
       document.body.style.userSelect = '';
-      localStorage.setItem('sidebarW', currentW);
+      try { localStorage.setItem('sidebarW', currentW); } catch(e) {}
     });
   }
 
   /* ── 8. RESTORE STATE ── */
-  const savedState = localStorage.getItem('sidebarState');
-  const savedW     = localStorage.getItem('sidebarW');
-  if (!isMobile()) {
-    if (savedW) {
-      currentW = parseInt(savedW);
-      document.documentElement.style.setProperty('--sidebar-w', currentW + 'px');
+  try {
+    var savedState = localStorage.getItem('sidebarState');
+    var savedW     = localStorage.getItem('sidebarW');
+    if (!isMobile()) {
+      if (savedW) {
+        currentW = parseInt(savedW);
+        document.documentElement.style.setProperty('--sidebar-w', currentW + 'px');
+      }
+      if (savedState === 'rail') {
+        setSidebarRail();
+      } else {
+        setSidebarExpanded();
+      }
     }
-    if (savedState === 'rail') {
-      setSidebarRail();
-    } else {
-      setSidebarExpanded();
-    }
-  }
+  } catch(e) {}
 
-  window.addEventListener('resize', () => {
+  window.addEventListener('resize', function() {
     if (!isMobile()) {
       overlay.classList.remove('active');
       if (sidebar) sidebar.classList.remove('mobile-open');
@@ -202,143 +212,164 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ── 9. SMOOTH SCROLL ── */
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const t = document.querySelector(a.getAttribute('href'));
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var t = document.querySelector(a.getAttribute('href'));
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
 
   /* ── 10. BPMN LIGHTBOX WITH ZOOM + PAN ── */
   function buildLightbox() {
-    const existing = document.getElementById('bpmn-lightbox');
+    /* If already built (has toolbar), return it */
+    var existing = document.getElementById('bpmn-lightbox');
     if (existing && document.getElementById('lb-toolbar')) return existing;
-    const ov = document.createElement('div');
+
+    /* Build the lightbox div */
+    var ov = document.createElement('div');
     ov.id = 'bpmn-lightbox';
-    ov.innerHTML = `
-      <div id="lb-toolbar">
-        <span id="lb-title">Process Flow Diagram (BPMN)</span>
-        <div id="lb-controls">
-          <button id="lb-zoom-in" title="Zoom in">+</button>
-          <button id="lb-zoom-out" title="Zoom out">&#8722;</button>
-          <button id="lb-reset" title="Reset view">Reset</button>
-          <button id="lb-close" title="Close (Esc)">&#10005;</button>
-        </div>
-      </div>
-      <div id="lb-canvas"><img id="lb-img" src="" alt="BPMN diagram" draggable="false"></div>
-      <div id="lb-hint">Drag to pan &nbsp;|&nbsp; Scroll to zoom &nbsp;|&nbsp; Esc to close</div>`;
-    const placeholder = document.getElementById('bpmn-lightbox');
-    if (placeholder) {
-      placeholder.id = 'bpmn-lightbox-old'; // rename so ov.id='bpmn-lightbox' is unique
+    ov.innerHTML =
+      '<div id="lb-toolbar">' +
+        '<span id="lb-title">Process Flow Diagram</span>' +
+        '<div id="lb-controls">' +
+          '<button id="lb-zoom-in" title="Zoom in">+</button>' +
+          '<button id="lb-zoom-out" title="Zoom out">&#8722;</button>' +
+          '<button id="lb-reset" title="Reset view">Reset</button>' +
+          '<button id="lb-close" title="Close (Esc)">&#10005;</button>' +
+        '</div>' +
+      '</div>' +
+      '<div id="lb-canvas"><img id="lb-img" src="" alt="diagram" draggable="false"></div>' +
+      '<div id="lb-hint">Drag to pan &nbsp;|&nbsp; Scroll to zoom &nbsp;|&nbsp; Esc to close</div>';
+
+    /* Replace empty placeholder or append to body */
+    var placeholder = document.getElementById('bpmn-lightbox');
+    if (placeholder && !document.getElementById('lb-toolbar')) {
       placeholder.parentNode.replaceChild(ov, placeholder);
-    } else {
+    } else if (!placeholder) {
       document.body.appendChild(ov);
     }
 
-    const canvas = document.getElementById('lb-canvas');
-    const img    = document.getElementById('lb-img');
-    let scale = 1, ox = 0, oy = 0, draggingLB = false, lx = 0, ly = 0;
+    var canvas = document.getElementById('lb-canvas');
+    var img    = document.getElementById('lb-img');
+    var scale = 1, ox = 0, oy = 0, lbDragging = false, lx = 0, ly = 0;
 
-    const applyT    = () => { img.style.transform = `translate(${ox}px,${oy}px) scale(${scale})`; };
-    const resetView = () => { scale = 1; ox = 0; oy = 0; applyT(); };
-    const closeLB   = () => { ov.classList.remove('lb-open'); resetView(); };
+    function applyT() { img.style.transform = 'translate(' + ox + 'px,' + oy + 'px) scale(' + scale + ')'; }
+    function resetView() { scale = 1; ox = 0; oy = 0; applyT(); }
+    function closeLB() { ov.classList.remove('lb-open'); resetView(); }
 
-    document.getElementById('lb-zoom-in').onclick  = () => { scale = Math.min(scale * 1.3, 8); applyT(); };
-    document.getElementById('lb-zoom-out').onclick = () => { scale = Math.max(scale / 1.3, 0.15); applyT(); };
+    document.getElementById('lb-zoom-in').onclick  = function() { scale = Math.min(scale * 1.3, 8); applyT(); };
+    document.getElementById('lb-zoom-out').onclick = function() { scale = Math.max(scale / 1.3, 0.15); applyT(); };
     document.getElementById('lb-reset').onclick    = resetView;
     document.getElementById('lb-close').onclick    = closeLB;
 
-    canvas.addEventListener('wheel', e => {
+    canvas.addEventListener('wheel', function(e) {
       e.preventDefault();
       scale = e.deltaY < 0 ? Math.min(scale * 1.1, 8) : Math.max(scale / 1.1, 0.15);
       applyT();
     }, { passive: false });
 
-    canvas.addEventListener('mousedown', e => {
-      draggingLB = true; lx = e.clientX; ly = e.clientY;
+    canvas.addEventListener('mousedown', function(e) {
+      lbDragging = true; lx = e.clientX; ly = e.clientY;
       img.style.cursor = 'grabbing';
     });
-    document.addEventListener('mousemove', e => {
-      if (!draggingLB) return;
+    document.addEventListener('mousemove', function(e) {
+      if (!lbDragging) return;
       ox += e.clientX - lx; oy += e.clientY - ly;
       lx = e.clientX; ly = e.clientY; applyT();
     });
-    document.addEventListener('mouseup', () => { draggingLB = false; img.style.cursor = 'grab'; });
+    document.addEventListener('mouseup', function() {
+      lbDragging = false; img.style.cursor = 'grab';
+    });
 
-    /* Touch: pan + pinch-zoom */
-    let lastDist = 0;
-    canvas.addEventListener('touchstart', e => {
+    /* Touch pan + pinch */
+    var lastDist = 0;
+    canvas.addEventListener('touchstart', function(e) {
       e.preventDefault();
-      if (e.touches.length === 1) { draggingLB = true; lx = e.touches[0].clientX; ly = e.touches[0].clientY; }
-      else if (e.touches.length === 2) {
-        lastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-      }
+      if (e.touches.length === 1) { lbDragging = true; lx = e.touches[0].clientX; ly = e.touches[0].clientY; }
+      else if (e.touches.length === 2) { lastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); }
     }, { passive: false });
-    canvas.addEventListener('touchmove', e => {
+    canvas.addEventListener('touchmove', function(e) {
       e.preventDefault();
-      if (e.touches.length === 1 && draggingLB) {
+      if (e.touches.length === 1 && lbDragging) {
         ox += e.touches[0].clientX - lx; oy += e.touches[0].clientY - ly;
         lx = e.touches[0].clientX; ly = e.touches[0].clientY; applyT();
       } else if (e.touches.length === 2) {
-        const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+        var d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
         scale = Math.min(Math.max(scale * (d / lastDist), 0.15), 8);
         lastDist = d; applyT();
       }
     }, { passive: false });
-    canvas.addEventListener('touchend', () => { draggingLB = false; });
+    canvas.addEventListener('touchend', function() { lbDragging = false; });
 
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
-    ov.addEventListener('click', e => { if (e.target === ov || e.target === canvas) closeLB(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLB(); });
+    ov.addEventListener('click', function(e) { if (e.target === ov || e.target === canvas) closeLB(); });
 
     return ov;
   }
 
   /* Attach lightbox to all diagram images */
-  document.querySelectorAll('.diagram-wrap img').forEach(img => {
+  document.querySelectorAll('.diagram-wrap img').forEach(function(img) {
     img.style.cursor = 'zoom-in';
-    img.addEventListener('click', () => {
-      const lb = buildLightbox();
+    img.addEventListener('click', function() {
+      var lb = buildLightbox();
       document.getElementById('lb-img').src = img.src;
       lb.classList.add('lb-open');
     });
   });
 
-  /* ── 11. SEARCH (topbar searchBox) ── */
-  const searchBox = document.getElementById('searchBox');
+  /* ── 11. SEARCH ── */
+  var searchBox = document.getElementById('searchBox');
   if (searchBox) {
-      searchBox.closest('.topbar-search') ?
+    var resultsEl = document.getElementById('searchResults');
+    if (!resultsEl) {
+      resultsEl = document.createElement('div');
+      resultsEl.id = 'searchResults';
+      resultsEl.className = 'search-results';
+      resultsEl.style.display = 'none';
+      var wrap = searchBox.closest('.topbar-search');
+      if (wrap) wrap.appendChild(resultsEl);
+      else document.body.appendChild(resultsEl);
     }
 
-    const links = [...document.querySelectorAll('.sidebar-l3-link')].map(a => ({
-      text: a.textContent.replace(/\s+/g, ' ').trim(), href: a.href
-    }));
+    var links = Array.prototype.slice.call(document.querySelectorAll('.sidebar-l3-link')).map(function(a) {
+      return { text: a.textContent.replace(/\s+/g, ' ').trim(), href: a.href };
+    });
 
-    
-  /* ── SEARCH — redirect to search.html on Enter ── */
-  const searchBox = document.getElementById('searchBox');
-  if (searchBox) {
-    function getSearchUrl(q) {
-      const logo = document.querySelector('a.topbar-logo, a[class*="logo"]');
-      const base = logo ? logo.getAttribute('href') : '/';
-      const root = base.endsWith('/') ? base : base + '/';
-      return root + 'search.html?q=' + encodeURIComponent(q.trim());
-    }
-    searchBox.addEventListener('keydown', e => {
-      if (e.key === 'Enter' && searchBox.value.trim()) {
-        window.location.href = getSearchUrl(searchBox.value);
+    searchBox.addEventListener('input', function() {
+      var q = searchBox.value.trim().toLowerCase();
+      if (!q) { resultsEl.style.display = 'none'; return; }
+      var hits = links.filter(function(l) { return l.text.toLowerCase().indexOf(q) !== -1; }).slice(0, 8);
+      if (!hits.length) { resultsEl.style.display = 'none'; return; }
+      resultsEl.innerHTML = hits.map(function(h) {
+        return '<a class="sr-item" href="' + h.href + '">' + h.text + '</a>';
+      }).join('');
+      resultsEl.style.display = 'block';
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!searchBox.contains(e.target) && !resultsEl.contains(e.target)) {
+        resultsEl.style.display = 'none';
       }
     });
-    document.addEventListener('keydown', e => {
+
+    document.addEventListener('keydown', function(e) {
       if (e.key === '/' && document.activeElement !== searchBox) {
-        e.preventDefault(); searchBox.focus(); searchBox.select();
+        e.preventDefault(); searchBox.focus();
       }
-      if (e.key === 'Escape' && document.activeElement === searchBox) {
-        searchBox.value = ''; searchBox.blur();
+      if (e.key === 'Escape') {
+        searchBox.value = ''; resultsEl.style.display = 'none'; searchBox.blur();
       }
     });
   }
 
-
-});
+  /* ── 12. STATUS DOTS ── */
+  document.querySelectorAll('.sidebar-l3-link').forEach(function(link) {
+    var dot = link.querySelector('.status-dot');
+    if (dot) {
+      if (dot.classList.contains('status-done')) dot.title = 'Complete';
+      else if (dot.classList.contains('status-wip')) dot.title = 'In Progress';
+      else dot.title = 'Queued';
+    }
+  });
 
 });
