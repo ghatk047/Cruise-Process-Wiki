@@ -414,3 +414,19 @@ tbody td { padding: 9px 12px; vertical-align: top; line-height: 1.5; }
   width: 240px;
 }
 #searchBox::placeholder, .search-box::placeholder { color: rgba(255,255,255,.4); }
+
+/* ── BACKWARD COMPAT — old process page topbar class names ── */
+.topbar-search-wrap { position: relative; margin-left: 8px; }
+input.search-box {
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+  color: #fff; font-size: 12px; padding: 5px 12px; border-radius: 5px;
+  font-family: var(--font); outline: none; width: 200px;
+}
+input.search-box::placeholder { color: rgba(255,255,255,.5); }
+input.search-box:focus { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.4); }
+.topbar-search-wrap .search-results {
+  position: absolute; top: calc(100% + 6px); right: 0; width: 340px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  z-index: 300; overflow: hidden;
+}
